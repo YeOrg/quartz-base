@@ -4,3 +4,7 @@ enableToc: false
 ---
 
 People's knowledge should be based on graph.
+
+Favor
+
+[[barycentric_coordinates]]

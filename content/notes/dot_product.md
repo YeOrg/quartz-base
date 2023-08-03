@@ -17,7 +17,7 @@ $${\displaystyle {\vec {a}}\cdot {\vec {b}}=|{\vec {a}}|\,|{\vec {b}}|\cos \thet
 **推导**
 
 两个定义之间是等价的并可以互相推出
-根据余弦定理则我们有
+根据[[cosine_law]]余弦定理则我们有
 $$|| a-b ||^2 = ||a||^2+||b||^2-2||a||\ ||b||cos\alpha$$展开得
 $$\begin{aligned} \sum^{n}_{i=1}(a_i-b_i)^2 =\sum^{i=1}_{n}a_i^2+\sum^{n}_{n=1}b_i^2-2||a||\ ||b||cos\alpha \end{aligned}$$在二维情况下展开有
 $$\begin{aligned} (a_1^2+b_1^2-2a_1b_1)+(a_2^2+b_2^2-2a_2b_2) = a_1^2+a_2^2 + b_1^2+b_2^2 - 2||a||\ ||b||cos\alpha \end{aligned}$$消去所有的$a_1^2,\ b_1^2$整理后有
