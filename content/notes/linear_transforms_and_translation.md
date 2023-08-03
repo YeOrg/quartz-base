@@ -59,4 +59,4 @@
 
 **变换复合**
 
-如果还记得之前的变换复合，那么现在给你一个复合也会很容易就理解$$\mathbf{T}_{(1,0)}\mathbf{R}_{45^\circ} = \left ( \begin{matrix} 1&0&1\\ 0&1&0\\0&0&1 \end{matrix} \right ) \left ( \begin{matrix} cos45^\circ &-sin45^\circ &0\\ sin45^\circ & cos45^\circ &0\\0&0&1 \end{matrix} \right )$$3维下$$\left ( \begin{matrix} x'\\ y' \\z'\\1 \end{matrix} \right ) = \left ( \begin{matrix} 1&0&0&t_x\\ 0&1&0&t_y\\0&0&1&t_z \\0&0&0&1 \end{matrix} \right ) \left ( \begin{matrix} x\\ y\\z\\1 \end{matrix} \right ) = \left ( \begin{matrix} x+t_x\\ y+t_y\\ z+t_z\\1 \end{matrix} \right )$$
+[[complex_transformation]]变换复合，很容易就理解$$\mathbf{T}_{(1,0)}\mathbf{R}_{45^\circ} = \left ( \begin{matrix} 1&0&1\\ 0&1&0\\0&0&1 \end{matrix} \right ) \left ( \begin{matrix} cos45^\circ &-sin45^\circ &0\\ sin45^\circ & cos45^\circ &0\\0&0&1 \end{matrix} \right )$$3维下$$\left ( \begin{matrix} x'\\ y' \\z'\\1 \end{matrix} \right ) = \left ( \begin{matrix} 1&0&0&t_x\\ 0&1&0&t_y\\0&0&1&t_z \\0&0&0&1 \end{matrix} \right ) \left ( \begin{matrix} x\\ y\\z\\1 \end{matrix} \right ) = \left ( \begin{matrix} x+t_x\\ y+t_y\\ z+t_z\\1 \end{matrix} \right )$$

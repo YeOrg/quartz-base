@@ -22,6 +22,18 @@ date modified: 2023-08-03
 
 正交变换[[orthographic_transformation]]是将一个方体内我们所可以看到的事物，最终投射到一"面"上
 
+视口变换[[viewport_transformation]]
+
+**NDC Space** 
+
+(Normalized device coordinate/规格化设备坐标) 归一化设备坐标或NDC空间是独立于屏幕的显示坐标系统; 它包含一个立方体，其中$x、y$和$z$组件的范围从$−1$到$1$。
+
 **Space Transformation**<div align=center><img src="https://cdn.jsdelivr.net/gh/aaronmack/image-hosting@master/graphics/空间变换.3uujhna7v4o0.webp"></div>
+
+**W Component**
+
+可以通过增大$w$分量的值，是点朝向原点移动，减小$w$分量的值，可以使点朝向无穷点。(https://stackoverflow.com/questions/2422750/in-opengl-vertex-shaders-what-is-w-and-why-do-i-divide-by-it)
+
+在到clip空间后，我们会根据$-w \leq x,y,z \leq w$来决定丢弃哪些模型,因为这是都是超出了屏幕之外的。 例如$-w \leq x \leq w$是在$x$轴向上超出了，以此类推，这里为什么是与$w$的值比较与在NDC空间中为什么是除以$w$的值是归一化是如出一辙的。
 
 See. MVP_Understanding.hip
