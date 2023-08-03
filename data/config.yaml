@@ -12,7 +12,7 @@ enableContextualBacklinks: true
 enableRecentNotes: false
 enableGitHubEdit: true
 enableMermaid: true
-GitHubLink: https://github.com/aaronmack
+GitHubLink: https://github.com/YeOrg/quartz-base/tree/hugo/content
 search:
   enableSemanticSearch: false
   operandApiKey: "REPLACE-WITH-YOUR-OPERAND-API-KEY"
@@ -26,3 +26,5 @@ links:
     link: https://twitter.com/aaaron_li
   - link_name: GitHub
     link: https://github.com/aaronmack
+favicon:
+  - { rel: "shortcut icon", href: "SpongeBob.png", type: "image/png" }
