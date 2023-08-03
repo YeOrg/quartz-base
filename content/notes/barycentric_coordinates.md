@@ -17,7 +17,7 @@
 $P$点分别与三角形的三个顶点相连，我们可以得到三个小三角形，然后**通过分别计算这个三个小三角形的面积与整个三角形的面积的比值**
 <div align=center><img src="https://cdn.jsdelivr.net/gh/aaronmack/image-hosting@master/mathematics/重心坐标计算1.g6q54cfe988.webp" width="790"></div>那么之前的那个例子通过计算就是小三角形$A_A$占据了整个三角形，与整个三角形的面积比值为$\frac{1}{1}=1$,而小三角形$A_B$与$A_C$与整个三角形的面积比为$\frac{0}{1}=0$,现在的问题就是我们如何计算这个**面积比值**<div align=center><img src="https://cdn.jsdelivr.net/gh/aaronmack/image-hosting@master/mathematics/重心坐标计算示例.2fikhcexbois.webp" width="390"></div>
 
-首先是三角形上的法线计算，使用叉乘
+首先是三角形上的法线计算，使用[[cross_product]]叉乘
 $$\mathbf{n}=(b-a)\times (c-a)$$求得法线 (两个向量叉乘得第三个向量且垂直于这两个向量) 为什么要计算法线呢？因为计算法线与求面积有关,让我们继续往下看，在我们求得法线之后，我们就有三角形的面积为 
 $$area = \frac{1}{2} ||n||$$这里为什么面积是$\frac{1}{2}$倍的法线的模？抛开叉乘的几何意义，我们从代数意义去看叉乘
 <div align=center><img src="https://cdn.jsdelivr.net/gh/aaronmack/image-hosting@master/mathematics/叉乘与三角形面积.6bri9yhngtc0.webp"></div>其中
