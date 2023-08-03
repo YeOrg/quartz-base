@@ -1,5 +1,7 @@
+叉乘只在三维中有定义，<span style="color:purple">两个向量的叉乘可以产生一个与这两个向量都垂直的新向量</span>。例如计算一个物体表面的法向量
+
 <div align=center><img src="https://cdn.jsdelivr.net/gh/aaronmack/image-hosting@master/mathematics/叉乘.1eb9eyex849s.webp" width="290"></div>
-  * 叉乘只在三维中有定义，<span style="color:purple">两个向量的叉乘可以产生一个与这两个向量都垂直的新向量</span>。例如计算一个物体表面的法向量
+
 **叉乘定义**
 $${\displaystyle \mathbf {a} \times \mathbf {b}=\left\|\mathbf {a} \right\|\left\|\mathbf {b} \right\|\sin(\theta)\mathbf{n}}$$其中$\theta$表示$\mathbf{a}$向量和$\mathbf{b}$向量之间的夹角，而 ${\displaystyle \mathbf {n} }$则是一个与${\displaystyle \mathbf {a} }$、${\displaystyle \mathbf {b} }$所构成的平面垂直的单位向量，方向由右手定则决定 (https://zh.wikipedia.org/wiki/%E5%8F%89%E7%A7%AF)
 
