@@ -1,6 +1,7 @@
 ---
-dg-publish: true
+{"dg-publish":true,"permalink":"/notes/cross-product/","title":"Cross product","noteIcon":"","created":"","updated":""}
 ---
+
 叉乘只在三维中有定义，<span style="color:purple">两个向量的叉乘可以产生一个与这两个向量都垂直的新向量</span>。例如计算一个物体表面的法向量
 
 <div align=center><img src="https://cdn.jsdelivr.net/gh/aaronmack/image-hosting@master/mathematics/叉乘.1eb9eyex849s.webp" width="290"></div>
@@ -64,7 +65,14 @@ $$a\times a = [a]_\times * a = 0$$
 
 其中$[a]_\times$表示某个叉乘矩阵，然后作用到了$a$得结果为$0$,通过对比，我们可以发现，$\mathbf{a}\mathbf{H}$就是向量a的叉乘矩阵，当$\mathbf{a}$为列向量时，$\mathbf{a}^T\mathbf{H}$为a向量的叉乘矩阵，如果向量$\mathbf{a} = (a_1,a_2,a_3)$为三维向量，那么H为
 
-$$\mathbf{H} = \left ( \begin{matrix} H_1 \\ H_2 \\ H_3 \end{matrix}\right ) \ \mathbf{H_1} = \left ( \begin{matrix} 0&0&0 \\ 0&0&\textcolor{green}{-1} \\ 0&\textcolor{green}{1}&0 \end{matrix}\right ) \ \mathbf{H_2} = \left ( \begin{matrix} 0&0&\textcolor{blue}{1} \\ 0&0&0 \\ \textcolor{blue}{-1}&0&0 \end{matrix}\right ) \ \mathbf{H_3} = \left ( \begin{matrix} 0&\textcolor{red}{-1}&0 \\ \textcolor{red}{1}&0&0 \\ 0&0&0 \end{matrix}\right )$$最后将变换合并起来就是$$\mathbf{H} = \left ( \begin{matrix} 0&\textcolor{red}{-1}&\textcolor{blue}{1} \\ \textcolor{red}{1}&0&\textcolor{green}{-1} \\ \textcolor{blue}{-1}&\textcolor{green}{1}&0 \end{matrix}\right )$$则最终有
+$$\mathbf{H} = \left ( \begin{matrix} H_1 \\ H_2 \\ H_3 \end{matrix}\right ) \ \mathbf{H_1} = \left ( \begin{matrix} 0&0&0 \\ 0&0&\textcolor{green}{-1} \\ 0&\textcolor{green}{1}&0 \end{matrix}\right ) \ \mathbf{H_2} = \left ( \begin{matrix} 0&0&\textcolor{blue}{1} \\ 0&0&0 \\ \textcolor{blue}{-1}&0&0 \end{matrix}\right ) \ \mathbf{H_3} = \left ( \begin{matrix} 0&\textcolor{red}{-1}&0 \\ \textcolor{red}{1}&0&0 \\ 0&0&0 \end{matrix}\right )$$
+
+最后将变换合并起来就是
+
+$$\mathbf{H} = \left ( \begin{matrix} 0&\textcolor{red}{-1}&\textcolor{blue}{1} \\ \textcolor{red}{1}&0&\textcolor{green}{-1} \\ \textcolor{blue}{-1}&\textcolor{green}{1}&0 \end{matrix}\right )$$
+
+则最终有
+
 $$\mathbf{a}\mathbf{H} = \left ( \begin{matrix} 0&\textcolor{red}{-a_3}&\textcolor{blue}{a_2} \\ \textcolor{red}{a_3}&0&\textcolor{green}{-a_1} \\ \textcolor{blue}{-a_2}&\textcolor{green}{a_1}&0 \end{matrix}\right )$$
 
 $$\mathbf{a}\times \mathbf{b} = \mathbf{A}*\mathbf{b} = \left ( \begin{matrix} 0&-a_3&a_2 \\ a_3&0&-a_1 \\ -a_2&a_1&0 \end{matrix} \right )\left ( \begin{matrix} b_1 \\ b_2 \\ b_3 \end{matrix} \right )$$

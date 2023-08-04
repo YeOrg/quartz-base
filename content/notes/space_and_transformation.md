@@ -1,9 +1,7 @@
 ---
-title: space_and_transformation
-date created: 2023-08-03
-date modified: 2023-08-03
-dg-publish: true
+{"dg-publish":true,"permalink":"/notes/space-and-transformation/","title":"Space and transformation","noteIcon":"","created":"","updated":""}
 ---
+
 
 **图形学渲染中的空间变换**
 
@@ -19,11 +17,11 @@ dg-publish: true
 
 (https://cdn.jsdelivr.net/gh/aaronmack/image-hosting@master/graphics/Perspective-and-Orthographic-Frustum.424xa80owoe.webp)
 
-透视变换[[notes/perspective_transformation]]是将一个锥内我们所可以看到的事物，最终投射到一"点"处
+透视变换[[notes/perspective_transformation\|notes/perspective_transformation]]是将一个锥内我们所可以看到的事物，最终投射到一"点"处
 
-正交变换[[notes/orthographic_transformation]]是将一个方体内我们所可以看到的事物，最终投射到一"面"上
+正交变换[[notes/orthographic_transformation\|notes/orthographic_transformation]]是将一个方体内我们所可以看到的事物，最终投射到一"面"上
 
-视口变换[[notes/viewport_transformation]]
+视口变换[[notes/viewport_transformation\|notes/viewport_transformation]]
 
 **NDC Space** 
 

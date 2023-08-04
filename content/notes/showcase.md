@@ -1,5 +1,5 @@
 ---
-title: "Showcase"
-dg-publish: true
+{"dg-publish":true,"permalink":"/notes/showcase/","title":"Showcase","noteIcon":"","created":"","updated":""}
 ---
+
 ---

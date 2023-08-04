@@ -1,6 +1,7 @@
 ---
-dg-publish: true
+{"dg-publish":true,"permalink":"/notes/equation-and-coordinate-axis/","title":"Equation and coordinate axis","noteIcon":"","created":"","updated":""}
 ---
+
 我们从方程出发，知道了行列式这么一个家伙，下面再来看看方程是什么，方程中的**等号**是问题的核心
 
 <div align=center><img src="https://cdn.jsdelivr.net/gh/aaronmack/image-hosting@master/mathematics/手绘一维坐标轴.2fvv0l7brt7o.webp" width="590"></div>
@@ -25,4 +26,8 @@ dg-publish: true
 
 <div align=center><img src="https://cdn.jsdelivr.net/gh/aaronmack/image-hosting@master/mathematics/二维坐标移动行程例子.6iwav4dmdck0.webp" width="590"></div>
 
-回到问题，$(0,0) \rightarrow (2,2)$, 分开来看，就是先往右移动$2m$到达$p1$，再往上移动$2m$到达$p2$，设往右移动$x$个$1m$才能到达$p1$处,然后往上移动$y$个$1m$才能到达$p2$处, 则我们有$$\begin{array}{l} \left \{ \begin{matrix} 1x=2 \\ 1y=2 \end{matrix} \right.\\ \left \{ \begin{matrix} x=2\\ y=2 \end{matrix} \right. \end{array}$$ 往右移动$2$个$1m$才能到达$p1$处，然后往上移动$2$个$1m$才能到达$p2$处。
+回到问题，$(0,0) \rightarrow (2,2)$, 分开来看，就是先往右移动$2m$到达$p1$，再往上移动$2m$到达$p2$，设往右移动$x$个$1m$才能到达$p1$处,然后往上移动$y$个$1m$才能到达$p2$处, 则我们有
+
+$$\begin{array}{l} \left \{ \begin{matrix} 1x=2 \\ 1y=2 \end{matrix} \right.\\ \left \{ \begin{matrix} x=2\\ y=2 \end{matrix} \right. \end{array}$$ 
+
+往右移动$2$个$1m$才能到达$p1$处，然后往上移动$2$个$1m$才能到达$p2$处。

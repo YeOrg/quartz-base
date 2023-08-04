@@ -1,6 +1,5 @@
 ---
 title: Knowledge
-enableToc: false
 dg-publish: true
 dg-home: true
 ---
