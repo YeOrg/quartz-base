@@ -65,15 +65,15 @@ $$a\times a = [a]_\times * a = 0$$
 
 其中$[a]_\times$表示某个叉乘矩阵，然后作用到了$a$得结果为$0$,通过对比，我们可以发现，$\mathbf{a}\mathbf{H}$就是向量a的叉乘矩阵，当$\mathbf{a}$为列向量时，$\mathbf{a}^T\mathbf{H}$为a向量的叉乘矩阵，如果向量$\mathbf{a} = (a_1,a_2,a_3)$为三维向量，那么H为
 
-$$\mathbf{H} = \left ( \begin{matrix} H_1 \\ H_2 \\ H_3 \end{matrix}\right ) \ \mathbf{H_1} = \left ( \begin{matrix} 0&0&0 \\ 0&0&\textcolor{green}{-1} \\ 0&\textcolor{green}{1}&0 \end{matrix}\right ) \ \mathbf{H_2} = \left ( \begin{matrix} 0&0&\textcolor{blue}{1} \\ 0&0&0 \\ \textcolor{blue}{-1}&0&0 \end{matrix}\right ) \ \mathbf{H_3} = \left ( \begin{matrix} 0&\textcolor{red}{-1}&0 \\ \textcolor{red}{1}&0&0 \\ 0&0&0 \end{matrix}\right )$$
+$$\mathbf{H} = \left ( \begin{matrix} H_1 \\ H_2 \\ H_3 \end{matrix}\right ) \ \mathbf{H_1} = \left ( \begin{matrix} 0&0&0 \\ 0&0&\color{green}{-1} \\ 0&\color{green}{1}&0 \end{matrix}\right ) \ \mathbf{H_2} = \left ( \begin{matrix} 0&0&\color{blue}{1} \\ 0&0&0 \\ \color{blue}{-1}&0&0 \end{matrix}\right ) \ \mathbf{H_3} = \left ( \begin{matrix} 0&\color{red}{-1}&0 \\ \color{red}{1}&0&0 \\ 0&0&0 \end{matrix}\right )$$
 
 最后将变换合并起来就是
 
-$$\mathbf{H} = \left ( \begin{matrix} 0&\textcolor{red}{-1}&\textcolor{blue}{1} \\ \textcolor{red}{1}&0&\textcolor{green}{-1} \\ \textcolor{blue}{-1}&\textcolor{green}{1}&0 \end{matrix}\right )$$
+$$\mathbf{H} = \left ( \begin{matrix} 0&\color{red}{-1}&\color{blue}{1} \\ \color{red}{1}&0&\color{green}{-1} \\ \color{blue}{-1}&\color{green}{1}&0 \end{matrix}\right )$$
 
 则最终有
 
-$$\mathbf{a}\mathbf{H} = \left ( \begin{matrix} 0&\textcolor{red}{-a_3}&\textcolor{blue}{a_2} \\ \textcolor{red}{a_3}&0&\textcolor{green}{-a_1} \\ \textcolor{blue}{-a_2}&\textcolor{green}{a_1}&0 \end{matrix}\right )$$
+$$\mathbf{a}\mathbf{H} = \left ( \begin{matrix} 0&\color{red}{-a_3}&\color{blue}{a_2} \\ \color{red}{a_3}&0&\color{green}{-a_1} \\ \color{blue}{-a_2}&\color{green}{a_1}&0 \end{matrix}\right )$$
 
 $$\mathbf{a}\times \mathbf{b} = \mathbf{A}*\mathbf{b} = \left ( \begin{matrix} 0&-a_3&a_2 \\ a_3&0&-a_1 \\ -a_2&a_1&0 \end{matrix} \right )\left ( \begin{matrix} b_1 \\ b_2 \\ b_3 \end{matrix} \right )$$
 
@@ -82,7 +82,7 @@ $$\mathbf{a}\times \mathbf{b} = \mathbf{A}*\mathbf{b} = \left ( \begin{matrix} 0
 
 $$(\mathbf{a}\times \mathbf{b})\cdot \mathbf{a} =<a_2b_3-a_3b_2,\ \ a_3b_1-a_1b_3,\ \ a_1b_2-a_2b_1> \cdot \mathbf{a} \\ =\ a_1(a_2b_3-a_3b_2) + a_2(a_3b_1-a_1b_3) + a_3(a_1b_2-a_2b_1) \\ $$ 
 
-$$= \textcolor{red}{a_1a_2b_3}-\textcolor{orange}{a_1a_3b_2}+\textcolor{blue}{a_2a_3b_1}-\textcolor{red}{a_2a_1b_3}+\textcolor{orange}{a_3a_1b_2}-\textcolor{blue}{a_3a_2b_1} = 0$$
+$$= \color{red}{a_1a_2b_3}-\color{orange}{a_1a_3b_2}+\color{blue}{a_2a_3b_1}-\color{red}{a_2a_1b_3}+\color{orange}{a_3a_1b_2}-\color{blue}{a_3a_2b_1} = 0$$
 
 假设有两个不共线的向量，分别为$(a_1,a_2,a_3),(b_1,b_2,b_3)$,我们设我们要找的垂直于这两个向量的向量为$(x,y,z)$，那么我们则有如下方程
 
