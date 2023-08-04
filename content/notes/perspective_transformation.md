@@ -53,7 +53,7 @@ $$\begin{aligned} \left [ \begin{matrix} 1&0&0&0\\0&1&0&0\\0&0&-1&-1\\0&0&0&0 \e
 
 其计算过程正好是我们想要的 
 
-$$\begin{aligned} \left \{ \begin{matrix} x'=x*1+y*0+z*0+1*0\ =x\\ y'=x*0+y*1+z*0+1*0\ =y\\ z'=x*0+y*0+z*{-1}+1*0\ ={-z}\\ w'=x*0+y*0+z*{-1}+1*0\ ={-z} \end{matrix}\right. \end{aligned}$$ 
+$$\begin{aligned} \left ( \begin{matrix} x'=x*1+y*0+z*0+1*0\ =x\\ y'=x*0+y*1+z*0+1*0\ =y\\ z'=x*0+y*0+z*{-1}+1*0\ ={-z}\\ w'=x*0+y*0+z*{-1}+1*0\ ={-z} \end{matrix}\right. \end{aligned}$$ 
 
 $$\begin{array}{ll} x' = \dfrac{x'=x}{w'=-z},\\ y' = \dfrac{y'=y}{w'=-z},\\ z' = \dfrac{z'=-z}{w'=-z} = 1. \end{array}$$ 
 
@@ -79,8 +79,8 @@ $$z' = \dfrac{0 * x + 0 * y + A * z + B * w}{w = -z} \rightarrow \dfrac{A z + B}
 
 **注意这里的$w=1$是$(x,y,z,w=1)$中的$w$，而不是这个矩阵中的$w$分量**<br>再根据我们已知$z$正好落在$near$近平面时应当等于$-1$，正好落在$far$远平面时应当等于$1$, 我们可以列出式子
 
-$$\left\{ \begin{array}{ll} \dfrac{(z=-n)A + B}{(-z=-(-n)=n)} = -1 &\text{ when } z = n\\ \\ \dfrac{(z=-f)A + B}{(-z=-(-f)=f)} = 1 & \text{ when } z = f \end{array} \right. $$ 
-$$ \rightarrow  \left\{ \begin{array}{ll} {-nA + B} = -n & (1)\\  {-fA + B} = f & (2) \end{array} \right.$$ 
+$$\left ( \begin{array}{ll} \dfrac{(z=-n)A + B}{(-z=-(-n)=n)} = -1 &\text{ when } z = n\\ \\ \dfrac{(z=-f)A + B}{(-z=-(-f)=f)} = 1 & \text{ when } z = f \end{array} \right. $$ 
+$$ \rightarrow  \left ( \begin{array}{ll} {-nA + B} = -n & (1)\\  {-fA + B} = f & (2) \end{array} \right.$$ 
 
 $$ A=-\frac{f+n}{f-n} $$ 
 

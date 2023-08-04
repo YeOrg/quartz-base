@@ -22,7 +22,7 @@ $$(0,1)$$
 
 刚才我们未引入坐标基矢，引入坐标基矢后，现在就有了一种统一的形式，上述例子的完整情况为
 
-$$\left \{ \begin{matrix} 1x+0y=2 \\ 0x+1y=2 \end{matrix} \right.$$ 
+$$\left ( \begin{matrix} 1x+0y=2 \\ 0x+1y=2 \end{matrix} \right.$$ 
 
 矩阵形式
 

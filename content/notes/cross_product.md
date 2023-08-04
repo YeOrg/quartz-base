@@ -88,11 +88,13 @@ $$= \textcolor{red}{a_1a_2b_3}-\textcolor{orange}{a_1a_3b_2}+\textcolor{blue}{a_
 
 $$\left ( \begin{matrix} a_1&a_2&a_3 \\ b_1&b_2&b_3 \end{matrix} \right )\left ( \begin{matrix} x \\ y \\ z \end{matrix} \right ) = \left ( \begin{matrix} 0 \\ 0 \end{matrix} \right ) =0$$ 
 
-$$\Rightarrow \left \{ \begin{matrix} a_1x+a_2y+a_3z=0 \\ b_1x+b_2y+b_3z=0 \end{matrix} \right .$$ 
+$$\Rightarrow \left ( \begin{matrix} a_1x + a_2y + a_3z=0 \\ b_1x + b_2y + b_3z=0 \end{matrix} \right.$$ 
+
+There is a footnote here [^1]
 
 (这里可以看做向量$(a_1,a_2,a_3)$和$(b_1,b_2,b_3)$分别与要求向量$(x,y,z)$的点乘，如果垂直点乘结果为$0$) 令式子中的$z=1$,则我们有
 
-$$\left \{ \begin{matrix} a_1x+a_2y=-a_3 \ (1) \\ b_1x+b_2y=-b_3 \ (2) \end{matrix}\right .$$
+$$\left ( \begin{matrix} a_1x+a_2y=-a_3 \quad (1) \\ b_1x+b_2y=-b_3 \quad (2) \end{matrix}\right .$$
 
 因为我们的方程组的秩小于未知数的个数，这里不妨设$z=1$然后再求解)
 然后解二元一次方程，另$(1)\times \frac{b_1}{a_1}-(2)$得
@@ -115,3 +117,5 @@ $$(a_3b_2-a_2b_3, \ a_1b_3-a_3b_1, \ a_2b_1-a_1b_2)$$
 
 补充(https://github.com/Krasjet/quaternion/blob/master/quaternion.pdf)
  * 叉乘的定义在历史顺序上来说是从Graßmann积中导出
+
+[^1]: For math render, use `\begin{cases}` instead of `\left {` that doesn't supported. Or use `\left (` with end of `\right.`

@@ -6,7 +6,7 @@
 
 有一个方程，我们试着解一下
 
-$$\begin{array}{l} \left \{ \begin{matrix}  5x+6y=7 \ \ (1) \\ 9x+4y=3 \ \ (2) \end{matrix} \right. \end{array}$$
+$$\begin{array}{l} \left ( \begin{matrix}  5x+6y=7 \ \ (1) \\ 9x+4y=3 \ \ (2) \end{matrix} \right. \end{array}$$
 我们用消去法
 $$\begin{array}{l} (2) \times \frac{5}{9} - (1) \\ (1)\times \frac{4}{6} - (2) \end{array}$$
 最终可以得到
@@ -26,7 +26,7 @@ $$\left ( \begin{matrix} a&b \\ c&d \end{matrix} \right ) = ad-bc$$
 ---
 
 再看另外一个方程
-$$\left \{ \begin{matrix}  1x+0y=0 \\ 0x+1y=0 \end{matrix} \right.$$ 
+$$\left ( \begin{matrix}  1x+0y=0 \\ 0x+1y=0 \end{matrix} \right.$$ 
 列出系数矩阵形式
 $$\left ( \begin{matrix} 1 & 0 \\ 0 & 1 \end{matrix} \right )$$
 
