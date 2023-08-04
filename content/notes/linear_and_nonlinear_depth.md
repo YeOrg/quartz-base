@@ -1,3 +1,6 @@
+---
+dg-publish: true
+---
 **深度**
 
 **线性深度**$$F_{depth}=\frac{z-near}{far-near}$$

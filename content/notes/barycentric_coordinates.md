@@ -1,3 +1,6 @@
+---
+dg-publish: true
+---
 **重心坐标**
 
 **插值Interpolation**

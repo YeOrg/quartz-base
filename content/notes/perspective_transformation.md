@@ -1,3 +1,6 @@
+---
+dg-publish: true
+---
 **透视变换Perspective Transformation**
 
 什么是透视变换？[图片](https://cdn.jsdelivr.net/gh/aaronmack/image-hosting@master/graphics/Perspective.4ihgtm58l9u0.webp) 透视变换是一个投影过程，其中透视变换就像将人的眼睛当做一个中心点，外部世界是一个大平面，在眼睛与这个平面之间形成一个椎体，然后将这个平面上的内容投射到眼睛内。
@@ -14,7 +17,7 @@
 
 [将投影点的z坐标重新映射到范围[-1,1]](https://cdn.jsdelivr.net/gh/aaronmack/image-hosting@master/graphics/Remapping-the-z-coordinate-of-the-projected.2oof8otgmpu0.webp)
 
-(我们根据齐次转三维点时, $(x,y,z)$这三个分量都要除以$w$分量，我们有$$(x', y', z') = (x/w, y/w, z/w)$$其中$x$和$y$对$z$无影响)，则上一步骤中的矩阵可以设为$$\left[\begin{array}{cccc} { \frac{2n}{ r-l } } & 0 & 0 & 0 \\ 0 & { \frac{2n}{ t-b } } & 0 & 0 \\ { \frac{r + l}{ r-l } } & { \frac{t + b}{ t-b } } & \textcolor{#FF0000}{A} & {-1}\\ 0 & 0 & \textcolor{#FF0000}{B} & 0\\ \end{array}\right]$$ 其中<span style="color:red">A</span>和<span style="color:red">B</span>是我们要求的,则可以列出等式$$z' = \dfrac{0 * x + 0 * y + A * z + B * w}{w = -z} \rightarrow \dfrac{A z + B}{w = -z}.$$ **注意这里的$w=1$是$(x,y,z,w=1)$中的$w$，而不是这个矩阵中的$w$分量**<br>再根据我们已知$z$正好落在$near$近平面时应当等于$-1$，正好落在$far$远平面时应当等于$1$, 我们可以列出式子
+(我们根据齐次转三维点时, $(x,y,z)$这三个分量都要除以$w$分量，我们有$$(x', y', z') = (x/w, y/w, z/w)$$其中$x$和$y$对$z$无影响)，则上一步骤中的矩阵可以设为$$\left[\begin{array}{cccc} { \frac{2n}{ r-l } } & 0 & 0 & 0 \\ 0 & { \frac{2n}{ t-b } } & 0 & 0 \\ { \frac{r + l}{ r-l } } & { \frac{t + b}{ t-b } } & \textcolor{red}{A} & {-1}\\ 0 & 0 & \textcolor{red}{B} & 0\\ \end{array}\right]$$ 其中<span style="color:red">A</span>和<span style="color:red">B</span>是我们要求的,则可以列出等式$$z' = \dfrac{0 * x + 0 * y + A * z + B * w}{w = -z} \rightarrow \dfrac{A z + B}{w = -z}.$$ **注意这里的$w=1$是$(x,y,z,w=1)$中的$w$，而不是这个矩阵中的$w$分量**<br>再根据我们已知$z$正好落在$near$近平面时应当等于$-1$，正好落在$far$远平面时应当等于$1$, 我们可以列出式子
 $$\left\{ \begin{array}{ll} \dfrac{(z=-n)A + B}{(-z=-(-n)=n)} = -1 &\text{ when } z = n\\ \\ \dfrac{(z=-f)A + B}{(-z=-(-f)=f)} = 1 & \text{ when } z = f \end{array} \right. $$ 
 $$ \rightarrow  \left\{ \begin{array}{ll} {-nA + B} = -n & (1)\\  {-fA + B} = f & (2) \end{array} \right.$$ 
 $$ A=-\frac{f+n}{f-n} $$ 
@@ -40,7 +43,7 @@ $$ B=-\frac{2fn}{f-n} $$ (也可以映射到[0,1]范围内)
 
 因为摄像机是朝向$-z$方向的，所以摄像机前所有的点的$z$坐标都是负的，这就是为什么【资料1】中$$x' = \frac{x}{-z}$$中的$z$前方带有负号
 
- **透视变换矩阵**$$\begin{aligned} M_{persp} = \left [ \begin{matrix} \frac{2n}{r-l} & 0 & \frac{l+r}{l-r} & 0 \\ 0 & \frac{2n}{t-b} & \frac{b+t}{b-t} & 0 \\ 0 & 0 & \frac{f+n}{f-n} & \frac{2nf}{n-f} \\ 0 & 0 & 1 & 0 \end{matrix}\right ] \end{aligned}$$ 或 $$\begin{aligned} M_{persp} = \left [ \begin{matrix} \frac{2n}{r-l} & 0 & 0 & 0 \\ 0 & \frac{2n}{t-b} & 0 & 0 \\ \frac{r+l}{r-l} & \frac{t+b}{t-b} & -\frac{f+n}{f-n} & -1 \\ 0 & 0 & -\frac{2nf}{n-f} & 0 \end{matrix}\right ] \end{aligned}$$ <center>(注意其中两者之间的负号)</center><br>则我们有$$[x', y', z', w'] = \left [ \begin{matrix} x\\y\\z\\w=1 \end{matrix} \right ] * M_{persp}$$ 其中$$w'=0*x + 0*y - 1*z + 0*1 = -z$$
+**透视变换矩阵**$$\begin{aligned} M_{persp} = \left [ \begin{matrix} \frac{2n}{r-l} & 0 & \frac{l+r}{l-r} & 0 \\ 0 & \frac{2n}{t-b} & \frac{b+t}{b-t} & 0 \\ 0 & 0 & \frac{f+n}{f-n} & \frac{2nf}{n-f} \\ 0 & 0 & 1 & 0 \end{matrix}\right ] \end{aligned}$$ 或 $$\begin{aligned} M_{persp} = \left [ \begin{matrix} \frac{2n}{r-l} & 0 & 0 & 0 \\ 0 & \frac{2n}{t-b} & 0 & 0 \\ \frac{r+l}{r-l} & \frac{t+b}{t-b} & -\frac{f+n}{f-n} & -1 \\ 0 & 0 & -\frac{2nf}{n-f} & 0 \end{matrix}\right ] \end{aligned}$$ <center>(注意其中两者之间的负号)</center><br>则我们有$$[x', y', z', w'] = \left [ \begin{matrix} x\\y\\z\\w=1 \end{matrix} \right ] * M_{persp}$$ 其中$$w'=0*x + 0*y - 1*z + 0*1 = -z$$
 
 计算并验证一下，假设$n=1，f=20$公式$$\frac{-\frac{f+n}{f-n} *z -\frac{2fn}{f-n} }{-z}$$代入$n$和$f$并计算得$$\frac{-\frac{21}{19} * z - \frac{40}{19}}{-z}$$其中$\frac{-21}{19}=-1.1$和$\frac{-40}{19}=-2.1$则得到结果
 

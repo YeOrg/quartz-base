@@ -2,6 +2,7 @@
 title: transpose
 date created: 2023-08-03
 date modified: 2023-08-03
+dg-publish: true
 ---
 **转置**
 

@@ -1,6 +1,8 @@
 ---
 title: Knowledge
 enableToc: false
+dg-publish: true
+dg-home: true
 ---
 
 People's knowledge should be based on graph.

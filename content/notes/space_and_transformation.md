@@ -2,6 +2,7 @@
 title: space_and_transformation
 date created: 2023-08-03
 date modified: 2023-08-03
+dg-publish: true
 ---
 
 **图形学渲染中的空间变换**

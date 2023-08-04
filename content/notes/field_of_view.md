@@ -1,3 +1,6 @@
+---
+dg-publish: true
+---
 **FOV (Field-Of-View) and aspect ratio**
 
 **原理**

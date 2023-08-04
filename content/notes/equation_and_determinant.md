@@ -1,7 +1,5 @@
 ---
-title: equation_and_determinant
-date created: 2023-08-03
-date modified: 2023-08-03
+dg-publish: true
 ---
 
 有一个方程，我们试着解一下

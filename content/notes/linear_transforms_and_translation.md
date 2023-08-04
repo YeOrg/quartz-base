@@ -1,3 +1,6 @@
+---
+dg-publish: true
+---
 **线性变换Linear Transforms**
 
 **缩放Scale**$$\left ( \begin{matrix} x'\\ y' \end{matrix} \right ) = \left ( \begin{matrix} s&0\\ 0&s \end{matrix} \right ) \left ( \begin{matrix} x\\ y \end{matrix} \right )$$
@@ -38,7 +41,7 @@
 
 **旋转Rotate**<div align=center><img src="https://cdn.jsdelivr.net/gh/aaronmack/image-hosting@master/mathematics/手绘-Rotate.3lljascgw0k0.webp" width="790"></div>
 
-    $$\mathbf{R}_\theta = \left ( \begin{matrix} \textcolor{#ddeeff}{cos\theta} & \textcolor{black}{-sin\theta} \\  \textcolor{#ddeeff}{sin\theta} & \textcolor{black}{cos\theta} \end{matrix} \right )$$
+    $$\mathbf{R}_\theta = \left ( \begin{matrix} \textcolor{teal}{cos\theta} & \textcolor{black}{-sin\theta} \\  \textcolor{teal}{sin\theta} & \textcolor{black}{cos\theta} \end{matrix} \right )$$
 
   
 
