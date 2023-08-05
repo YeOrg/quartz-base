@@ -1,10 +1,10 @@
 {{ if or .Params.mathj .Site.Params.mathj }}
 
-<script type="text/javascript"
-        async
-        src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+// https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js
+// https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js
+// https://cdn.mathjax.org/mathjax/latest/MathJax.js
 
-// "https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
 
 MathJax.Hub.Config({
   tex2jax: {
@@ -40,4 +40,27 @@ code.has-jax {
 }
 </style>
 
+{{ end }}
+
+{{ if or .Params.mathj2 .Site.Params.mathj2 }}
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [["$", "$"]],
+    },
+    displayMath: [
+      ["$$", "$$"],
+      ["\[\[", "\]\]"],
+    ],
+    svg: {
+      fontCache: "global",
+    },
+  };
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+></script>
 {{ end }}
