@@ -9,8 +9,6 @@ People's knowledge should be based on graph.
 Favor
 
 
-> [!success] Success 
+> [!INFO] INFO 
 >
-> [[notes/barycentric_coordinates]]
-> 
-> [[notes/space_and_transformation]]
+> [[notes/picture]]
