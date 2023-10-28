@@ -11,4 +11,8 @@ Favor
 
 > [!INFO] INFO 
 >
-> [[notes/picture]]
+> [[picture]]
+
+[[about_me|About Me]]
+
+Want to say
