@@ -1,0 +1,368 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=description content="基本概念  Properties中定义的属性，需要在下方SubShader中写出对应的名称。e.g.  1 2 3 4 5 6 7 8  Properties { _Color (&#34;Color&#34;, Color) = (1,1,1,1) } ."><meta property="og:title" content="基本概念"><meta property="og:description" content="基本概念  Properties中定义的属性，需要在下方SubShader中写出对应的名称。e.g.  1 2 3 4 5 6 7 8  Properties { _Color (&#34;Color&#34;, Color) = (1,1,1,1) } ."><meta property="og:type" content="website"><meta property="og:image" content="https://knowledge.xyzzyxwz.top/icon.png"><meta property="og:url" content="https://knowledge.xyzzyxwz.top/adv/game_engine_shader/"><meta property="og:width" content="200"><meta property="og:height" content="200"><meta name=twitter:card content="summary"><meta name=twitter:title content="基本概念"><meta name=twitter:description content="基本概念  Properties中定义的属性，需要在下方SubShader中写出对应的名称。e.g.  1 2 3 4 5 6 7 8  Properties { _Color (&#34;Color&#34;, Color) = (1,1,1,1) } ."><meta name=twitter:image content="https://knowledge.xyzzyxwz.top/icon.png"><meta name=twitter:site content="aaaron_li"><title>基本概念</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel="shortcut icon" type=image/png href=https://knowledge.xyzzyxwz.top//SpongeBob.png><link href=https://knowledge.xyzzyxwz.top/styles.19109a40042e9f0e72e952fda4442a34.min.css rel=stylesheet><link href=https://knowledge.xyzzyxwz.top/styles/_light_syntax.86a48a52faebeaaf42158b72922b1c90.min.css rel=stylesheet id=theme-link><script src=https://knowledge.xyzzyxwz.top/js/darkmode.f0d8c193b0592224da25f0e9a9077f69.min.js></script>
+<script src=https://knowledge.xyzzyxwz.top/js/util.00639692264b21bc3ee219733d38a8be.min.js></script>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css integrity=sha384-GvrOXuhMATgEsSwCs4smul74iXGOixntILdUW9XmUC6+HX0sLNAK3q71HotJqlAn crossorigin=anonymous><script defer src=https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js integrity=sha384-cpW21h6RZv/phavutF+AuVYrr+dA8xD9zs6FwLpaCct6O9ctzYFfFr4dgmgccOTx crossorigin=anonymous></script>
+<script defer src=https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js integrity=sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05 crossorigin=anonymous onload=renderMathInElement(document.body)></script>
+<script src=https://cdn.jsdelivr.net/npm/@floating-ui/core@1.2.1></script>
+<script src=https://cdn.jsdelivr.net/npm/@floating-ui/dom@1.2.1></script>
+<script defer src=https://knowledge.xyzzyxwz.top/js/popover.aa9bc99c7c38d3ae9538f218f1416adb.min.js></script>
+<script defer src=https://knowledge.xyzzyxwz.top/js/code-title.ce4a43f09239a9efb48fee342e8ef2df.min.js></script>
+<script defer src=https://knowledge.xyzzyxwz.top/js/clipboard.2913da76d3cb21c5deaa4bae7da38c9f.min.js></script>
+<script defer src=https://knowledge.xyzzyxwz.top/js/callouts.7723cac461d613d118ee8bb8216b9838.min.js></script>
+<script>const SEARCH_ENABLED=!1,LATEX_ENABLED=!0,PRODUCTION=!0,BASE_URL="https://knowledge.xyzzyxwz.top/",fetchData=Promise.all([fetch("https://knowledge.xyzzyxwz.top/indices/linkIndex.ebef833fd1e08e8d07fb114266a7fabd.min.json").then(e=>e.json()).then(e=>({index:e.index,links:e.links})),fetch("https://knowledge.xyzzyxwz.top/indices/contentIndex.6183c001fa757b8ade431afe57038e84.min.json").then(e=>e.json())]).then(([{index:e,links:t},n])=>({index:e,links:t,content:n})),render=()=>{const e=new URL(BASE_URL),t=e.pathname,n=window.location.pathname,s=t==n;addCopyButtons(),addTitleToCodeBlocks(),addCollapsibleCallouts(),initPopover("https://knowledge.xyzzyxwz.top",!0);const o=document.getElementById("footer");if(o){const e=document.getElementById("graph-container");if(!e)return requestAnimationFrame(render);e.textContent="";const t=s&&!1;drawGraph("https://knowledge.xyzzyxwz.top",t,[{"/moc":"#4388cc"}],t?{centerForce:1,depth:-1,enableDrag:!0,enableLegend:!1,enableZoom:!0,fontSize:.5,linkDistance:1,opacityScale:3,repelForce:1,scale:1.4}:{centerForce:1,depth:3,enableDrag:!0,enableLegend:!1,enableZoom:!0,fontSize:.6,linkDistance:1,opacityScale:3,repelForce:2,scale:1.2})}var i=document.getElementsByClassName("mermaid");i.length>0&&import("https://unpkg.com/mermaid@9/dist/mermaid.esm.min.mjs").then(e=>{e.default.init()});function a(n){const e=n.target,t=e.className.split(" "),s=t.includes("broken"),o=t.includes("internal-link");plausible("Link Click",{props:{href:e.href,broken:s,internal:o,graph:!1}})}const r=document.querySelectorAll("a");for(link of r)link.className.includes("root-title")&&link.addEventListener("click",a,{once:!0})},init=(e=document)=>{addCopyButtons(),addTitleToCodeBlocks(),renderMathInElement(e.body,{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1}],macros:{'’':"'"},throwOnError:!1})}</script><script type=module>
+    import { attachSPARouting } from "https:\/\/knowledge.xyzzyxwz.top\/js\/router.d6fe6bd821db9ea97f9aeefae814d8e7.min.js"
+    attachSPARouting(init, render)
+  </script><script defer data-domain=knowledge.xyzzyxwz.top src=https://plausible.io/js/script.js></script>
+<script>window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments)}</script></head><body><div id=search-container><div id=search-space><input autocomplete=off id=search-bar name=search type=text aria-label=Search placeholder="Search for something..."><div id=results-container></div></div></div><script src=https://cdn.jsdelivr.net/npm/flexsearch@0.7.21/dist/flexsearch.bundle.js integrity="sha256-i3A0NZGkhsKjVMzFxv3ksk0DZh3aXqu0l49Bbh0MdjE=" crossorigin=anonymous defer></script>
+<script defer src=https://knowledge.xyzzyxwz.top/js/full-text-search.e6e2e0c213187ca0c703d6e2c7a77fcd.min.js></script><div class=singlePage><header><h1 id=page-title><a class=root-title href=https://knowledge.xyzzyxwz.top/>Knowledge</a></h1><div class=spacer></div><div id=search-icon><p>Search</p><svg tabindex="0" aria-labelledby="title desc" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title id="title">Search Icon</title><desc id="desc">Icon to open search</desc><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"/><circle cx="8" cy="8" r="7"/></g></svg></div><div class=darkmode><input class=toggle id=darkmode-toggle type=checkbox tabindex=-1>
+<label id=toggle-label-light for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="dayIcon" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35"><title>Light Mode</title><path d="M6 17.5C6 16.672 5.328 16 4.5 16h-3C.672 16 0 16.672.0 17.5S.672 19 1.5 19h3C5.328 19 6 18.328 6 17.5zM7.5 26c-.414.0-.789.168-1.061.439l-2 2C4.168 28.711 4 29.086 4 29.5 4 30.328 4.671 31 5.5 31c.414.0.789-.168 1.06-.44l2-2C8.832 28.289 9 27.914 9 27.5 9 26.672 8.329 26 7.5 26zm10-20C18.329 6 19 5.328 19 4.5v-3C19 .672 18.329.0 17.5.0S16 .672 16 1.5v3C16 5.328 16.671 6 17.5 6zm10 3c.414.0.789-.168 1.06-.439l2-2C30.832 6.289 31 5.914 31 5.5 31 4.672 30.329 4 29.5 4c-.414.0-.789.168-1.061.44l-2 2C26.168 6.711 26 7.086 26 7.5 26 8.328 26.671 9 27.5 9zM6.439 8.561C6.711 8.832 7.086 9 7.5 9 8.328 9 9 8.328 9 7.5c0-.414-.168-.789-.439-1.061l-2-2C6.289 4.168 5.914 4 5.5 4 4.672 4 4 4.672 4 5.5c0 .414.168.789.439 1.06l2 2.001zM33.5 16h-3c-.828.0-1.5.672-1.5 1.5s.672 1.5 1.5 1.5h3c.828.0 1.5-.672 1.5-1.5S34.328 16 33.5 16zM28.561 26.439C28.289 26.168 27.914 26 27.5 26c-.828.0-1.5.672-1.5 1.5.0.414.168.789.439 1.06l2 2C28.711 30.832 29.086 31 29.5 31c.828.0 1.5-.672 1.5-1.5.0-.414-.168-.789-.439-1.061l-2-2zM17.5 29c-.829.0-1.5.672-1.5 1.5v3c0 .828.671 1.5 1.5 1.5s1.5-.672 1.5-1.5v-3C19 29.672 18.329 29 17.5 29zm0-22C11.71 7 7 11.71 7 17.5S11.71 28 17.5 28 28 23.29 28 17.5 23.29 7 17.5 7zm0 18c-4.136.0-7.5-3.364-7.5-7.5s3.364-7.5 7.5-7.5 7.5 3.364 7.5 7.5S21.636 25 17.5 25z"/></svg></label><label id=toggle-label-dark for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="nightIcon" viewBox="0 0 100 100" style="enable-background='new 0 0 100 100'"><title>Dark Mode</title><path d="M96.76 66.458c-.853-.852-2.15-1.064-3.23-.534-6.063 2.991-12.858 4.571-19.655 4.571C62.022 70.495 50.88 65.88 42.5 57.5 29.043 44.043 25.658 23.536 34.076 6.47c.532-1.08.318-2.379-.534-3.23-.851-.852-2.15-1.064-3.23-.534-4.918 2.427-9.375 5.619-13.246 9.491-9.447 9.447-14.65 22.008-14.65 35.369.0 13.36 5.203 25.921 14.65 35.368s22.008 14.65 35.368 14.65c13.361.0 25.921-5.203 35.369-14.65 3.872-3.871 7.064-8.328 9.491-13.246C97.826 68.608 97.611 67.309 96.76 66.458z"/></svg></label></div></header><article><h1>基本概念</h1><p class=meta>Last updated
+Nov 19, 2023
+<a href=https://github.com/YeOrg/quartz-base/tree/hugo/content/adv/game_engine_shader.md rel=noopener>Edit Source</a></p><ul class=tags></ul><aside class=mainTOC><details><summary>Table of Contents</summary><nav id=TableOfContents><ol><li><a href=#border-rim-effect---silhouette>Border (Rim Effect) - Silhouette</a></li><li><a href=#lambert>Lambert</a></li><li><a href=#toon>Toon</a></li><li><a href=#phone-specular>Phone Specular</a></li><li><a href=#blinn-phong>Blinn-Phong</a></li><li><a href=#anisotropic-specular-shader>Anisotropic Specular Shader</a></li><li><a href=#wave-vertices-animation>Wave (Vertices Animation)</a></li><li><a href=#snow>Snow</a></li><li><a href=#parallax>Parallax</a></li></ol></nav></details></aside><a href=#基本概念><h1 id=基本概念><span class=hanchor arialabel=Anchor># </span>基本概念</h1></a><ol><li>Properties中定义的属性，需要在下方SubShader中写出对应的名称。e.g.</li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=n>Properties</span>
+</span></span><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>	<span class=n>_Color</span> <span class=p>(</span><span class=s>&#34;Color&#34;</span><span class=p>,</span> <span class=n>Color</span><span class=p>)</span> <span class=o>=</span> <span class=p>(</span><span class=mi>1</span><span class=p>,</span><span class=mi>1</span><span class=p>,</span><span class=mi>1</span><span class=p>,</span><span class=mi>1</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>   <span class=p>...</span>
+</span></span><span class=line><span class=cl>   
+</span></span><span class=line><span class=cl><span class=n>fixed4</span> <span class=n>_Color</span><span class=p>;</span>
+</span></span></code></pre></td></tr></table></div></div><p><a href=https://docs.unity3d.com/Manual/SL-Properties.html rel=noopener>Unity - Manual: ShaderLab: defining material properties</a></p><ol start=2><li>Shader的类型为<code>#pragma surface surf Standard fullforwardshadows</code>则对应<code>void surf (Input IN, inout SurfaceOutputStandard o)</code></li></ol><table><thead><tr><th style=text-align:center></th><th style=text-align:center></th><th style=text-align:center></th></tr></thead><tbody><tr><td style=text-align:center>Standard</td><td style=text-align:center>SurfaceOutputStandard</td><td></td></tr><tr><td style=text-align:center>Lambert</td><td style=text-align:center>SurfaceOutput</td><td></td></tr><tr><td style=text-align:center></td><td></td><td></td></tr></tbody></table><p><a href=https://docs.unity3d.com/Manual/SL-SurfaceShaders.html rel=noopener>Unity - Manual: Writing Surface Shaders</a></p><ol start=3><li>内置函数的使用</li></ol><ul><li><code>tex2D</code></li><li><code>UnpackNormal</code></li><li><code>saturate</code></li><li><code>…</code></li></ul><ol start=4><li>透明物体Shader的设置</li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>Tags { 
+</span></span><span class=line><span class=cl>	&#34;RenderType&#34; = &#34;Transparent&#34; 
+</span></span><span class=line><span class=cl>	&#34;Queue&#34; = &#34;Transparent&#34;
+</span></span><span class=line><span class=cl>	&#34;IgnoreProjector&#34; = &#34;True&#34;
+</span></span><span class=line><span class=cl>}
+</span></span><span class=line><span class=cl>#pragma surface surf Standard alpha:fade nolighting
+</span></span></code></pre></td></tr></table></div></div><p><a href=https://docs.unity3d.com/Manual/SL-SurfaceShaders.html rel=noopener>Unity - Manual: Writing Surface Shaders</a></p><ol start=5><li>Unity Shader中的Variables</li></ol><p><a href=https://docs.unity3d.com/Manual/SL-UnityShaderVariables.html rel=noopener>Unity - Manual: Built-in shader variables</a></p><p>内置变量</p><ul><li><code>_Time</code></li><li><code>…</code></li></ul><p>输入结构</p><ul><li><code>worldNormal</code></li><li><code>viewDir</code></li><li><code>…</code></li></ul><ol start=6><li>Surface Shader 示例</li></ol><p><a href=https://docs.unity3d.com/Manual/SL-SurfaceShaderExamples.html rel=noopener>Unity - Manual: Surface Shader examples</a></p><ol start=7><li>一些内置的调用函数与变量</li></ol><ul><li><code>_LightColor0 will be the primary directional light color</code></li><li><code>#pragma surface surf Toon - LightingToon</code></li><li><code>#pragma surface surf SimpleLambert - LightingSimpleLambert</code></li><li><code>#pragma surface surf Phong - LightingPhong</code></li><li><code>#pragma surface surf CustomBlinnPhong - LightingCustomBlinnPhong</code></li><li><code>#pragma surface surf Anisotropic - LightingAnisotropic</code></li><li><code>…</code></li></ul><p><a href=https://docs.unity3d.com/Manual/SL-SurfaceShaderLighting.html rel=noopener>https://docs.unity3d.com/Manual/SL-SurfaceShaderLighting.html</a></p><ol start=8><li>Unity Surface Shader的管线</li></ol><img src=https://cdn.jsdelivr.net/gh/aaronmack/image-hosting@master/e/image.6gz2yh2yo800.webp alt=image>
+<a href=#shader效果><h1 id=shader效果><span class=hanchor arialabel=Anchor># </span>Shader效果</h1></a><a href=#border-rim-effect---silhouette><h2 id=border-rim-effect---silhouette><span class=hanchor arialabel=Anchor># </span>Border (Rim Effect) - Silhouette</h2></a><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=kt>float</span> <span class=n>border</span> <span class=o>=</span> <span class=mi>1</span> <span class=o>-</span> <span class=p>(</span><span class=n>abs</span><span class=p>(</span><span class=n>dot</span><span class=p>(</span><span class=n>IN</span><span class=p>.</span><span class=n>viewDir</span><span class=p>,</span> <span class=n>IN</span><span class=p>.</span><span class=n>worldNormal</span><span class=p>)));</span>
+</span></span><span class=line><span class=cl><span class=kt>float</span> <span class=n>alpha</span> <span class=o>=</span> <span class=p>(</span><span class=n>border</span> <span class=o>*</span> <span class=p>(</span><span class=mi>1</span> <span class=o>-</span> <span class=n>_DotProduct</span><span class=p>)</span> <span class=o>+</span> <span class=n>_DotProduct</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=n>o</span><span class=p>.</span><span class=n>Alpha</span> <span class=o>=</span> <span class=n>c</span><span class=p>.</span><span class=n>a</span> <span class=o>*</span> <span class=n>alpha</span><span class=p>;</span>
+</span></span></code></pre></td></tr></table></div></div><p>点乘拿到视角边缘的过渡值，然后使用<code>_DotProduct</code>控制边缘的效果强弱</p><a href=#lambert><h2 id=lambert><span class=hanchor arialabel=Anchor># </span>Lambert</h2></a><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=n>half4</span> <span class=nf>LightingSimpleLambert</span> <span class=p>(</span><span class=n>SurfaceOutput</span> <span class=n>s</span><span class=p>,</span> <span class=n>half3</span> <span class=n>lightDir</span><span class=p>,</span> <span class=n>half</span> <span class=n>atten</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=n>half</span> <span class=n>NdotL</span> <span class=o>=</span> <span class=n>dot</span> <span class=p>(</span><span class=n>s</span><span class=p>.</span><span class=n>Normal</span><span class=p>,</span> <span class=n>lightDir</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=n>half4</span> <span class=n>c</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=n>c</span><span class=p>.</span><span class=n>rgb</span> <span class=o>=</span> <span class=n>s</span><span class=p>.</span><span class=n>Albedo</span> <span class=o>*</span> <span class=n>_LightColor0</span><span class=p>.</span><span class=n>rgb</span> <span class=o>*</span> <span class=p>(</span><span class=n>NdotL</span> <span class=o>*</span> <span class=n>atten</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=n>c</span><span class=p>.</span><span class=n>a</span> <span class=o>=</span> <span class=n>s</span><span class=p>.</span><span class=n>Alpha</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>c</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kt>void</span> <span class=nf>surf</span> <span class=p>(</span><span class=n>Input</span> <span class=n>IN</span><span class=p>,</span> <span class=n>inout</span> <span class=n>SurfaceOutput</span> <span class=n>o</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=n>o</span><span class=p>.</span><span class=n>Albedo</span> <span class=o>=</span> <span class=n>tex2D</span> <span class=p>(</span><span class=n>_MainTex</span><span class=p>,</span> <span class=n>IN</span><span class=p>.</span><span class=n>uv_MainTex</span><span class=p>).</span><span class=n>rgb</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>模型法线与灯光的点乘</p><a href=#toon><h2 id=toon><span class=hanchor arialabel=Anchor># </span>Toon</h2></a><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=n>fixed4</span> <span class=nf>LightingToon</span> <span class=p>(</span><span class=n>SurfaceOutput</span> <span class=n>s</span><span class=p>,</span> <span class=n>fixed3</span> <span class=n>lightDir</span><span class=p>,</span> <span class=n>fixed</span> <span class=n>atten</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=n>half</span> <span class=n>NdotL</span> <span class=o>=</span> <span class=n>dot</span><span class=p>(</span><span class=n>s</span><span class=p>.</span><span class=n>Normal</span><span class=p>,</span> <span class=n>lightDir</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=n>NdotL</span> <span class=o>=</span> <span class=n>tex2D</span><span class=p>(</span><span class=n>_RampTex</span><span class=p>,</span> <span class=n>fixed2</span><span class=p>(</span><span class=n>NdotL</span><span class=p>,</span> <span class=mf>0.5</span><span class=p>));</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=n>fixed4</span> <span class=n>c</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=n>c</span><span class=p>.</span><span class=n>rgb</span> <span class=o>=</span> <span class=n>s</span><span class=p>.</span><span class=n>Albedo</span> <span class=o>*</span> <span class=n>_LightColor0</span><span class=p>.</span><span class=n>rgb</span> <span class=o>*</span> <span class=n>NdotL</span> <span class=o>*</span> <span class=n>atten</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=n>c</span><span class=p>.</span><span class=n>a</span> <span class=o>=</span> <span class=n>s</span><span class=p>.</span><span class=n>Alpha</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>c</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kt>void</span> <span class=nf>surf</span> <span class=p>(</span><span class=n>Input</span> <span class=n>IN</span><span class=p>,</span> <span class=n>inout</span> <span class=n>SurfaceOutput</span> <span class=n>o</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=n>o</span><span class=p>.</span><span class=n>Albedo</span> <span class=o>=</span> <span class=n>tex2D</span><span class=p>(</span><span class=n>_MainTex</span><span class=p>,</span> <span class=n>IN</span><span class=p>.</span><span class=n>uv_MainTex</span><span class=p>).</span><span class=n>rgb</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>使用了一张ToonRamp贴图，再根据法线与灯光的点乘值来采样这张贴图</p><a href=#phone-specular><h2 id=phone-specular><span class=hanchor arialabel=Anchor># </span>Phone Specular</h2></a><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=c1>// I = D + S
+</span></span></span><span class=line><span class=cl><span class=c1>// D = N·L
+</span></span></span><span class=line><span class=cl><span class=c1>// S = (R·V)^p
+</span></span></span><span class=line><span class=cl><span class=c1>// R = 2N(N·L) - L
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=n>fixed4</span> <span class=nf>LightingPhone</span><span class=p>(</span><span class=n>SurfaceOutput</span> <span class=n>s</span><span class=p>,</span> <span class=n>fixed3</span> <span class=n>lightDir</span><span class=p>,</span> <span class=n>half3</span> <span class=n>viewDir</span><span class=p>,</span> <span class=n>fixed</span> <span class=n>atten</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>	<span class=kt>float</span> <span class=n>NdotL</span> <span class=o>=</span> <span class=n>dot</span><span class=p>(</span><span class=n>s</span><span class=p>.</span><span class=n>Normal</span><span class=p>,</span> <span class=n>lightDir</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>	<span class=n>float3</span> <span class=n>reflectionVector</span> <span class=o>=</span> <span class=n>normalize</span><span class=p>(</span><span class=mf>2.0</span> <span class=o>*</span> <span class=n>s</span><span class=p>.</span><span class=n>Normal</span> <span class=o>*</span> <span class=n>NdotL</span> <span class=o>-</span> <span class=n>lightDir</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>	<span class=kt>float</span> <span class=n>spec</span> <span class=o>=</span> <span class=n>pow</span><span class=p>(</span><span class=n>max</span><span class=p>(</span><span class=mi>0</span><span class=p>,</span> <span class=n>dot</span><span class=p>(</span><span class=n>reflectionVector</span><span class=p>,</span> <span class=n>viewDir</span><span class=p>)),</span> <span class=n>_SpecPower</span><span class=p>);</span> 
+</span></span><span class=line><span class=cl>	<span class=n>float3</span> <span class=n>finalSpec</span> <span class=o>=</span> <span class=n>_SpecularColor</span><span class=p>.</span><span class=n>rgb</span> <span class=o>*</span> <span class=n>spec</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>	
+</span></span><span class=line><span class=cl>	<span class=n>fixed4</span> <span class=n>c</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>	<span class=n>c</span><span class=p>.</span><span class=n>rgb</span> <span class=o>=</span> <span class=p>(</span><span class=n>s</span><span class=p>.</span><span class=n>Albedo</span> <span class=o>*</span> <span class=n>LightColor0</span><span class=p>.</span><span class=n>rgb</span> <span class=o>*</span> <span class=n>max</span><span class=p>(</span><span class=mi>0</span><span class=p>,</span> <span class=n>NdotL</span><span class=p>)</span> <span class=o>*</span> <span class=n>atten</span><span class=p>)</span> <span class=o>+</span> <span class=p>(</span><span class=n>LightColor0</span><span class=p>.</span><span class=n>rgb</span> <span class=o>*</span> <span class=n>finalSpec</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>	<span class=n>c</span><span class=p>.</span><span class=n>a</span> <span class=o>=</span> <span class=n>s</span><span class=p>.</span><span class=n>Alpha</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>	
+</span></span><span class=line><span class=cl>	<span class=k>return</span> <span class=n>c</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=kt>void</span> <span class=nf>surf</span> <span class=p>(</span><span class=n>Input</span> <span class=n>IN</span><span class=p>,</span> <span class=n>inout</span> <span class=n>SurfaceOutput</span> <span class=n>o</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=n>fixed4</span> <span class=n>c</span> <span class=o>=</span> <span class=n>tex2D</span><span class=p>(</span><span class=n>_MainTex</span><span class=p>,</span> <span class=n>IN</span><span class=p>.</span><span class=n>uv_MainTex</span><span class=p>)</span> <span class=o>*</span> <span class=n>_Color</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=n>o</span><span class=p>.</span><span class=n>Albedo</span> <span class=o>=</span> <span class=n>c</span><span class=p>.</span><span class=n>rgb</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=n>o</span><span class=p>.</span><span class=n>Alpha</span> <span class=o>=</span> <span class=n>c</span><span class=p>.</span><span class=n>a</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><p><a href=https://janhalozan.com/2017/08/12/phong-shader/ rel=noopener>Implementing a Phong Shader in Unity - Jan&rsquo;s Place</a></p><img src=https://cdn.jsdelivr.net/gh/aaronmack/image-hosting@master/e/image.2pj57hmwnrg0.webp alt=image><p>首先，我们知道投影的计算，但是我们不知$cos(\theta)$,但通过点乘我们可以替换掉得到下方的投影计算。</p><img src=https://cdn.jsdelivr.net/gh/aaronmack/image-hosting@master/e/image.39rhduioys60.webp alt=image><p>再去计算反射向量，代入投影的值，其中法线一般是unit vertor，所以最终可得<code>r = n * 2(l·n) - l</code>也就是Phone中计算的反射。</p><img src=https://cdn.jsdelivr.net/gh/aaronmack/image-hosting@master/e/image.1slfvpca6k68.webp alt=image><p><a href=https://math.stackexchange.com/questions/4335380/how-to-prove-r-n-2l-n-l-in-specular-reflection rel=noopener>3d - How to prove r = n * 2(l·n) - l in specular reflection? - Mathematics Stack Exchange</a></p><blockquote><p>在LearnOpenGL中，也是一样的，https://learnopengl.com/Lighting/Basic-Lighting，是调用的reflect函数计算的反射方向</p></blockquote><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=n>vec3</span> <span class=n>viewDir</span> <span class=o>=</span> <span class=n>normalize</span><span class=p>(</span><span class=n>viewPos</span> <span class=o>-</span> <span class=n>FragPos</span><span class=p>);</span> 
+</span></span><span class=line><span class=cl><span class=n>vec3</span> <span class=n>reflectDir</span> <span class=o>=</span> <span class=n>reflect</span><span class=p>(</span><span class=o>-</span><span class=n>lightDir</span><span class=p>,</span> <span class=n>norm</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=kt>float</span> <span class=n>spec</span> <span class=o>=</span> <span class=n>pow</span><span class=p>(</span><span class=n>max</span><span class=p>(</span><span class=n>dot</span><span class=p>(</span><span class=n>viewDir</span><span class=p>,</span> <span class=n>reflectDir</span><span class=p>),</span> <span class=mf>0.0</span><span class=p>),</span> <span class=mi>32</span><span class=p>);</span> <span class=n>vec3</span> <span class=n>specular</span> <span class=o>=</span> <span class=n>specularStrength</span> <span class=o>*</span> <span class=n>spec</span> <span class=o>*</span> <span class=n>lightColor</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>vec3</span> <span class=n>result</span> <span class=o>=</span> <span class=p>(</span><span class=n>ambient</span> <span class=o>+</span> <span class=n>diffuse</span> <span class=o>+</span> <span class=n>specular</span><span class=p>)</span> <span class=o>*</span> <span class=n>objectColor</span><span class=p>;</span>
+</span></span></code></pre></td></tr></table></div></div><a href=#blinn-phong><h2 id=blinn-phong><span class=hanchor arialabel=Anchor># </span>Blinn-Phong</h2></a><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=n>vec3</span> <span class=n>lightDir</span>   <span class=o>=</span> <span class=n>normalize</span><span class=p>(</span><span class=n>lightPos</span> <span class=o>-</span> <span class=n>FragPos</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=n>vec3</span> <span class=n>viewDir</span>    <span class=o>=</span> <span class=n>normalize</span><span class=p>(</span><span class=n>viewPos</span> <span class=o>-</span> <span class=n>FragPos</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=n>vec3</span> <span class=n>halfwayDir</span> <span class=o>=</span> <span class=n>normalize</span><span class=p>(</span><span class=n>lightDir</span> <span class=o>+</span> <span class=n>viewDir</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kt>float</span> <span class=n>spec</span> <span class=o>=</span> <span class=n>pow</span><span class=p>(</span><span class=n>max</span><span class=p>(</span><span class=n>dot</span><span class=p>(</span><span class=n>normal</span><span class=p>,</span> <span class=n>halfwayDir</span><span class=p>),</span> <span class=mf>0.0</span><span class=p>),</span> <span class=n>shininess</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=n>vec3</span> <span class=n>specular</span> <span class=o>=</span> <span class=n>lightColor</span> <span class=o>*</span> <span class=n>spec</span><span class=p>;</span>
+</span></span></code></pre></td></tr></table></div></div><p>与Phong模型思路上是一样的，不过这里用的是halfDir，而没有去计算反射方向。</p><p><a href=https://learnopengl.com/Advanced-Lighting/Advanced-Lighting rel=noopener>LearnOpenGL - Advanced Lighting</a></p><a href=#anisotropic-specular-shader><h2 id=anisotropic-specular-shader><span class=hanchor arialabel=Anchor># </span>Anisotropic Specular Shader</h2></a><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=n>Properties</span><span class=p>{</span>
+</span></span><span class=line><span class=cl>	<span class=n>_MainTint</span><span class=p>(</span><span class=s>&#34;Diffuse Tint&#34;</span><span class=p>,</span> <span class=n>Color</span><span class=p>)</span> <span class=o>=</span> <span class=p>(</span><span class=mi>1</span><span class=p>,</span><span class=mi>1</span><span class=p>,</span><span class=mi>1</span><span class=p>,</span><span class=mi>1</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>	<span class=n>_MainTex</span><span class=p>(</span><span class=s>&#34;Base(RGB)&#34;</span><span class=p>,</span> <span class=mi>2</span><span class=n>D</span><span class=p>)</span> <span class=o>=</span> <span class=s>&#34;white&#34;</span> <span class=p>{}</span> 
+</span></span><span class=line><span class=cl>	<span class=n>_SpecularColor</span><span class=p>(</span><span class=s>&#34;Specular Color&#34;</span><span class=p>,</span> <span class=n>Color</span><span class=p>)</span> <span class=o>=</span> <span class=p>(</span><span class=mi>1</span><span class=p>,</span><span class=mi>1</span><span class=p>,</span><span class=mi>1</span><span class=p>,</span><span class=mi>1</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>	<span class=n>_Specular</span><span class=p>(</span><span class=s>&#34;Specular Amount&#34;</span><span class=p>,</span> <span class=n>Range</span><span class=p>(</span><span class=mi>0</span><span class=p>,</span><span class=mi>1</span><span class=p>))</span> <span class=o>=</span> <span class=mf>0.5</span> 
+</span></span><span class=line><span class=cl>	<span class=n>_SpecPower</span><span class=p>(</span><span class=s>&#34;Specular Power&#34;</span><span class=p>,</span> <span class=n>Range</span><span class=p>(</span><span class=mi>0</span><span class=p>,</span><span class=mi>1</span><span class=p>))</span> <span class=o>=</span> <span class=mf>0.5</span>
+</span></span><span class=line><span class=cl>	<span class=n>_AnisoDir</span><span class=p>(</span><span class=s>&#34;Anisotropic Direction&#34;</span><span class=p>,</span> <span class=mi>2</span><span class=n>D</span><span class=p>)</span> <span class=o>=</span> <span class=s>&#34;&#34;</span> <span class=p>{}</span>
+</span></span><span class=line><span class=cl>	<span class=n>_AnisoOffset</span><span class=p>(</span><span class=s>&#34;Anisotropic Offset&#34;</span><span class=p>,</span> <span class=n>Range</span><span class=p>(</span><span class=o>-</span><span class=mi>1</span><span class=p>,</span><span class=mi>1</span><span class=p>))</span> <span class=o>=</span> <span class=o>-</span><span class=mf>0.2</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>struct</span> <span class=n>Input</span><span class=p>{</span>
+</span></span><span class=line><span class=cl>	<span class=n>float2</span> <span class=n>uv_MainTex</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>	<span class=n>float2</span> <span class=n>uv_AnisoDir</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>struct</span> <span class=n>SurfaceAnisoOutput</span><span class=p>{</span>
+</span></span><span class=line><span class=cl>	<span class=n>fixed3</span> <span class=n>Albedo</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>	<span class=n>fixed3</span> <span class=n>Normal</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>	<span class=n>fixed3</span> <span class=n>Emission</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>	<span class=n>fixed3</span> <span class=n>AnisoDirection</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>	<span class=n>half</span> <span class=n>Specular</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>	<span class=n>fixed</span> <span class=n>Gloss</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>	<span class=n>fixed</span> <span class=n>Alpha</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>};</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>fixed4</span> <span class=nf>LightingAnisotropic</span><span class=p>(</span><span class=n>SurfaceAnisoOutput</span> <span class=n>s</span><span class=p>,</span> <span class=n>fixed3</span> <span class=n>lightDir</span><span class=p>,</span> <span class=n>half3</span> <span class=n>viewDir</span><span class=p>,</span> <span class=n>fixed</span> <span class=n>atten</span><span class=p>){</span>
+</span></span><span class=line><span class=cl>	<span class=n>fixed3</span> <span class=n>halfVector</span> <span class=o>=</span> <span class=n>normalize</span><span class=p>(</span><span class=n>normalize</span><span class=p>(</span><span class=n>lightDir</span><span class=p>)</span> <span class=o>+</span> <span class=n>normalize</span><span class=p>(</span><span class=n>viewDir</span><span class=p>));</span> 
+</span></span><span class=line><span class=cl>	<span class=kt>float</span> <span class=n>NdotL</span> <span class=o>=</span> <span class=n>saturate</span><span class=p>(</span><span class=n>dot</span><span class=p>(</span><span class=n>s</span><span class=p>.</span><span class=n>Normal</span><span class=p>,</span> <span class=n>lightDir</span><span class=p>));</span>
+</span></span><span class=line><span class=cl>	
+</span></span><span class=line><span class=cl>	<span class=c1>// Anisotropic:
+</span></span></span><span class=line><span class=cl><span class=c1></span>	<span class=c1>//// HdotA is 0 when perpendicular to the Anisotropic normal map, 1 when parallel.
+</span></span></span><span class=line><span class=cl><span class=c1></span>	<span class=n>fixed</span> <span class=n>HdotA</span> <span class=o>=</span> <span class=n>dot</span><span class=p>(</span><span class=n>normalize</span><span class=p>(</span><span class=n>s</span><span class=p>.</span><span class=n>Normal</span> <span class=o>+</span> <span class=n>s</span><span class=p>.</span><span class=n>AnisoDirection</span><span class=p>),</span> <span class=n>halfVector</span><span class=p>);</span> 
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>	<span class=c1>//// modify the value with sin() so that we get a darker
+</span></span></span><span class=line><span class=cl><span class=c1></span>	<span class=c1>//// middle highlight and a ring effect based off of the halfVector.
+</span></span></span><span class=line><span class=cl><span class=c1></span>	<span class=kt>float</span> <span class=n>aniso</span> <span class=o>=</span> <span class=n>max</span><span class=p>(</span><span class=mi>0</span><span class=p>,</span> <span class=n>sin</span><span class=p>(</span><span class=n>radians</span><span class=p>((</span><span class=n>HdotA</span> <span class=o>+</span> <span class=n>_AnisoOffset</span><span class=p>)</span> <span class=o>*</span> <span class=mi>180</span><span class=p>)));</span>
+</span></span><span class=line><span class=cl>	
+</span></span><span class=line><span class=cl>	<span class=c1>// Specular:
+</span></span></span><span class=line><span class=cl><span class=c1></span>	<span class=c1>//// scale the aniso value by taking it to a power of s.Gloss,
+</span></span></span><span class=line><span class=cl><span class=c1></span>	<span class=c1>//// then globally decrease its strengthby multiplying it by s.Specular.
+</span></span></span><span class=line><span class=cl><span class=c1></span>	<span class=kt>float</span> <span class=n>spec</span> <span class=o>=</span> <span class=n>saturate</span><span class=p>(</span><span class=n>pow</span><span class=p>(</span><span class=n>aniso</span><span class=p>,</span> <span class=n>s</span><span class=p>.</span><span class=n>Gloss</span> <span class=o>*</span> <span class=mi>128</span><span class=p>)</span> <span class=o>*</span> <span class=n>s</span><span class=p>.</span><span class=n>Specular</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>	
+</span></span><span class=line><span class=cl>	<span class=n>fixed4</span> <span class=n>c</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>	<span class=n>c</span><span class=p>.</span><span class=n>rgb</span> <span class=o>=</span> <span class=p>((</span><span class=n>s</span><span class=p>.</span><span class=n>Albedo</span> <span class=o>*</span> <span class=n>_LightColor0</span><span class=p>.</span> <span class=n>rgb</span> <span class=o>*</span> <span class=n>NdotL</span><span class=p>)</span> <span class=o>+</span> <span class=p>(</span><span class=n>_LightColor0</span><span class=p>.</span><span class=n>rgb</span> <span class=o>*</span> <span class=n>_SpecularColor</span><span class=p>.</span><span class=n>rgb</span> <span class=o>*</span> <span class=n>spec</span><span class=p>))</span> <span class=o>*</span> <span class=n>atten</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>	<span class=n>c</span><span class=p>.</span><span class=n>a</span> <span class=o>=</span> <span class=n>s</span><span class=p>.</span><span class=n>Alpha</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>	<span class=k>return</span> <span class=n>c</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=kt>void</span> <span class=nf>surf</span><span class=p>(</span><span class=n>Input</span> <span class=n>IN</span><span class=p>,</span> <span class=n>inout</span> <span class=n>SurfaceAnisoOutput</span> <span class=n>o</span><span class=p>){</span>
+</span></span><span class=line><span class=cl>	<span class=n>half4</span> <span class=n>c</span> <span class=o>=</span> <span class=n>tex2D</span><span class=p>(</span><span class=n>_MainTex</span><span class=p>,</span> <span class=n>IN</span><span class=p>.</span><span class=n>uv_MainTex</span><span class=p>)</span> <span class=o>*</span> <span class=n>_MainTint</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>	<span class=n>float3</span> <span class=n>anisoTex</span> <span class=o>=</span> <span class=n>UnpackNormal</span><span class=p>(</span><span class=n>tex2D</span><span class=p>(</span><span class=n>_AnisoDir</span><span class=p>,</span> <span class=n>IN</span><span class=p>.</span><span class=n>uv_AnisoDir</span><span class=p>));</span>
+</span></span><span class=line><span class=cl>	
+</span></span><span class=line><span class=cl>	<span class=n>o</span><span class=p>.</span><span class=n>AnisoDirection</span> <span class=o>=</span> <span class=n>anisoTex</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>	<span class=n>o</span><span class=p>.</span><span class=n>Specular</span> <span class=o>=</span> <span class=n>_Specular</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>	<span class=n>o</span><span class=p>.</span><span class=n>Gloss</span> <span class=o>=</span> <span class=n>_SpecPower</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>	<span class=n>o</span><span class=p>.</span><span class=n>Albedo</span> <span class=o>=</span> <span class=n>c</span><span class=p>.</span><span class=n>rgb</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>	<span class=n>o</span><span class=p>.</span><span class=n>Alpha</span> <span class=o>=</span> <span class=n>c</span><span class=p>.</span><span class=n>a</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>其中最主要的效果来自sin那里，用sin()修改这个值，我们就可以得到一个更暗的中间高光和一个基于halfVector的环形效果。</p><p><a href=https://medium.com/@smokelore/shader-programming-volume-8-cfc8c2fe3659 rel=noopener>Shader Programming, Volume 8. Anisotropic Specular Lighting | by Sebastian Monroy | Medium</a></p><a href=#wave-vertices-animation><h2 id=wave-vertices-animation><span class=hanchor arialabel=Anchor># </span>Wave (Vertices Animation)</h2></a><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=kt>void</span> <span class=nf>vert</span><span class=p>(</span><span class=n>inout</span> <span class=n>appdata_full</span> <span class=n>v</span><span class=p>,</span> <span class=n>out</span> <span class=n>Input</span> <span class=n>o</span><span class=p>){</span>
+</span></span><span class=line><span class=cl>    <span class=n>UNITY_INITIALIZE_OUTPUT</span><span class=p>(</span><span class=n>Input</span><span class=p>,</span> <span class=n>o</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=kt>float</span> <span class=n>time</span> <span class=o>=</span><span class=n>_Time</span> <span class=o>*</span> <span class=n>_Speed</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=kt>float</span> <span class=n>waveValueA</span> <span class=o>=</span> <span class=n>sin</span><span class=p>(</span><span class=n>time</span> <span class=o>+</span> <span class=n>v</span><span class=p>.</span><span class=n>vertex</span><span class=p>.</span><span class=n>x</span> <span class=o>*</span> <span class=n>_Frequency</span><span class=p>)</span> <span class=o>*</span> <span class=n>_Amplitude</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=n>v</span><span class=p>.</span><span class=n>vertex</span><span class=p>.</span><span class=n>xyz</span> <span class=o>=</span> <span class=n>float3</span><span class=p>(</span><span class=n>v</span><span class=p>.</span><span class=n>vertex</span><span class=p>.</span><span class=n>x</span><span class=p>,</span> <span class=n>v</span><span class=p>.</span><span class=n>vertex</span><span class=p>.</span><span class=n>y</span> <span class=o>+</span> <span class=n>waveValueA</span><span class=p>,</span> <span class=n>v</span><span class=p>.</span><span class=n>vertex</span><span class=p>.</span><span class=n>z</span><span class=p>);</span>  
+</span></span><span class=line><span class=cl>    <span class=n>v</span><span class=p>.</span><span class=n>normal</span> <span class=o>=</span> <span class=n>normalize</span><span class=p>(</span><span class=n>float3</span><span class=p>(</span><span class=n>v</span><span class=p>.</span><span class=n>normal</span><span class=p>.</span><span class=n>x</span> <span class=o>+</span> <span class=n>waveValueA</span><span class=p>,</span> <span class=n>v</span><span class=p>.</span><span class=n>normal</span><span class=p>.</span><span class=n>y</span><span class=p>,</span> <span class=n>v</span><span class=p>.</span><span class=n>normal</span><span class=p>.</span><span class=n>z</span><span class=p>));</span>
+</span></span><span class=line><span class=cl>    <span class=n>o</span><span class=p>.</span><span class=n>vertColor</span><span class=p>.</span><span class=n>rgb</span> <span class=o>=</span> <span class=n>float3</span><span class=p>(</span><span class=n>waveValueA</span><span class=p>,</span> <span class=n>waveValueA</span><span class=p>,</span> <span class=n>waveValueA</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kt>void</span> <span class=nf>surf</span> <span class=p>(</span><span class=n>Input</span> <span class=n>IN</span><span class=p>,</span> <span class=n>inout</span> <span class=n>SurfaceOutput</span> <span class=n>o</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=n>half4</span> <span class=n>c</span> <span class=o>=</span> <span class=n>tex2D</span><span class=p>(</span><span class=n>_MainTex</span><span class=p>,</span> <span class=n>IN</span><span class=p>.</span><span class=n>uv_MainTex</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=n>float3</span> <span class=n>tintColor</span> <span class=o>=</span> <span class=n>lerp</span><span class=p>(</span><span class=n>_ColorA</span><span class=p>,</span> <span class=n>_ColorB</span><span class=p>,</span> <span class=n>IN</span><span class=p>.</span><span class=n>vertColor</span><span class=p>).</span><span class=n>rgb</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=n>o</span><span class=p>.</span><span class=n>Albedo</span> <span class=o>=</span> <span class=n>c</span><span class=p>.</span><span class=n>rgb</span> <span class=o>*</span> <span class=p>(</span><span class=n>tintColor</span> <span class=o>*</span><span class=n>_tintAmount</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=n>o</span><span class=p>.</span><span class=n>Alpha</span> <span class=o>=</span> <span class=n>c</span><span class=p>.</span><span class=n>a</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>sin(pos.x)得到一个振幅波，加到vertex.y的上面。</p><a href=#snow><h2 id=snow><span class=hanchor arialabel=Anchor># </span>Snow</h2></a><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=n>fixed4</span> <span class=n>_Color</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=kt>void</span> <span class=nf>vert</span><span class=p>(</span><span class=n>inout</span> <span class=n>appdata_full</span> <span class=n>v</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=c1>// Wrong?
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=c1>// float4 sn = mul(UNITY_MATRIX_IT_MV, _SnowDirection);
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=n>float4</span> <span class=n>sn</span> <span class=o>=</span> <span class=n>_SnowDirection</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=p>(</span><span class=n>dot</span><span class=p>(</span><span class=n>v</span><span class=p>.</span><span class=n>normal</span><span class=p>,</span> <span class=n>sn</span><span class=p>.</span><span class=n>xyz</span><span class=p>)</span> <span class=o>&gt;=</span> <span class=n>_Snow</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>v</span><span class=p>.</span><span class=n>vertex</span><span class=p>.</span><span class=n>xyz</span> <span class=o>+=</span> <span class=p>(</span><span class=n>sn</span><span class=p>.</span><span class=n>xyz</span> <span class=o>+</span> <span class=n>v</span><span class=p>.</span><span class=n>normal</span><span class=p>)</span> <span class=o>*</span> <span class=n>_SnowDepth</span> <span class=o>*</span> <span class=n>_Snow</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kt>void</span> <span class=nf>surf</span> <span class=p>(</span><span class=n>Input</span> <span class=n>IN</span><span class=p>,</span> <span class=n>inout</span> <span class=n>SurfaceOutputStandard</span> <span class=n>o</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=n>half4</span> <span class=n>c</span> <span class=o>=</span> <span class=n>tex2D</span><span class=p>(</span><span class=n>_MainTex</span><span class=p>,</span> <span class=n>IN</span><span class=p>.</span><span class=n>uv_MainTex</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=n>o</span><span class=p>.</span><span class=n>Normal</span> <span class=o>=</span> <span class=n>UnpackNormal</span><span class=p>(</span><span class=n>tex2D</span><span class=p>(</span><span class=n>_Bump</span><span class=p>,</span> <span class=n>IN</span><span class=p>.</span><span class=n>uv_Bump</span><span class=p>));</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=p>(</span><span class=n>dot</span><span class=p>(</span><span class=n>WorldNormalVector</span><span class=p>(</span><span class=n>IN</span><span class=p>,</span> <span class=n>o</span><span class=p>.</span><span class=n>Normal</span><span class=p>),</span> <span class=n>_SnowDirection</span><span class=p>.</span><span class=n>xyz</span><span class=p>)</span> <span class=o>&gt;=</span> <span class=n>_Snow</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>o</span><span class=p>.</span><span class=n>Albedo</span> <span class=o>=</span> <span class=n>_SnowColor</span><span class=p>.</span><span class=n>rgb</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>else</span>
+</span></span><span class=line><span class=cl>        <span class=n>o</span><span class=p>.</span><span class=n>Albedo</span> <span class=o>=</span> <span class=n>c</span><span class=p>.</span><span class=n>rgb</span> <span class=o>*</span> <span class=n>_MainColor</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=n>o</span><span class=p>.</span><span class=n>Alpha</span> <span class=o>=</span> <span class=mi>1</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>通过snowDir与Normal方向点乘与snow的阈值控制哪些区域产生雪，以及在vertex中朝着法线+snowDir的方向偏移顶点位置，来实现一个非常简单的雪的效果。</p><a href=#parallax><h2 id=parallax><span class=hanchor arialabel=Anchor># </span>Parallax</h2></a><img src=https://cdn.jsdelivr.net/gh/aaronmack/image-hosting@master/e/image.27jn8epa5um8.webp alt=image><p>Parallax(视差)是移动当前视角，画面中的效果还是一直朝向摄像机不产生变化，这个效果可以使用AmplifyShaderEditor中的Parallax Node或者把Screen Position作为UV去采样Texture，两者方法都可以使用。
+热扭曲：屏幕空间位置 + 采样纹理（使用Panner节点(随时间流动的UV值)）
+边缘光：Fresnel效果 + 纹理扰动</p><p><a href="https://www.bilibili.com/video/BV1YL4y1b7bB/?vd_source=ce02e1fd8ede3b92cc4f879b568541e2" rel=noopener>https://www.bilibili.com/video/BV1YL4y1b7bB/?vd_source=ce02e1fd8ede3b92cc4f879b568541e2</a></p></article><hr><div class=page-end id=footer><div class=backlinks-container><h3>Backlinks</h3><ul class=backlinks><li>No backlinks found</li></ul></div><div><script src=https://cdn.jsdelivr.net/npm/d3@6.7.0/dist/d3.min.js integrity="sha256-+7jaYCp29O1JusNWHaYtgUn6EhuP0VaFuswhNV06MyI=" crossorigin=anonymous></script><h3>Interactive Graph</h3><div id=graph-container></div><style>:root{--g-node:var(--secondary);--g-node-active:var(--primary);--g-node-inactive:var(--visited);--g-link:var(--outlinegray);--g-link-active:#5a7282}</style><script src=https://knowledge.xyzzyxwz.top/js/graph.6579af7b10c818dbd2ca038702db0224.js></script></div></div><div id=contact_buttons><footer><p>Made by Aaron Li using <a href=https://github.com/jackyzha0/quartz>Quartz</a>, © 2023</p><ul><li><a href=https://knowledge.xyzzyxwz.top/>Home</a></li><li><a href=https://twitter.com/aaaron_li>Twitter</a></li><li><a href=https://github.com/aaronmack>GitHub</a></li></ul></footer></div></div></body></html>
