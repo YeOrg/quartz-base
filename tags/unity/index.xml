@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>unity on</title><link>https://knowledge.xyzzyxwz.top/tags/unity/</link><description>Recent content in unity on</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><atom:link href="https://knowledge.xyzzyxwz.top/tags/unity/index.xml" rel="self" type="application/rss+xml"/><item><title>Unity Live Capture</title><link>https://knowledge.xyzzyxwz.top/adv/unity_live_capture/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://knowledge.xyzzyxwz.top/adv/unity_live_capture/</guid><description>提要 在微博上看到樱花兔的视频，其中提到了Unity Face Capture，遂来捣鼓一番。
+在App Store中搜索 Unity Face Capture,注意要打完整才能搜索出来，安装之后打开是获取一堆权限，全部同意后就可以在UnityEditor-&amp;gt;Package Manager中安装Live Capture这个包。安装成功后在Window -&amp;gt; Live Capture -&amp;gt; Connections中开启服务了。
+注意此时需要关闭防火墙，当然也有其它的方法，这里为了测试简单就直接关闭了防火墙后才可以链接成功。
+同样，可以在App Store中搜索Unity Virtual Camera并安装。</description></item><item><title>Unity Outline</title><link>https://knowledge.xyzzyxwz.top/adv/unity_outline/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://knowledge.xyzzyxwz.top/adv/unity_outline/</guid><description>艺术准备 绑定是否满足Unity-Humanoid-Avatar (是 Unity 识别特定动画模型是否为人形布局的方法，以及该模型的腿部、手臂、头部和身体的对应部分。) 的要求 动画的BlendShape满足ARKit命名规范 Maya
+ADV
+Unity
+Packages
+Subscenes Cinemachine InputSystem HDRP - Volumetric Cloud 高清渲染管线 ML-Agents</description></item><item><title>Unity Tools</title><link>https://knowledge.xyzzyxwz.top/adv/unity_tools/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://knowledge.xyzzyxwz.top/adv/unity_tools/</guid><description>Houdini Engine Install
+在编辑器Project-&amp;gt;Assets中，Import Package -&amp;gt;Custom Package&amp;hellip;，选择到Houdini安装目录(engine/unity/HoudiniEngineUnity.unitypackage) 或者也可以从Github仓库 GitHub - sideeffects/HoudiniEngineForUnity: Houdini Engine for Unity安装。
+https://www.sidefx.com/products/houdini-engine/plug-ins/
+USD Installing</description></item></channel></rss>

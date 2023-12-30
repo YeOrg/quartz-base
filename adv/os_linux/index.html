@@ -1,0 +1,627 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=description content="Frp 快速反向代理 如果你有一台独立主机，同时你想暴露自己本地的服务到外部，可以在独立主机上部署frp的服务端，本地部署frp的客户端，这样当外部访问你独立主机的frp就会转发到本地。
+Install  GitHub - fatedier/frp: A fast reverse proxy to help you expose a local server behind a NAT or firewall to the internet."><meta property="og:title" content="OS - Linux"><meta property="og:description" content="Frp 快速反向代理 如果你有一台独立主机，同时你想暴露自己本地的服务到外部，可以在独立主机上部署frp的服务端，本地部署frp的客户端，这样当外部访问你独立主机的frp就会转发到本地。
+Install  GitHub - fatedier/frp: A fast reverse proxy to help you expose a local server behind a NAT or firewall to the internet."><meta property="og:type" content="website"><meta property="og:image" content="https://knowledge.xyzzyxwz.top/icon.png"><meta property="og:url" content="https://knowledge.xyzzyxwz.top/adv/os_linux/"><meta property="og:width" content="200"><meta property="og:height" content="200"><meta name=twitter:card content="summary"><meta name=twitter:title content="OS - Linux"><meta name=twitter:description content="Frp 快速反向代理 如果你有一台独立主机，同时你想暴露自己本地的服务到外部，可以在独立主机上部署frp的服务端，本地部署frp的客户端，这样当外部访问你独立主机的frp就会转发到本地。
+Install  GitHub - fatedier/frp: A fast reverse proxy to help you expose a local server behind a NAT or firewall to the internet."><meta name=twitter:image content="https://knowledge.xyzzyxwz.top/icon.png"><meta name=twitter:site content="aaaron_li"><title>OS - Linux</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel="shortcut icon" type=image/png href=https://knowledge.xyzzyxwz.top//SpongeBob.png><link href=https://knowledge.xyzzyxwz.top/styles.19109a40042e9f0e72e952fda4442a34.min.css rel=stylesheet><link href=https://knowledge.xyzzyxwz.top/styles/_light_syntax.86a48a52faebeaaf42158b72922b1c90.min.css rel=stylesheet id=theme-link><script src=https://knowledge.xyzzyxwz.top/js/darkmode.f0d8c193b0592224da25f0e9a9077f69.min.js></script>
+<script src=https://knowledge.xyzzyxwz.top/js/util.00639692264b21bc3ee219733d38a8be.min.js></script>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css integrity=sha384-GvrOXuhMATgEsSwCs4smul74iXGOixntILdUW9XmUC6+HX0sLNAK3q71HotJqlAn crossorigin=anonymous><script defer src=https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js integrity=sha384-cpW21h6RZv/phavutF+AuVYrr+dA8xD9zs6FwLpaCct6O9ctzYFfFr4dgmgccOTx crossorigin=anonymous></script>
+<script defer src=https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js integrity=sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05 crossorigin=anonymous onload=renderMathInElement(document.body)></script>
+<script src=https://cdn.jsdelivr.net/npm/@floating-ui/core@1.2.1></script>
+<script src=https://cdn.jsdelivr.net/npm/@floating-ui/dom@1.2.1></script>
+<script defer src=https://knowledge.xyzzyxwz.top/js/popover.aa9bc99c7c38d3ae9538f218f1416adb.min.js></script>
+<script defer src=https://knowledge.xyzzyxwz.top/js/code-title.ce4a43f09239a9efb48fee342e8ef2df.min.js></script>
+<script defer src=https://knowledge.xyzzyxwz.top/js/clipboard.2913da76d3cb21c5deaa4bae7da38c9f.min.js></script>
+<script defer src=https://knowledge.xyzzyxwz.top/js/callouts.7723cac461d613d118ee8bb8216b9838.min.js></script>
+<script>const SEARCH_ENABLED=!1,LATEX_ENABLED=!0,PRODUCTION=!0,BASE_URL="https://knowledge.xyzzyxwz.top/",fetchData=Promise.all([fetch("https://knowledge.xyzzyxwz.top/indices/linkIndex.b42477f504cc2dd76d2d736171c5acb8.min.json").then(e=>e.json()).then(e=>({index:e.index,links:e.links})),fetch("https://knowledge.xyzzyxwz.top/indices/contentIndex.12aba74a8f160194fbb1673605d9dd99.min.json").then(e=>e.json())]).then(([{index:e,links:t},n])=>({index:e,links:t,content:n})),render=()=>{const e=new URL(BASE_URL),t=e.pathname,n=window.location.pathname,s=t==n;addCopyButtons(),addTitleToCodeBlocks(),addCollapsibleCallouts(),initPopover("https://knowledge.xyzzyxwz.top",!0);const o=document.getElementById("footer");if(o){const e=document.getElementById("graph-container");if(!e)return requestAnimationFrame(render);e.textContent="";const t=s&&!1;drawGraph("https://knowledge.xyzzyxwz.top",t,[{"/moc":"#4388cc"}],t?{centerForce:1,depth:-1,enableDrag:!0,enableLegend:!1,enableZoom:!0,fontSize:.5,linkDistance:1,opacityScale:3,repelForce:1,scale:1.4}:{centerForce:1,depth:3,enableDrag:!0,enableLegend:!1,enableZoom:!0,fontSize:.6,linkDistance:1,opacityScale:3,repelForce:2,scale:1.2})}var i=document.getElementsByClassName("mermaid");i.length>0&&import("https://unpkg.com/mermaid@9/dist/mermaid.esm.min.mjs").then(e=>{e.default.init()});function a(n){const e=n.target,t=e.className.split(" "),s=t.includes("broken"),o=t.includes("internal-link");plausible("Link Click",{props:{href:e.href,broken:s,internal:o,graph:!1}})}const r=document.querySelectorAll("a");for(link of r)link.className.includes("root-title")&&link.addEventListener("click",a,{once:!0})},init=(e=document)=>{addCopyButtons(),addTitleToCodeBlocks(),renderMathInElement(e.body,{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1}],macros:{'’':"'"},throwOnError:!1})}</script><script type=module>
+    import { attachSPARouting } from "https:\/\/knowledge.xyzzyxwz.top\/js\/router.d6fe6bd821db9ea97f9aeefae814d8e7.min.js"
+    attachSPARouting(init, render)
+  </script><script defer data-domain=knowledge.xyzzyxwz.top src=https://plausible.io/js/script.js></script>
+<script>window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments)}</script></head><body><div id=search-container><div id=search-space><input autocomplete=off id=search-bar name=search type=text aria-label=Search placeholder="Search for something..."><div id=results-container></div></div></div><script src=https://cdn.jsdelivr.net/npm/flexsearch@0.7.21/dist/flexsearch.bundle.js integrity="sha256-i3A0NZGkhsKjVMzFxv3ksk0DZh3aXqu0l49Bbh0MdjE=" crossorigin=anonymous defer></script>
+<script defer src=https://knowledge.xyzzyxwz.top/js/full-text-search.e6e2e0c213187ca0c703d6e2c7a77fcd.min.js></script><div class=singlePage><header><h1 id=page-title><a class=root-title href=https://knowledge.xyzzyxwz.top/>Knowledge</a></h1><div class=spacer></div><div id=search-icon><p>Search</p><svg tabindex="0" aria-labelledby="title desc" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title id="title">Search Icon</title><desc id="desc">Icon to open search</desc><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"/><circle cx="8" cy="8" r="7"/></g></svg></div><div class=darkmode><input class=toggle id=darkmode-toggle type=checkbox tabindex=-1>
+<label id=toggle-label-light for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="dayIcon" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35"><title>Light Mode</title><path d="M6 17.5C6 16.672 5.328 16 4.5 16h-3C.672 16 0 16.672.0 17.5S.672 19 1.5 19h3C5.328 19 6 18.328 6 17.5zM7.5 26c-.414.0-.789.168-1.061.439l-2 2C4.168 28.711 4 29.086 4 29.5 4 30.328 4.671 31 5.5 31c.414.0.789-.168 1.06-.44l2-2C8.832 28.289 9 27.914 9 27.5 9 26.672 8.329 26 7.5 26zm10-20C18.329 6 19 5.328 19 4.5v-3C19 .672 18.329.0 17.5.0S16 .672 16 1.5v3C16 5.328 16.671 6 17.5 6zm10 3c.414.0.789-.168 1.06-.439l2-2C30.832 6.289 31 5.914 31 5.5 31 4.672 30.329 4 29.5 4c-.414.0-.789.168-1.061.44l-2 2C26.168 6.711 26 7.086 26 7.5 26 8.328 26.671 9 27.5 9zM6.439 8.561C6.711 8.832 7.086 9 7.5 9 8.328 9 9 8.328 9 7.5c0-.414-.168-.789-.439-1.061l-2-2C6.289 4.168 5.914 4 5.5 4 4.672 4 4 4.672 4 5.5c0 .414.168.789.439 1.06l2 2.001zM33.5 16h-3c-.828.0-1.5.672-1.5 1.5s.672 1.5 1.5 1.5h3c.828.0 1.5-.672 1.5-1.5S34.328 16 33.5 16zM28.561 26.439C28.289 26.168 27.914 26 27.5 26c-.828.0-1.5.672-1.5 1.5.0.414.168.789.439 1.06l2 2C28.711 30.832 29.086 31 29.5 31c.828.0 1.5-.672 1.5-1.5.0-.414-.168-.789-.439-1.061l-2-2zM17.5 29c-.829.0-1.5.672-1.5 1.5v3c0 .828.671 1.5 1.5 1.5s1.5-.672 1.5-1.5v-3C19 29.672 18.329 29 17.5 29zm0-22C11.71 7 7 11.71 7 17.5S11.71 28 17.5 28 28 23.29 28 17.5 23.29 7 17.5 7zm0 18c-4.136.0-7.5-3.364-7.5-7.5s3.364-7.5 7.5-7.5 7.5 3.364 7.5 7.5S21.636 25 17.5 25z"/></svg></label><label id=toggle-label-dark for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="nightIcon" viewBox="0 0 100 100" style="enable-background='new 0 0 100 100'"><title>Dark Mode</title><path d="M96.76 66.458c-.853-.852-2.15-1.064-3.23-.534-6.063 2.991-12.858 4.571-19.655 4.571C62.022 70.495 50.88 65.88 42.5 57.5 29.043 44.043 25.658 23.536 34.076 6.47c.532-1.08.318-2.379-.534-3.23-.851-.852-2.15-1.064-3.23-.534-4.918 2.427-9.375 5.619-13.246 9.491-9.447 9.447-14.65 22.008-14.65 35.369.0 13.36 5.203 25.921 14.65 35.368s22.008 14.65 35.368 14.65c13.361.0 25.921-5.203 35.369-14.65 3.872-3.871 7.064-8.328 9.491-13.246C97.826 68.608 97.611 67.309 96.76 66.458z"/></svg></label></div></header><article><h1>OS - Linux</h1><p class=meta>Last updated
+Dec 30, 2023
+<a href=https://github.com/YeOrg/quartz-base/tree/hugo/content/adv/os_linux.md rel=noopener>Edit Source</a></p><ul class=tags></ul><aside class=mainTOC><details><summary>Table of Contents</summary><nav id=TableOfContents><ol><li><a href=#install>Install</a></li><li><a href=#config>Config</a></li></ol><ol><li><a href=#install-1>Install</a></li><li><a href=#renew>Renew</a></li><li><a href=#config-1>Config</a></li></ol></nav></details></aside><a href=#frp-快速反向代理><h1 id=frp-快速反向代理><span class=hanchor arialabel=Anchor># </span>Frp 快速反向代理</h1></a><p>如果你有一台独立主机，同时你想暴露自己本地的服务到外部，可以在独立主机上部署frp的服务端，本地部署frp的客户端，这样当外部访问你独立主机的frp就会转发到本地。</p><a href=#install><h2 id=install><span class=hanchor arialabel=Anchor># </span>Install</h2></a><p><a href=https://github.com/fatedier/frp rel=noopener>GitHub - fatedier/frp: A fast reverse proxy to help you expose a local server behind a NAT or firewall to the internet.</a></p><p>在Release页面下载对应的版本。</p><a href=#config><h2 id=config><span class=hanchor arialabel=Anchor># </span>Config</h2></a><p>服务端</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=o>[</span>common<span class=o>]</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nv>bind_port</span> <span class=o>=</span> <span class=m>12031</span>  // 客户端和服务端连接的端口
+</span></span><span class=line><span class=cl><span class=nv>token</span> <span class=o>=</span> &lt;your-token: number&gt;
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nv>dashboard_port</span> <span class=o>=</span> <span class=m>12032</span>
+</span></span><span class=line><span class=cl><span class=nv>dashboard_user</span> <span class=o>=</span> &lt;username&gt;
+</span></span><span class=line><span class=cl><span class=nv>dashboard_pwd</span> <span class=o>=</span> &lt;password&gt;
+</span></span><span class=line><span class=cl><span class=nv>enable_prometheus</span> <span class=o>=</span> <span class=nb>true</span>  // 普罗米修斯运维服务,可以关闭
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nv>log_file</span> <span class=o>=</span> /var/log/frps.log
+</span></span><span class=line><span class=cl><span class=nv>log_level</span> <span class=o>=</span> info
+</span></span><span class=line><span class=cl><span class=nv>log_max_days</span> <span class=o>=</span> <span class=m>3</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nv>vhost_http_port</span> <span class=o>=</span> <span class=m>13040</span>  // 是内部映射到外部的对外端口
+</span></span><span class=line><span class=cl><span class=nv>vhost_https_port</span> <span class=o>=</span> <span class=m>13043</span> // 暂时未用，而是通过nginx配置ssl转发走http
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=p>;</span>Bidirectional verification  // 双向验证
+</span></span><span class=line><span class=cl><span class=nv>tls_only</span> <span class=o>=</span> <span class=nb>true</span>
+</span></span><span class=line><span class=cl><span class=nv>tls_enable</span> <span class=o>=</span> <span class=nb>true</span>
+</span></span><span class=line><span class=cl><span class=nv>tls_cert_file</span> <span class=o>=</span> /root/frp/ca2/server.crt
+</span></span><span class=line><span class=cl><span class=nv>tls_key_file</span> <span class=o>=</span> /root/frp/ca2/server.key
+</span></span><span class=line><span class=cl><span class=nv>tls_trusted_ca_file</span> <span class=o>=</span> /root/frp/ca2/ca.crt
+</span></span></code></pre></td></tr></table></div></div><p>客户端</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=o>[</span>common<span class=o>]</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nv>server_addr</span> <span class=o>=</span> &lt;your-address-ip&gt;
+</span></span><span class=line><span class=cl><span class=nv>server_port</span> <span class=o>=</span> <span class=m>12031</span>
+</span></span><span class=line><span class=cl><span class=nv>token</span> <span class=o>=</span> &lt;your-token: number&gt;  // 与服务端一致
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=p>;</span>Bidirectional verification  // 双向验证
+</span></span><span class=line><span class=cl><span class=nv>tls_enable</span> <span class=o>=</span> <span class=nb>true</span>
+</span></span><span class=line><span class=cl><span class=nv>tls_cert_file</span> <span class=o>=</span> C:/src/ub/frp/ca1/client.crt
+</span></span><span class=line><span class=cl><span class=nv>tls_key_file</span> <span class=o>=</span> C:/src/ub/frp/ca1/client.key
+</span></span><span class=line><span class=cl><span class=nv>tls_trusted_ca_file</span> <span class=o>=</span> C:/src/ub/frp/ca1/ca.crt
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>// 一个配置示例，转发本地的15060端口
+</span></span><span class=line><span class=cl>//   这样当外部访问域名<span class=sb>`</span>sub.xyzzyxwz.top<span class=sb>`</span>时就会转发到本地这个端口。
+</span></span><span class=line><span class=cl><span class=o>[</span>httpname1-pre<span class=o>]</span>  
+</span></span><span class=line><span class=cl><span class=nb>type</span> <span class=o>=</span> http
+</span></span><span class=line><span class=cl><span class=nv>local_port</span> <span class=o>=</span> <span class=m>15060</span>
+</span></span><span class=line><span class=cl><span class=nv>local_ip</span> <span class=o>=</span> 127.0.0.1
+</span></span><span class=line><span class=cl><span class=nv>custom_domains</span> <span class=o>=</span> sub.xyzzyxwz.top
+</span></span></code></pre></td></tr></table></div></div><p>双向验证密钥生成</p><p>文件 <code>my-openssl.cnf</code>，这文件我是不懂的，也不知道从哪拿来的了(●ˇ∀ˇ●)</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=o>[</span> ca <span class=o>]</span>
+</span></span><span class=line><span class=cl><span class=nv>default_ca</span> <span class=o>=</span> CA_default
+</span></span><span class=line><span class=cl><span class=o>[</span> CA_default <span class=o>]</span>
+</span></span><span class=line><span class=cl><span class=nv>x509_extensions</span> <span class=o>=</span> usr_cert
+</span></span><span class=line><span class=cl><span class=o>[</span> req <span class=o>]</span>
+</span></span><span class=line><span class=cl><span class=nv>default_bits</span>        <span class=o>=</span> <span class=m>2048</span>
+</span></span><span class=line><span class=cl><span class=nv>default_md</span>          <span class=o>=</span> sha256
+</span></span><span class=line><span class=cl><span class=nv>default_keyfile</span>     <span class=o>=</span> privkey.pem
+</span></span><span class=line><span class=cl><span class=nv>distinguished_name</span>  <span class=o>=</span> req_distinguished_name
+</span></span><span class=line><span class=cl><span class=nv>attributes</span>          <span class=o>=</span> req_attributes
+</span></span><span class=line><span class=cl><span class=nv>x509_extensions</span>     <span class=o>=</span> v3_ca
+</span></span><span class=line><span class=cl><span class=nv>string_mask</span>         <span class=o>=</span> utf8only
+</span></span><span class=line><span class=cl><span class=o>[</span> req_distinguished_name <span class=o>]</span>
+</span></span><span class=line><span class=cl><span class=o>[</span> req_attributes <span class=o>]</span>
+</span></span><span class=line><span class=cl><span class=o>[</span> usr_cert <span class=o>]</span>
+</span></span><span class=line><span class=cl><span class=nv>basicConstraints</span>       <span class=o>=</span> CA:FALSE
+</span></span><span class=line><span class=cl><span class=nv>nsComment</span>              <span class=o>=</span> <span class=s2>&#34;OpenSSL Generated Certificate&#34;</span>
+</span></span><span class=line><span class=cl><span class=nv>subjectKeyIdentifier</span>   <span class=o>=</span> <span class=nb>hash</span>
+</span></span><span class=line><span class=cl><span class=nv>authorityKeyIdentifier</span> <span class=o>=</span> keyid,issuer
+</span></span><span class=line><span class=cl><span class=o>[</span> v3_ca <span class=o>]</span>
+</span></span><span class=line><span class=cl><span class=nv>subjectKeyIdentifier</span>   <span class=o>=</span> <span class=nb>hash</span>
+</span></span><span class=line><span class=cl><span class=nv>authorityKeyIdentifier</span> <span class=o>=</span> keyid:always,issuer
+</span></span><span class=line><span class=cl><span class=nv>basicConstraints</span>       <span class=o>=</span> CA:true
+</span></span></code></pre></td></tr></table></div></div><p>进入到与<code>my-openssl.cnf</code>文件的同一目录下，执行下方命令，一条一条的执行，注意同时把域名和IP改成自己的。</p><blockquote class=warning-callout><p>注意如果在Windows下需要用cygwin的shell去执行。</p></blockquote><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># TODO Frp TLS https://www.bookstack.cn/read/frp-0.36-zh/cf470b39f615dd74.md</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 1.Generating a ca Certificate</span>
+</span></span><span class=line><span class=cl><span class=c1>## Generate the ca key file</span>
+</span></span><span class=line><span class=cl>openssl genrsa -out ca.key <span class=m>2048</span>
+</span></span><span class=line><span class=cl><span class=c1>## Generating a ca Certificate</span>
+</span></span><span class=line><span class=cl>openssl req -x509 -new -nodes -key ca.key -subj <span class=s2>&#34;/CN=xyzzyxwz.top&#34;</span> -days <span class=m>5000</span> -out ca.crt
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 2.Generate a server certificate</span>
+</span></span><span class=line><span class=cl><span class=c1>## Generate the server key file</span>
+</span></span><span class=line><span class=cl>openssl genrsa -out server.key <span class=m>2048</span>
+</span></span><span class=line><span class=cl><span class=c1>## Generate the server CSR file</span>
+</span></span><span class=line><span class=cl>openssl req -new -sha256 -key server.key <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>    -subj <span class=s2>&#34;/C=XX/ST=DEFAULT/L=DEFAULT/O=DEFAULT/CN=xyzzyxwz.top&#34;</span> <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>    -reqexts SAN <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>    -config &lt;<span class=o>(</span>cat my-openssl.cnf &lt;<span class=o>(</span><span class=nb>printf</span> <span class=s2>&#34;\n[SAN]\nsubjectAltName=DNS:localhost,IP:127.0.0.1,IP:80.251.217.246,DNS:xyzzyxwz.top&#34;</span><span class=o>))</span> <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>    -out server.csr
+</span></span><span class=line><span class=cl><span class=c1>## Generate a server certificate</span>
+</span></span><span class=line><span class=cl>openssl x509 -req -days <span class=m>365</span> -sha256 <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>	-in server.csr -CA ca.crt -CAkey ca.key -CAcreateserial <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>	-extfile &lt;<span class=o>(</span><span class=nb>printf</span> <span class=s2>&#34;subjectAltName=DNS:localhost,IP:127.0.0.1,IP:80.251.217.246,DNS:xyzzyxwz.top&#34;</span><span class=o>)</span> <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>	-out server.crt
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 3.Generate a client certificate</span>
+</span></span><span class=line><span class=cl><span class=c1>## Generate the client key file</span>
+</span></span><span class=line><span class=cl>openssl genrsa -out client.key <span class=m>2048</span>
+</span></span><span class=line><span class=cl><span class=c1>## Generate the client CSR file</span>
+</span></span><span class=line><span class=cl>openssl req -new -sha256 -key client.key <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>    -subj <span class=s2>&#34;/C=XX/ST=DEFAULT/L=DEFAULT/O=DEFAULT/CN=client.com&#34;</span> <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>    -reqexts SAN <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>    -config &lt;<span class=o>(</span>cat my-openssl.cnf &lt;<span class=o>(</span><span class=nb>printf</span> <span class=s2>&#34;\n[SAN]\nsubjectAltName=DNS:localhost,DNS:example.client.com&#34;</span><span class=o>))</span> <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>    -out client.csr
+</span></span><span class=line><span class=cl><span class=c1>## Generate a client certificate</span>
+</span></span><span class=line><span class=cl>openssl x509 -req -days <span class=m>365</span> -sha256 <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>    -in client.csr -CA ca.crt -CAkey ca.key -CAcreateserial <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>	-extfile &lt;<span class=o>(</span><span class=nb>printf</span> <span class=s2>&#34;subjectAltName=DNS:localhost,DNS:example.client.com&#34;</span><span class=o>)</span> <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>	-out client.crt
+</span></span></code></pre></td></tr></table></div></div><p>如果成功了，应该是以下几个文件。然后配置文件里会指向这几个文件。</p><img src=https://cdn.jsdelivr.net/gh/aaronmack/image-hosting@master/e/image.3dc6baa8low0.webp alt=image width=500/>
+<a href=#申请免费-ssl><h1 id=申请免费-ssl><span class=hanchor arialabel=Anchor># </span>申请免费 SSL</h1></a><a href=#install-1><h2 id=install-1><span class=hanchor arialabel=Anchor># </span>Install</h2></a><p>使用Let&rsquo;s Encrypt免费的SSL证书。</p><p>Linux下安装使用certbot命令行工具，<code>sudo apt install certbot</code> 。</p><p>我这里的服务机器配置已经有了一个caddy，所以nginx没有去占用80个443端口，所以cerbot我使用的是独立模式。</p><p>还有其它的选项比如&ndash;nginx，会自动配置好nginx相关的。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>// 有多个域名和子域名使用-d添加多个
+</span></span><span class=line><span class=cl>certbot certonly --standalone -d xyzzyxwz.top -d server1.xyzzyxwz.top
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>// 再根据提示一步一步操作，这里等DNS解析需要一段时间
+</span></span><span class=line><span class=cl>...
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>//成功后重启nginx服务
+</span></span><span class=line><span class=cl>systemctl restart nginx
+</span></span></code></pre></td></tr></table></div></div><a href=#renew><h2 id=renew><span class=hanchor arialabel=Anchor># </span>Renew</h2></a><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>crontab -e
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=m>0</span> 0,12 * * * python -c <span class=s1>&#39;import random; import time; time.sleep(random.random() * 3600)&#39;</span> <span class=o>&amp;&amp;</span> systemctl stop caddy <span class=o>&amp;&amp;</span> certbot renew <span class=o>&amp;&amp;</span> systemctl start caddy
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>//有时候这个定时任务不起作用，需要在到期前手动执行一下上述命令
+</span></span></code></pre></td></tr></table></div></div><a href=#config-1><h2 id=config-1><span class=hanchor arialabel=Anchor># </span>Config</h2></a><p>因为在申请SSL时我们用的standalone模式。所以这里我们手动配置SSL。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>  1
+</span><span class=lnt>  2
+</span><span class=lnt>  3
+</span><span class=lnt>  4
+</span><span class=lnt>  5
+</span><span class=lnt>  6
+</span><span class=lnt>  7
+</span><span class=lnt>  8
+</span><span class=lnt>  9
+</span><span class=lnt> 10
+</span><span class=lnt> 11
+</span><span class=lnt> 12
+</span><span class=lnt> 13
+</span><span class=lnt> 14
+</span><span class=lnt> 15
+</span><span class=lnt> 16
+</span><span class=lnt> 17
+</span><span class=lnt> 18
+</span><span class=lnt> 19
+</span><span class=lnt> 20
+</span><span class=lnt> 21
+</span><span class=lnt> 22
+</span><span class=lnt> 23
+</span><span class=lnt> 24
+</span><span class=lnt> 25
+</span><span class=lnt> 26
+</span><span class=lnt> 27
+</span><span class=lnt> 28
+</span><span class=lnt> 29
+</span><span class=lnt> 30
+</span><span class=lnt> 31
+</span><span class=lnt> 32
+</span><span class=lnt> 33
+</span><span class=lnt> 34
+</span><span class=lnt> 35
+</span><span class=lnt> 36
+</span><span class=lnt> 37
+</span><span class=lnt> 38
+</span><span class=lnt> 39
+</span><span class=lnt> 40
+</span><span class=lnt> 41
+</span><span class=lnt> 42
+</span><span class=lnt> 43
+</span><span class=lnt> 44
+</span><span class=lnt> 45
+</span><span class=lnt> 46
+</span><span class=lnt> 47
+</span><span class=lnt> 48
+</span><span class=lnt> 49
+</span><span class=lnt> 50
+</span><span class=lnt> 51
+</span><span class=lnt> 52
+</span><span class=lnt> 53
+</span><span class=lnt> 54
+</span><span class=lnt> 55
+</span><span class=lnt> 56
+</span><span class=lnt> 57
+</span><span class=lnt> 58
+</span><span class=lnt> 59
+</span><span class=lnt> 60
+</span><span class=lnt> 61
+</span><span class=lnt> 62
+</span><span class=lnt> 63
+</span><span class=lnt> 64
+</span><span class=lnt> 65
+</span><span class=lnt> 66
+</span><span class=lnt> 67
+</span><span class=lnt> 68
+</span><span class=lnt> 69
+</span><span class=lnt> 70
+</span><span class=lnt> 71
+</span><span class=lnt> 72
+</span><span class=lnt> 73
+</span><span class=lnt> 74
+</span><span class=lnt> 75
+</span><span class=lnt> 76
+</span><span class=lnt> 77
+</span><span class=lnt> 78
+</span><span class=lnt> 79
+</span><span class=lnt> 80
+</span><span class=lnt> 81
+</span><span class=lnt> 82
+</span><span class=lnt> 83
+</span><span class=lnt> 84
+</span><span class=lnt> 85
+</span><span class=lnt> 86
+</span><span class=lnt> 87
+</span><span class=lnt> 88
+</span><span class=lnt> 89
+</span><span class=lnt> 90
+</span><span class=lnt> 91
+</span><span class=lnt> 92
+</span><span class=lnt> 93
+</span><span class=lnt> 94
+</span><span class=lnt> 95
+</span><span class=lnt> 96
+</span><span class=lnt> 97
+</span><span class=lnt> 98
+</span><span class=lnt> 99
+</span><span class=lnt>100
+</span><span class=lnt>101
+</span><span class=lnt>102
+</span><span class=lnt>103
+</span><span class=lnt>104
+</span><span class=lnt>105
+</span><span class=lnt>106
+</span><span class=lnt>107
+</span><span class=lnt>108
+</span><span class=lnt>109
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>// 第一个服务 （用于frp反向代理）
+</span></span><span class=line><span class=cl>//   暴露12030端口给外部访问
+</span></span><span class=line><span class=cl>//   代理内部的端口13040，这个端口是设置在frp服务端的配置文件中的vhost-http
+</span></span><span class=line><span class=cl>// -----
+</span></span><span class=line><span class=cl>// `listen 12034 ssl http2;` 同时暴露了12034端口
+</span></span><span class=line><span class=cl>//     可以给内部的ub-api服务做转发
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>server {
+</span></span><span class=line><span class=cl>    listen       12030 default_server;
+</span></span><span class=line><span class=cl>    listen       [::]:12030 default_server;
+</span></span><span class=line><span class=cl>    server_name  xyzzyxwz.top;
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    underscores_in_headers on;
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    listen 12034 ssl http2;
+</span></span><span class=line><span class=cl>    ssl on;
+</span></span><span class=line><span class=cl>    ssl_certificate /etc/letsencrypt/live/xyzzyxwz.top/fullchain.pem;
+</span></span><span class=line><span class=cl>    ssl_certificate_key /etc/letsencrypt/live/xyzzyxwz.top/privkey.pem;
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    ssl_protocols TLSv1.2 TLSv1.3;
+</span></span><span class=line><span class=cl>    ssl_ciphers &#34;ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384&#34;;     
+</span></span><span class=line><span class=cl>    #ssl_prefer_server_ciphers on;
+</span></span><span class=line><span class=cl>    ssl_session_cache shared:le_nginx_SSL:10m;
+</span></span><span class=line><span class=cl>    ssl_session_timeout 1440m;
+</span></span><span class=line><span class=cl>    ssl_session_tickets off;
+</span></span><span class=line><span class=cl>    ssl_prefer_server_ciphers off;
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    error_page 497  https://$host$request_uri;
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    #limit_conn perserver 300;
+</span></span><span class=line><span class=cl>    #limit_conn perip 25;
+</span></span><span class=line><span class=cl>    #limit_rate 512k;
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    # Load configuration files for the default server block.
+</span></span><span class=line><span class=cl>    include /etc/nginx/default.d/*.conf;
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    location / {
+</span></span><span class=line><span class=cl>        proxy_redirect off;
+</span></span><span class=line><span class=cl>        #proxy_set_header Host $host;
+</span></span><span class=line><span class=cl>        proxy_set_header Host $http_host;
+</span></span><span class=line><span class=cl>        proxy_set_header X-Real-IP $remote_addr;
+</span></span><span class=line><span class=cl>        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+</span></span><span class=line><span class=cl>        proxy_set_header X-Forwarded-Proto $scheme;
+</span></span><span class=line><span class=cl>        proxy_set_header X-Forwarded-Protocol $scheme;
+</span></span><span class=line><span class=cl>        proxy_set_header X-Url-Scheme $scheme;
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        proxy_http_version 1.1;
+</span></span><span class=line><span class=cl>        proxy_set_header Upgrade $http_upgrade;
+</span></span><span class=line><span class=cl>        proxy_set_header Connection &#34;upgrade&#34;;
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        proxy_pass http://127.0.0.1:13040;
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>            add_header Access-Control-Allow-Origin *;
+</span></span><span class=line><span class=cl>            add_header Access-Control-Allow-Methods &#39;GET, POST, OPTIONS&#39;;
+</span></span><span class=line><span class=cl>            add_header Access-Control-Allow-Headers &#39;DNT,X-Mx-ReqToken,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization&#39;;
+</span></span><span class=line><span class=cl>    }
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    # If the page is static and does not contain a redirection, this method is OK, or how to change the redirection url with this prefix?
+</span></span><span class=line><span class=cl>    location ^~ /n1/ {
+</span></span><span class=line><span class=cl>        proxy_pass http://localhost:8001/;
+</span></span><span class=line><span class=cl>        proxy_http_version 1.1;
+</span></span><span class=line><span class=cl>        proxy_set_header Upgrade $http_upgrade;
+</span></span><span class=line><span class=cl>        proxy_set_header Connection keep-alive;
+</span></span><span class=line><span class=cl>        proxy_set_header Host $host;
+</span></span><span class=line><span class=cl>        proxy_cache_bypass $http_upgrade;
+</span></span><span class=line><span class=cl>        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+</span></span><span class=line><span class=cl>        proxy_set_header X-Forwarded-Proto $scheme;
+</span></span><span class=line><span class=cl>    }
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    # …
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    error_page 404 /404.html;
+</span></span><span class=line><span class=cl>        location = /40x.html {
+</span></span><span class=line><span class=cl>    }
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    error_page 500 502 503 504 /50x.html;
+</span></span><span class=line><span class=cl>        location = /50x.html {
+</span></span><span class=line><span class=cl>    }
+</span></span><span class=line><span class=cl>}
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>// 第二个服务（自己serve一些的服务，也可以走ssl），
+</span></span><span class=line><span class=cl>//   像下面就是暴露9001给外部，监听转发内部8001端口
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>server{
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    listen       9001 default_server;
+</span></span><span class=line><span class=cl>    listen       [::]:9001 default_server;
+</span></span><span class=line><span class=cl>    server_name  xyzzyxw.top;
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    ssl on;
+</span></span><span class=line><span class=cl>    ssl_certificate /etc/letsencrypt/live/xyzzyxw.top/fullchain.pem;
+</span></span><span class=line><span class=cl>    ssl_certificate_key /etc/letsencrypt/live/xyzzyxw.top/privkey.pem;
+</span></span><span class=line><span class=cl>    ssl_protocols TLSv1.2 TLSv1.3;
+</span></span><span class=line><span class=cl>    ssl_ciphers &#34;ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384&#34;;
+</span></span><span class=line><span class=cl>    ssl_session_timeout 1440m;
+</span></span><span class=line><span class=cl>    ssl_session_tickets off;
+</span></span><span class=line><span class=cl>    ssl_prefer_server_ciphers off;
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    location / {
+</span></span><span class=line><span class=cl>            proxy_pass http://localhost:8001/;
+</span></span><span class=line><span class=cl>            proxy_http_version 1.1;
+</span></span><span class=line><span class=cl>            proxy_set_header Upgrade $http_upgrade;
+</span></span><span class=line><span class=cl>            proxy_set_header Connection keep-alive;
+</span></span><span class=line><span class=cl>            proxy_set_header Host $host;
+</span></span><span class=line><span class=cl>            proxy_cache_bypass $http_upgrade;
+</span></span><span class=line><span class=cl>            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+</span></span><span class=line><span class=cl>            proxy_set_header X-Forwarded-Proto $scheme;
+</span></span><span class=line><span class=cl>    }
+</span></span><span class=line><span class=cl>}
+</span></span></code></pre></td></tr></table></div></div><a href=#常用命令><h1 id=常用命令><span class=hanchor arialabel=Anchor># </span>常用命令</h1></a><p>有时候我们SSH远程连接到主机后，想执行一个命令，并且在终端意外退出后仍然继续运行。这就需要到screen啦。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># screen run</span>
+</span></span><span class=line><span class=cl>yum install screen
+</span></span><span class=line><span class=cl>screen -S ssl  <span class=c1># start new</span>
+</span></span><span class=line><span class=cl>screen -r <span class=o>[</span>id<span class=o>]</span> <span class=c1># attach one</span>
+</span></span><span class=line><span class=cl>  <span class=c1># Ctrl+A D  - will detach</span>
+</span></span><span class=line><span class=cl>  <span class=c1># Ctrl+D    - will terminate</span>
+</span></span></code></pre></td></tr></table></div></div><p>mysql相关。😂🤣😄</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># mysql</span>
+</span></span><span class=line><span class=cl>mysql -u root -p
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>-- Re-Increment id
+</span></span><span class=line><span class=cl>// table_bak是备份出的表
+</span></span><span class=line><span class=cl>create table table_bak like &lt;table_name&gt;<span class=p>;</span>
+</span></span><span class=line><span class=cl>insert into table_bak <span class=k>select</span> * from &lt;table_name&gt;<span class=p>;</span>
+</span></span><span class=line><span class=cl>alter table table_bak drop id<span class=p>;</span>
+</span></span><span class=line><span class=cl>alter table table_bak add id int<span class=o>(</span>11<span class=o>)</span> primary key auto_increment first<span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>-- Query users
+</span></span><span class=line><span class=cl>SELECT User, Host, Grant_priv, Super_priv
+</span></span><span class=line><span class=cl>FROM mysql.user<span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>-- Create user with super grant
+</span></span><span class=line><span class=cl>CREATE USER <span class=s1>&#39;username&#39;</span>@<span class=s1>&#39;%&#39;</span> IDENTIFIED BY <span class=s1>&#39;password&#39;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>GRANT ALL ON *.* TO <span class=s1>&#39;username&#39;</span>@<span class=s1>&#39;%&#39;</span> WITH GRANT OPTION<span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>-- Remove user
+</span></span><span class=line><span class=cl>DROP USER <span class=s1>&#39;username&#39;</span>@<span class=s1>&#39;%&#39;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>FLUSH PRIVILEGES<span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>-- Create database
+</span></span><span class=line><span class=cl>CREATE DATABASE testdb<span class=p>;</span>
+</span></span></code></pre></td></tr></table></div></div><a href=#ubuntu22-04-安装mongodb><h1 id=ubuntu22-04-安装mongodb><span class=hanchor arialabel=Anchor># </span>Ubuntu22-04 安装Mongodb</h1></a><p><a href=https://www.cherryservers.com/blog/install-mongodb-ubuntu-22-04 rel=noopener>How to Install MongoDB on Ubuntu 22.04 | Cherry Servers</a></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># 安装安装过程中所需的先决条件包。</span>
+</span></span><span class=line><span class=cl>sudo apt install software-properties-common gnupg apt-transport-https ca-certificates -y
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 要安装最新的 MongoDB 软件包，需要将 MongoDB 软件包仓库添加到 Ubuntu 的源代码列表文件中。在此之前，你需要使用 wget 命令在系统中导入 MongoDB 的公钥</span>
+</span></span><span class=line><span class=cl>curl -fsSL https://pgp.mongodb.com/server-7.0.asc <span class=p>|</span>  sudo gpg -o /usr/share/keyrings/mongodb-server-7.0.gpg --dearmor
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 在 /etc/apt/sources.list.d 目录中添加 MongoDB 7.0 APT 代码库</span>
+</span></span><span class=line><span class=cl><span class=nb>echo</span> <span class=s2>&#34;deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-7.0.gpg ] https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/7.0 multiverse&#34;</span> <span class=p>|</span> sudo tee /etc/apt/sources.list.d/mongodb-org-7.0.list
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 检查它 cat /etc/apt/sources.list.d/mongodb-org-7.0.list</span>
+</span></span><span class=line><span class=cl>sudo apt update	
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 安装Mongodb</span>
+</span></span><span class=line><span class=cl>sudo apt install mongodb-org -y
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 启用MongoDB在启动时启动</span>
+</span></span><span class=line><span class=cl>mongod --version
+</span></span><span class=line><span class=cl>sudo systemctl status mongod
+</span></span><span class=line><span class=cl>sudo systemctl start mongod
+</span></span><span class=line><span class=cl>sudo systemctl <span class=nb>enable</span> mongod
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 检查端口是否监听</span>
+</span></span><span class=line><span class=cl>sudo ss -pnltu <span class=p>|</span> grep <span class=m>27017</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 创建账号</span>
+</span></span><span class=line><span class=cl>mongosh
+</span></span><span class=line><span class=cl>show dbs
+</span></span><span class=line><span class=cl>use admin
+</span></span><span class=line><span class=cl>---
+</span></span><span class=line><span class=cl>db.createUser<span class=o>(</span>
+</span></span><span class=line><span class=cl>  <span class=o>{</span>
+</span></span><span class=line><span class=cl>    user: <span class=s2>&#34;root&#34;</span>,
+</span></span><span class=line><span class=cl>    pwd: passwordPrompt<span class=o>()</span>,
+</span></span><span class=line><span class=cl>    roles: <span class=o>[</span> <span class=o>{</span> role: <span class=s2>&#34;userAdminAnyDatabase&#34;</span>, db: <span class=s2>&#34;admin&#34;</span> <span class=o>}</span>, <span class=s2>&#34;readWriteAnyDatabase&#34;</span> <span class=o>]</span>
+</span></span><span class=line><span class=cl> <span class=o>}</span>
+</span></span><span class=line><span class=cl><span class=o>)</span>
+</span></span><span class=line><span class=cl>---
+</span></span><span class=line><span class=cl><span class=nb>exit</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 配置外部访问</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>sudo nano /etc/mongod.conf
+</span></span><span class=line><span class=cl>改变 <span class=sb>`</span>bindIp: 127.0.0.1<span class=sb>`</span> 为 <span class=sb>`</span>bindIp: 127.0.0.1, mongo-server-ip<span class=sb>`</span>
+</span></span><span class=line><span class=cl>更正：修改为 <span class=sb>`</span>0.0.0.0<span class=sb>`</span>
+</span></span><span class=line><span class=cl>sudo systemctl restart mongod
+</span></span></code></pre></td></tr></table></div></div></article><hr><div class=page-end id=footer><div class=backlinks-container><h3>Backlinks</h3><ul class=backlinks><li>No backlinks found</li></ul></div><div><script src=https://cdn.jsdelivr.net/npm/d3@6.7.0/dist/d3.min.js integrity="sha256-+7jaYCp29O1JusNWHaYtgUn6EhuP0VaFuswhNV06MyI=" crossorigin=anonymous></script><h3>Interactive Graph</h3><div id=graph-container></div><style>:root{--g-node:var(--secondary);--g-node-active:var(--primary);--g-node-inactive:var(--visited);--g-link:var(--outlinegray);--g-link-active:#5a7282}</style><script src=https://knowledge.xyzzyxwz.top/js/graph.6579af7b10c818dbd2ca038702db0224.js></script></div></div><div id=contact_buttons><footer><p>Made by Aaron Li using <a href=https://github.com/jackyzha0/quartz>Quartz</a>, © 2023</p><ul><li><a href=https://knowledge.xyzzyxwz.top/>Home</a></li><li><a href=https://twitter.com/aaaron_li>Twitter</a></li><li><a href=https://github.com/aaronmack>GitHub</a></li></ul></footer></div></div></body></html>
