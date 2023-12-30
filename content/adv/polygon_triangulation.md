@@ -1,5 +1,6 @@
 ---
 dg-publish: true
+title: Polygon Triangulation
 ---
 
 ## Fan Triangulation

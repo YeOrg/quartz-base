@@ -1,5 +1,6 @@
 ---
 dg-publish: true
+title: Two ears theorem
 ---
 
 In geometry, the two ears theorem states that **every simple polygon with more than three vertices has at least two ears, vertices that can be removed from the polygon without introducing any crossings**.

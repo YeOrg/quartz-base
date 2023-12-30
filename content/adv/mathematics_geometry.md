@@ -1,5 +1,6 @@
 ---
 dg-publish: true
+title: Mathematics Geometry
 ---
 
 几何最初是为了建立物理世界的模型而发展起来的

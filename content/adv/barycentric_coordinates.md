@@ -1,7 +1,7 @@
 ---
 dg-publish: true
 dg-hide: false
-title: Barycentric coordinates
+title: Barycentric Coordinates
 noteIcon: ""
 created: ""
 updated: ""

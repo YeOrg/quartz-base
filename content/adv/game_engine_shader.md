@@ -1,6 +1,6 @@
 ---
 dg-publish: true
-title: 基本概念
+title: Game Engine Shader
 date created: 2023-11-16
 date modified: 2023-11-19
 ---

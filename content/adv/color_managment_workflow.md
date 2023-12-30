@@ -1,5 +1,6 @@
 ---
 dg-publish: true
+title: Color Managment Workflow
 ---
 
 # Color management workflow (CMW) - (sRGB ACES)

@@ -1,5 +1,6 @@
 ---
 dg-publish: true
+title: Triangular area
 ---
 
 三角形面积计算

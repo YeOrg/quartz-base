@@ -1,5 +1,6 @@
 ---
 dg-publish: true
+title: Digital Garden
 ---
 
 # 题记
