@@ -499,6 +499,9 @@ fly.io
 
 <img src="https://cdn.jsdelivr.net/gh/aaronmack/image-hosting@master/e/1702522306435.webp" alt="1702522306435" width=400/>
 
+* 其它模型
+	* SMPL - A Skinned Multi Person Linear Model，用于人体动作捕捉。<img src="https://cdn.jsdelivr.net/gh/aaronmack/image-hosting@master/e/1704342182177.webp" alt="1704342182177" width=400/>
+
 **有哪些数据集**
 
 * MNIST - 手写数字
