@@ -54,12 +54,12 @@ $$\begin{array}{l}a^2=b^2+c^2-2bc\ cos A \ b^2=a^2+c^2-2ac\ cos B \ c^2=a^2+b^2-
 叉乘定义
 $${\displaystyle \mathbf {a} \times \mathbf {b}=\left|\mathbf {a} \right|\left|\mathbf {b} \right|\sin(\theta)\mathbf{n}}$$
 其中$\theta$表示$\mathbf{a}$向量和$\mathbf{b}$向量之间的夹角，而 ${\displaystyle \mathbf {n} }$则是一个与${\displaystyle \mathbf {a} }$、${\displaystyle \mathbf {b} }$所构成的平面垂直的单位向量，方向由右手定则决定 ( https://zh.</description></item><item><title>Development</title><link>https://knowledge.xyzzyxwz.top/adv/my_develop/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://knowledge.xyzzyxwz.top/adv/my_develop/</guid><description>CG Dreamworks animation (DWA) usd-manager https://github.com/dreamworksanimation/usdmanager
-1 2 3 4 5 6 7 8 # virtualenv python310 -m virtualenv venv .</description></item><item><title>Digital Garden</title><link>https://knowledge.xyzzyxwz.top/adv/digital_garden/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://knowledge.xyzzyxwz.top/adv/digital_garden/</guid><description>题记 最早有一天是想改变自己的做笔记的方式，思考了半晚上，最后得到了个结论就是，笔记应当记成图，而不是树，遂第二天去查资料，看到这篇，顿时找到自己想要的~
+1 2 3 4 5 6 7 8 # virtualenv python310 -m virtualenv venv .</description></item><item><title>Digital Garden</title><link>https://knowledge.xyzzyxwz.top/adv/digital_garden/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://knowledge.xyzzyxwz.top/adv/digital_garden/</guid><description>Digital Garden 题记 最早有一天是想改变自己的做笔记的方式，思考了半晚上，最后得到了个结论就是，笔记应当记成图，而不是树，遂第二天去查资料，看到这篇，顿时找到自己想要的~
 玩转 Obsidian 04：为什么推荐使用 Obsidian 做知识管理 - 少数派
 笔记可以这样做，之前我们一般是使用树的层级结构去记笔记，但我们知道知识与知识之间一般是有联系的，知识与知识之间应该是一张图，通过相互之间的联系进行关联。
 软件上使用Obsidian，但我们还想发布到网上，可以使用社区插件Digital Garden进行设置和发布，再使用免费的vecel进行部署。
 安装 在1中的文档写的非常详细，每一步，里面需要你知道一些关于Github的与Vecel的配置。
-其它 https://github.com/oleeskild/Obsidian-Digital-Garden 社区插件的地址</description></item><item><title>Dot product</title><link>https://knowledge.xyzzyxwz.top/adv/dot_product/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://knowledge.xyzzyxwz.top/adv/dot_product/</guid><description>点乘我们通常用于衡量两个向量的方向差，或者衡量&amp;quot;做功&amp;quot;的大小，通常我们将它们单位化，然后再计算，这样取值范围就在$-1$到$1$之间，例如两个向量共向，那么值为$1$，反向则为$-1$，垂直为$0$
+其它 https://github.</description></item><item><title>Dot product</title><link>https://knowledge.xyzzyxwz.top/adv/dot_product/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://knowledge.xyzzyxwz.top/adv/dot_product/</guid><description>点乘我们通常用于衡量两个向量的方向差，或者衡量&amp;quot;做功&amp;quot;的大小，通常我们将它们单位化，然后再计算，这样取值范围就在$-1$到$1$之间，例如两个向量共向，那么值为$1$，反向则为$-1$，垂直为$0$
 代数定义
 两个向量${\displaystyle {\vec {a}}=[a_{1},a_{2},\cdots ,a_{n}]}$和${\displaystyle {\vec {b}}=[b_{1},b_{2},\cdots ,b_{n}]}$的点积定义为
 $$\begin{aligned} \vec{a}\cdot \vec{b} = \sum_{i=1}^{n} a_ib_i \end{aligned}$$
