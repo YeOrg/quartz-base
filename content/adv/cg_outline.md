@@ -5,6 +5,11 @@ date created: 2024-01-10
 date modified: 2024-01-10
 ---
 
+[Academy Software Foundation - ASWF](https://www.aswf.io/)
+
+<img src="https://cdn.jsdelivr.net/gh/aaronmack/image-hosting@master/e/1706417312928.webp" alt="1706417312928" width=600/>
+
+
 # Tools
 
 ## Pipeline
@@ -77,6 +82,7 @@ date modified: 2024-01-10
 4. BlenderGIS - https://github.com/domlysz/BlenderGIS 导入geographic地理数据。
 5. Rigify - CloudRig - 自动绑定的功能集包。 [Blender / CloudRig · GitLab](https://gitlab.com/blender/CloudRig)
 6. 自动地形 (输入简单多边形生成地形) https://unicornhunter.gumroad.com/l/AutoTerrainer
+7. **Eazy PBR** https://codeofart.gumroad.com/l/EasyPBR
 ## awesome
 
 1. CG VFX Pipeline [GitHub - cgwire/awesome-cg-vfx-pipeline: List of open-source technologies that help in the process of building a pipeline for CG and VFX productions](https://github.com/cgwire/awesome-cg-vfx-pipeline)
@@ -84,6 +90,16 @@ date modified: 2024-01-10
 ## Storage
 
 1. FreeNAS
+
+# Effect Reference
+
+真实地球 https://www.youtube.com/watch?v=7KXGZAEWzn0 [来源](https://www.sidefx.com/forum/topic/74787/?page=1#post-319797)
+
+场景渲染参考
+	3. 武术3D效果图 https://www.youtube.com/watch?v=8b5k0M8wTBg 
+	2. 另类现实 Alternate Realities https://www.youtube.com/watch?v=iKBs9l8jS6Q
+	1. BOSS决战 Boss Fight 3D Montage https://www.youtube.com/watch?v=wgiRK8_iKdg
+	2. 3D Vehicle https://www.youtube.com/watch?v=mIDlU_sKto0
 
 # CG Assets
 
@@ -100,16 +116,18 @@ date modified: 2024-01-10
 10. free3d https://free3d.com/3d-models/
 11. sketchfab https://sketchfab.com/
 12. 3D Scans https://threedscans.com/ - 3D扫描模型
-13. ambientcg [ambientCG - CC0 Textures, HDRIs and Models](https://ambientcg.com/)
-15. Armorpaint Cloud https://github.com/armory3d/armortools/tree/main/armorpaint
+13. **ambientcg** [ambientCG - CC0 Textures, HDRIs and Models](https://ambientcg.com/)
+15. **Armorpaint Cloud** https://github.com/armory3d/armortools/tree/main/armorpaint
 16. Maya Rigs https://animationmethods.com/rigs.html
 17. Maya rigs and tools https://gumroad.com/
 18. Maya Rigs https://www.characterrigs.com/
+19. blendswap https://www.blendswap.com/
+20. turbosquid - https://www.turbosquid.com
 
 ## Example
 
 1. Arnold Learning Scene (Houdini) https://help.autodesk.com/view/ARNOL/ENU/?guid=arnold_for_houdini_tutorials_ah_Learning_Scenes_html
-2. Animal Logic ALab - USD Production Scene https://dpel.aswf.io/alab/
+2. **Digital Production Example Library** https://dpel.aswf.io/
 3. Render Example Scene https://rmanwiki.pixar.com/display/REN25/Examples
 4. **Link To Open Assets** 
 	1. https://wiki.aswf.io/display/ARW/Links+to+Open+Assets
@@ -124,6 +142,7 @@ date modified: 2024-01-10
 8. **Houdini Content Library** https://www.sidefx.com/contentlibrary/
 9. **mitsuba** - https://mitsuba.readthedocs.io/en/stable/src/gallery.html
 10. McGuire Computer Graphics Archive - https://casual-effects.com/data/
+11. Renderman Learn Resource https://renderman.pixar.com/learn
 
 ## Learning Materials
 
@@ -134,6 +153,8 @@ date modified: 2024-01-10
 ## 资源
 
 1. 面向PipelineTD的USD生存者指南 https://github.com/LucaScheller/VFX-UsdSurvivalGuide
+2. USD Working Group Assets https://github.com/usd-wg/assets
+3. USD资产结构 (alab) https://usd-alab.s3.amazonaws.com/documentation.html
 
 # Blender
 
@@ -148,6 +169,23 @@ date modified: 2024-01-10
 1. Houdini - [GitHub - wyhinton/AwesomeHoudini: A collection of awesome Free/Open Source things regarding the SideFx Houdini ecosystem.](https://github.com/wyhinton/AwesomeHoudini)
 
 [[houdini_hello|Houdini Hello]]
+
+## Releases
+
+14 - https://www.sidefx.com/community/sidefx-releases-houdini-14/
+15 - https://www.sidefx.com/community/sidefx-releases-houdini-15/
+15.5 - https://www.sidefx.com/community/sidefx-releases-houdini-155/
+16 - https://www.sidefx.com/community/sidefx-releases-houdini-16/
+16.5 - https://www.sidefx.com/community/sidefx-releases-houdini-165
+17 - https://www.sidefx.com/community/houdini-17-sneak-peek/
+17.5 - https://www.sidefx.com/community/houdini-175-launch-event/
+18 - https://www.sidefx.com/community/houdini-18-sneak-peek/
+18.5 - https://www.sidefx.com/community/houdini-18_5-sneak-peek/
+19 - https://www.sidefx.com/community/houdini-19-sneak-peek/
+19.5 - https://www.sidefx.com/community/houdini-195-sneak-peek/
+20 - https://www.sidefx.com/products/whats-new-in-h20/
+
+
 
 # Unity
 
