@@ -110,7 +110,7 @@ date modified: 2024-01-10
 3. https://luxcorerender.org/example-scenes/ LuxCoreRender Example Scenes
 4. **PolyHaven** https://polyhaven.com/
 5. Quixel Bridge https://quixel.com/bridge
-6. AMD GPUOpen MaterialX Library https://matlib.gpuopen.com/main/materials/all
+6. **AMD GPUOpen MaterialX** Library https://matlib.gpuopen.com/main/materials/all
 7. Mixamo https://www.mixamo.com/
 9. freepoly.org https://www.freepoly.org/en
 10. free3d https://free3d.com/3d-models/
@@ -123,6 +123,7 @@ date modified: 2024-01-10
 18. Maya Rigs https://www.characterrigs.com/
 19. blendswap https://www.blendswap.com/
 20. turbosquid - https://www.turbosquid.com
+21. CGTrader https://www.cgtrader.com
 
 ## Example
 
