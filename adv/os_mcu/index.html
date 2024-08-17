@@ -1,0 +1,1954 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=description content="Attiny 85 参考: https://oshwhub.com/15653072438poiu/ji-yu-attiny85-de-tang-guo-he-you-xi-ji
+需要Arduino，Attiny85,杜邦线
+ Arduino IDE中选择 示例-> ArduinoISP 打开示例 Arduino IDE中在Tools中Board->Arduino Uno，选择端口，Programmer选择ArduinoISP。（实际测试中选择了Arduino As ISP，不知有和影响） 面包板上连接Arduino与Attiny85 （要参考Attiny85的pinout针脚图）     Arduino Uno Attiny85     5V VCC   GND GND   Pin13 PB2   Pin12 PB1   Pin 11 PB0   Pin 10 PB5   4."><meta property="og:title" content="OS - MCU"><meta property="og:description" content="Attiny 85 参考: https://oshwhub.com/15653072438poiu/ji-yu-attiny85-de-tang-guo-he-you-xi-ji
+需要Arduino，Attiny85,杜邦线
+ Arduino IDE中选择 示例-> ArduinoISP 打开示例 Arduino IDE中在Tools中Board->Arduino Uno，选择端口，Programmer选择ArduinoISP。（实际测试中选择了Arduino As ISP，不知有和影响） 面包板上连接Arduino与Attiny85 （要参考Attiny85的pinout针脚图）     Arduino Uno Attiny85     5V VCC   GND GND   Pin13 PB2   Pin12 PB1   Pin 11 PB0   Pin 10 PB5   4."><meta property="og:type" content="website"><meta property="og:image" content="https://knowledge.xyzzyxwz.top/icon.png"><meta property="og:url" content="https://knowledge.xyzzyxwz.top/adv/os_mcu/"><meta property="og:width" content="200"><meta property="og:height" content="200"><meta name=twitter:card content="summary"><meta name=twitter:title content="OS - MCU"><meta name=twitter:description content="Attiny 85 参考: https://oshwhub.com/15653072438poiu/ji-yu-attiny85-de-tang-guo-he-you-xi-ji
+需要Arduino，Attiny85,杜邦线
+ Arduino IDE中选择 示例-> ArduinoISP 打开示例 Arduino IDE中在Tools中Board->Arduino Uno，选择端口，Programmer选择ArduinoISP。（实际测试中选择了Arduino As ISP，不知有和影响） 面包板上连接Arduino与Attiny85 （要参考Attiny85的pinout针脚图）     Arduino Uno Attiny85     5V VCC   GND GND   Pin13 PB2   Pin12 PB1   Pin 11 PB0   Pin 10 PB5   4."><meta name=twitter:image content="https://knowledge.xyzzyxwz.top/icon.png"><meta name=twitter:site content="aaaron_li"><title>OS - MCU</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel="shortcut icon" type=image/png href=https://knowledge.xyzzyxwz.top//SpongeBob.png><link href=https://knowledge.xyzzyxwz.top/styles.19109a40042e9f0e72e952fda4442a34.min.css rel=stylesheet><link href=https://knowledge.xyzzyxwz.top/styles/_light_syntax.86a48a52faebeaaf42158b72922b1c90.min.css rel=stylesheet id=theme-link><script src=https://knowledge.xyzzyxwz.top/js/darkmode.f0d8c193b0592224da25f0e9a9077f69.min.js></script>
+<script src=https://knowledge.xyzzyxwz.top/js/util.00639692264b21bc3ee219733d38a8be.min.js></script>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css integrity=sha384-GvrOXuhMATgEsSwCs4smul74iXGOixntILdUW9XmUC6+HX0sLNAK3q71HotJqlAn crossorigin=anonymous><script defer src=https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js integrity=sha384-cpW21h6RZv/phavutF+AuVYrr+dA8xD9zs6FwLpaCct6O9ctzYFfFr4dgmgccOTx crossorigin=anonymous></script>
+<script defer src=https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js integrity=sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05 crossorigin=anonymous onload=renderMathInElement(document.body)></script>
+<script src=https://cdn.jsdelivr.net/npm/@floating-ui/core@1.2.1></script>
+<script src=https://cdn.jsdelivr.net/npm/@floating-ui/dom@1.2.1></script>
+<script defer src=https://knowledge.xyzzyxwz.top/js/popover.aa9bc99c7c38d3ae9538f218f1416adb.min.js></script>
+<script defer src=https://knowledge.xyzzyxwz.top/js/code-title.ce4a43f09239a9efb48fee342e8ef2df.min.js></script>
+<script defer src=https://knowledge.xyzzyxwz.top/js/clipboard.2913da76d3cb21c5deaa4bae7da38c9f.min.js></script>
+<script defer src=https://knowledge.xyzzyxwz.top/js/callouts.7723cac461d613d118ee8bb8216b9838.min.js></script>
+<script>const SEARCH_ENABLED=!1,LATEX_ENABLED=!0,PRODUCTION=!0,BASE_URL="https://knowledge.xyzzyxwz.top/",fetchData=Promise.all([fetch("https://knowledge.xyzzyxwz.top/indices/linkIndex.9b878c556efdd7259d879d4cd3f3c908.min.json").then(e=>e.json()).then(e=>({index:e.index,links:e.links})),fetch("https://knowledge.xyzzyxwz.top/indices/contentIndex.eb75028d5210de97533251128ed4c438.min.json").then(e=>e.json())]).then(([{index:e,links:t},n])=>({index:e,links:t,content:n})),render=()=>{const e=new URL(BASE_URL),t=e.pathname,n=window.location.pathname,s=t==n;addCopyButtons(),addTitleToCodeBlocks(),addCollapsibleCallouts(),initPopover("https://knowledge.xyzzyxwz.top",!0);const o=document.getElementById("footer");if(o){const e=document.getElementById("graph-container");if(!e)return requestAnimationFrame(render);e.textContent="";const t=s&&!1;drawGraph("https://knowledge.xyzzyxwz.top",t,[{"/moc":"#4388cc"}],t?{centerForce:1,depth:-1,enableDrag:!0,enableLegend:!1,enableZoom:!0,fontSize:.5,linkDistance:1,opacityScale:3,repelForce:1,scale:1.4}:{centerForce:1,depth:3,enableDrag:!0,enableLegend:!1,enableZoom:!0,fontSize:.6,linkDistance:1,opacityScale:3,repelForce:2,scale:1.2})}var i=document.getElementsByClassName("mermaid");i.length>0&&import("https://unpkg.com/mermaid@9/dist/mermaid.esm.min.mjs").then(e=>{e.default.init()});function a(n){const e=n.target,t=e.className.split(" "),s=t.includes("broken"),o=t.includes("internal-link");plausible("Link Click",{props:{href:e.href,broken:s,internal:o,graph:!1}})}const r=document.querySelectorAll("a");for(link of r)link.className.includes("root-title")&&link.addEventListener("click",a,{once:!0})},init=(e=document)=>{addCopyButtons(),addTitleToCodeBlocks(),renderMathInElement(e.body,{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1}],macros:{'’':"'"},throwOnError:!1})}</script><script type=module>
+    import { attachSPARouting } from "https:\/\/knowledge.xyzzyxwz.top\/js\/router.d6fe6bd821db9ea97f9aeefae814d8e7.min.js"
+    attachSPARouting(init, render)
+  </script><script defer data-domain=knowledge.xyzzyxwz.top src=https://plausible.io/js/script.js></script>
+<script>window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments)}</script></head><body><div id=search-container><div id=search-space><input autocomplete=off id=search-bar name=search type=text aria-label=Search placeholder="Search for something..."><div id=results-container></div></div></div><script src=https://cdn.jsdelivr.net/npm/flexsearch@0.7.21/dist/flexsearch.bundle.js integrity="sha256-i3A0NZGkhsKjVMzFxv3ksk0DZh3aXqu0l49Bbh0MdjE=" crossorigin=anonymous defer></script>
+<script defer src=https://knowledge.xyzzyxwz.top/js/full-text-search.e6e2e0c213187ca0c703d6e2c7a77fcd.min.js></script><div class=singlePage><header><h1 id=page-title><a class=root-title href=https://knowledge.xyzzyxwz.top/>Knowledge</a></h1><div class=spacer></div><div id=search-icon><p>Search</p><svg tabindex="0" aria-labelledby="title desc" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title id="title">Search Icon</title><desc id="desc">Icon to open search</desc><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"/><circle cx="8" cy="8" r="7"/></g></svg></div><div class=darkmode><input class=toggle id=darkmode-toggle type=checkbox tabindex=-1>
+<label id=toggle-label-light for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="dayIcon" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35"><title>Light Mode</title><path d="M6 17.5C6 16.672 5.328 16 4.5 16h-3C.672 16 0 16.672.0 17.5S.672 19 1.5 19h3C5.328 19 6 18.328 6 17.5zM7.5 26c-.414.0-.789.168-1.061.439l-2 2C4.168 28.711 4 29.086 4 29.5 4 30.328 4.671 31 5.5 31c.414.0.789-.168 1.06-.44l2-2C8.832 28.289 9 27.914 9 27.5 9 26.672 8.329 26 7.5 26zm10-20C18.329 6 19 5.328 19 4.5v-3C19 .672 18.329.0 17.5.0S16 .672 16 1.5v3C16 5.328 16.671 6 17.5 6zm10 3c.414.0.789-.168 1.06-.439l2-2C30.832 6.289 31 5.914 31 5.5 31 4.672 30.329 4 29.5 4c-.414.0-.789.168-1.061.44l-2 2C26.168 6.711 26 7.086 26 7.5 26 8.328 26.671 9 27.5 9zM6.439 8.561C6.711 8.832 7.086 9 7.5 9 8.328 9 9 8.328 9 7.5c0-.414-.168-.789-.439-1.061l-2-2C6.289 4.168 5.914 4 5.5 4 4.672 4 4 4.672 4 5.5c0 .414.168.789.439 1.06l2 2.001zM33.5 16h-3c-.828.0-1.5.672-1.5 1.5s.672 1.5 1.5 1.5h3c.828.0 1.5-.672 1.5-1.5S34.328 16 33.5 16zM28.561 26.439C28.289 26.168 27.914 26 27.5 26c-.828.0-1.5.672-1.5 1.5.0.414.168.789.439 1.06l2 2C28.711 30.832 29.086 31 29.5 31c.828.0 1.5-.672 1.5-1.5.0-.414-.168-.789-.439-1.061l-2-2zM17.5 29c-.829.0-1.5.672-1.5 1.5v3c0 .828.671 1.5 1.5 1.5s1.5-.672 1.5-1.5v-3C19 29.672 18.329 29 17.5 29zm0-22C11.71 7 7 11.71 7 17.5S11.71 28 17.5 28 28 23.29 28 17.5 23.29 7 17.5 7zm0 18c-4.136.0-7.5-3.364-7.5-7.5s3.364-7.5 7.5-7.5 7.5 3.364 7.5 7.5S21.636 25 17.5 25z"/></svg></label><label id=toggle-label-dark for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="nightIcon" viewBox="0 0 100 100" style="enable-background='new 0 0 100 100'"><title>Dark Mode</title><path d="M96.76 66.458c-.853-.852-2.15-1.064-3.23-.534-6.063 2.991-12.858 4.571-19.655 4.571C62.022 70.495 50.88 65.88 42.5 57.5 29.043 44.043 25.658 23.536 34.076 6.47c.532-1.08.318-2.379-.534-3.23-.851-.852-2.15-1.064-3.23-.534-4.918 2.427-9.375 5.619-13.246 9.491-9.447 9.447-14.65 22.008-14.65 35.369.0 13.36 5.203 25.921 14.65 35.368s22.008 14.65 35.368 14.65c13.361.0 25.921-5.203 35.369-14.65 3.872-3.871 7.064-8.328 9.491-13.246C97.826 68.608 97.611 67.309 96.76 66.458z"/></svg></label></div></header><article><h1>OS - MCU</h1><p class=meta>Last updated
+Aug 17, 2024
+<a href=https://github.com/YeOrg/quartz-base/tree/hugo/content/adv/os_mcu.md rel=noopener>Edit Source</a></p><ul class=tags></ul><aside class=mainTOC><details><summary>Table of Contents</summary><nav id=TableOfContents><ol><li><a href=#esp32-wroom-32>ESP32-WROOM-32</a></li><li><a href=#esp-32-c3-supermini>ESP 32 C3 Super/Mini</a></li></ol><ol><li><a href=#28byj-48>28BYJ-48</a></li></ol><ol><li><a href=#180>180°</a></li><li><a href=#360>360°</a></li></ol><ol><li><a href=#开环>开环</a></li><li><a href=#闭环>闭环</a></li></ol><ol><li><a href=#tb6612驱动板-d24a>TB6612驱动板 (D24A)</a><ol><li><a href=#电机jgb37-520--霍尔编码器>电机JGB37-520 (霍尔编码器)</a></li><li><a href=#电机jgb37-545b-霍尔编码>电机JGB37-545B (霍尔编码)</a></li></ol></li><li><a href=#tb6612驱动板-芯片>TB6612驱动板 (芯片)</a><ol><li><a href=#f1ct-拆机-光耦编码>F1CT 拆机 (光耦编码)</a></li></ol></li></ol><ol><li><a href=#树莓派连接arduino开发板但不显示设备>树莓派连接Arduino开发板，但不显示设备</a></li><li><a href=#树莓派与arduino开发板串口通信报错权限不足>树莓派与Arduino开发板串口通信，报错权限不足</a></li><li><a href=#ros的usb_cam运行报错权限不足>ros的usb_cam运行报错，权限不足</a></li></ol></nav></details></aside><a href=#attiny-85><h1 id=attiny-85><span class=hanchor arialabel=Anchor># </span>Attiny 85</h1></a><p>参考:
+<a href=https://oshwhub.com/15653072438poiu/ji-yu-attiny85-de-tang-guo-he-you-xi-ji rel=noopener>https://oshwhub.com/15653072438poiu/ji-yu-attiny85-de-tang-guo-he-you-xi-ji</a></p><p>需要Arduino，Attiny85,杜邦线</p><ol><li>Arduino IDE中选择 示例-> ArduinoISP 打开示例</li><li>Arduino IDE中在Tools中Board->Arduino Uno，选择端口，Programmer选择ArduinoISP。（实际测试中选择了Arduino As ISP，不知有和影响）</li><li>面包板上连接Arduino与Attiny85 （要参考Attiny85的pinout针脚图）</li></ol><table><thead><tr><th>Arduino Uno</th><th>Attiny85</th></tr></thead><tbody><tr><td>5V</td><td>VCC</td></tr><tr><td>GND</td><td>GND</td></tr><tr><td>Pin13</td><td>PB2</td></tr><tr><td>Pin12</td><td>PB1</td></tr><tr><td>Pin 11</td><td>PB0</td></tr><tr><td>Pin 10</td><td>PB5</td></tr><tr><td>4. Arduino IDE中Tools->Burnbootloader （烧录一次成功即可）</td><td></td></tr><tr><td>5. Arduino IDE中打开游戏代码。在Sketch中选择，Upload using programmer。然后编译上传即可。</td><td></td></tr><tr><td>6. 简单测试：将OLED与Attiny85连接。</td><td></td></tr></tbody></table><img src=https://github.com/aaronmack/picx-images-hosting/raw/master/e/image.3k7w3h0dmk.webp alt=image width=500/>
+<a href=#stm32><h1 id=stm32><span class=hanchor arialabel=Anchor># </span>STM32</h1></a><a href=#esp-32s-cam><h1 id=esp-32s-cam><span class=hanchor arialabel=Anchor># </span>ESP-32S Cam</h1></a><p>在Arduino -> File -> Examples -> ESP32 -> Camera -> CameraWebServer</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=cp># 1. 在CameraWebServer.ino 文件中 取消下面注释
+</span></span></span><span class=line><span class=cl><span class=cp></span>
+</span></span><span class=line><span class=cl><span class=cp>#define CAMERA_MODEL_AI_THINKER </span><span class=c1>// Has PSRAM
+</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span><span class=line><span class=cl><span class=cp># 2. 修改 ssid与密码
+</span></span></span><span class=line><span class=cl><span class=cp></span><span class=k>const</span> <span class=kt>char</span> <span class=o>*</span><span class=n>ssid</span> <span class=o>=</span> <span class=s>&#34;**********&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=k>const</span> <span class=kt>char</span> <span class=o>*</span><span class=n>password</span> <span class=o>=</span> <span class=s>&#34;**********&#34;</span><span class=p>;</span>
+</span></span></code></pre></td></tr></table></div></div><a href=#micropython><h1 id=micropython><span class=hanchor arialabel=Anchor># </span>Micropython</h1></a><a href=#esp32-wroom-32><h2 id=esp32-wroom-32><span class=hanchor arialabel=Anchor># </span>ESP32-WROOM-32</h2></a><p>操作系统 Windows</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># 1. 在网站 https://micropython.org/download/ 下载对应MCU的固件 .bin</span>
+</span></span><span class=line><span class=cl><span class=c1># 2. 在设备管理器中找到插入的ESP32的COM端口是多少，例如 COM5</span>
+</span></span><span class=line><span class=cl><span class=c1># 3. 新建一个python venv环境，安装 pip install esptool</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>esptool.exe --chip esp32 --port COM5 erase_flash
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>esptool.exe --chip esp32 --port COM5 --baud <span class=m>460800</span> write_flash -z 0x1000 c:<span class=se>\t</span>mp<span class=se>\e</span>sp32-20190125-v1.10.bin
+</span></span></code></pre></td></tr></table></div></div><p>下载Mu Editor
+<a href=https://codewith.mu/ rel=noopener>https://codewith.mu/</a> 编写python代码。</p><ul><li>LED Blink</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>from</span> <span class=nn>machine</span> <span class=kn>import</span> <span class=n>Pin</span><span class=p>,</span> <span class=n>Timer</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>time</span>
+</span></span><span class=line><span class=cl><span class=n>led</span> <span class=o>=</span> <span class=n>Pin</span><span class=p>(</span><span class=mi>2</span><span class=p>,</span> <span class=n>Pin</span><span class=o>.</span><span class=n>OUT</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>timer</span> <span class=o>=</span> <span class=n>Timer</span><span class=p>(</span><span class=mi>0</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>toggle</span> <span class=o>=</span> <span class=mi>1</span>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>blink</span><span class=p>(</span><span class=n>timer</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=k>global</span> <span class=n>toggle</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=n>toggle</span> <span class=o>==</span> <span class=mi>1</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>led</span><span class=o>.</span><span class=n>value</span><span class=p>(</span><span class=mi>0</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>toggle</span> <span class=o>=</span> <span class=mi>0</span>
+</span></span><span class=line><span class=cl>    <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>led</span><span class=o>.</span><span class=n>value</span><span class=p>(</span><span class=mi>1</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>toggle</span> <span class=o>=</span> <span class=mi>1</span>
+</span></span><span class=line><span class=cl><span class=n>timer</span><span class=o>.</span><span class=n>init</span><span class=p>(</span><span class=n>freq</span><span class=o>=</span><span class=mi>3</span><span class=p>,</span> <span class=n>mode</span><span class=o>=</span><span class=n>Timer</span><span class=o>.</span><span class=n>PERIODIC</span><span class=p>,</span> <span class=n>callback</span><span class=o>=</span><span class=n>blink</span><span class=p>)</span>
+</span></span></code></pre></td></tr></table></div></div><ul><li>Web Server</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span><span class=lnt>60
+</span><span class=lnt>61
+</span><span class=lnt>62
+</span><span class=lnt>63
+</span><span class=lnt>64
+</span><span class=lnt>65
+</span><span class=lnt>66
+</span><span class=lnt>67
+</span><span class=lnt>68
+</span><span class=lnt>69
+</span><span class=lnt>70
+</span><span class=lnt>71
+</span><span class=lnt>72
+</span><span class=lnt>73
+</span><span class=lnt>74
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=c1># Complete project details at https://RandomNerdTutorials.com</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>try</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>  <span class=kn>import</span> <span class=nn>usocket</span> <span class=k>as</span> <span class=nn>socket</span>
+</span></span><span class=line><span class=cl><span class=k>except</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>  <span class=kn>import</span> <span class=nn>socket</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>machine</span> <span class=kn>import</span> <span class=n>Pin</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>network</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>esp</span>
+</span></span><span class=line><span class=cl><span class=n>esp</span><span class=o>.</span><span class=n>osdebug</span><span class=p>(</span><span class=kc>None</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>gc</span>
+</span></span><span class=line><span class=cl><span class=n>gc</span><span class=o>.</span><span class=n>collect</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>ssid</span> <span class=o>=</span> <span class=s1>&#39;****&#39;</span>
+</span></span><span class=line><span class=cl><span class=n>password</span> <span class=o>=</span> <span class=s1>&#39;****&#39;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>station</span> <span class=o>=</span> <span class=n>network</span><span class=o>.</span><span class=n>WLAN</span><span class=p>(</span><span class=n>network</span><span class=o>.</span><span class=n>STA_IF</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>station</span><span class=o>.</span><span class=n>active</span><span class=p>(</span><span class=kc>True</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>station</span><span class=o>.</span><span class=n>connect</span><span class=p>(</span><span class=n>ssid</span><span class=p>,</span> <span class=n>password</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>while</span> <span class=n>station</span><span class=o>.</span><span class=n>isconnected</span><span class=p>()</span> <span class=o>==</span> <span class=kc>False</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>  <span class=k>pass</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=s1>&#39;Connection successful&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=n>station</span><span class=o>.</span><span class=n>ifconfig</span><span class=p>())</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># LED Value 1 is close.</span>
+</span></span><span class=line><span class=cl><span class=n>led</span> <span class=o>=</span> <span class=n>Pin</span><span class=p>(</span><span class=mi>2</span><span class=p>,</span> <span class=n>Pin</span><span class=o>.</span><span class=n>OUT</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=s2>&#34;led value&#34;</span><span class=p>,</span> <span class=n>led</span><span class=o>.</span><span class=n>value</span><span class=p>())</span>
+</span></span><span class=line><span class=cl><span class=n>led</span><span class=o>.</span><span class=n>value</span><span class=p>(</span><span class=mi>0</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>web_page</span><span class=p>():</span>
+</span></span><span class=line><span class=cl>  <span class=k>if</span> <span class=n>led</span><span class=o>.</span><span class=n>value</span><span class=p>()</span> <span class=o>==</span> <span class=mi>0</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=n>gpio_state</span><span class=o>=</span><span class=s2>&#34;ON&#34;</span>
+</span></span><span class=line><span class=cl>  <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=n>gpio_state</span><span class=o>=</span><span class=s2>&#34;OFF&#34;</span>
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl>  <span class=n>html</span> <span class=o>=</span> <span class=s2>&#34;&#34;&#34;&lt;html&gt;&lt;head&gt; &lt;title&gt;ESP Web Server&lt;/title&gt; &lt;meta name=&#34;viewport&#34; content=&#34;width=device-width, initial-scale=1&#34;&gt;
+</span></span></span><span class=line><span class=cl><span class=s2>  &lt;link rel=&#34;icon&#34; href=&#34;data:,&#34;&gt; &lt;style&gt;html{font-family: Helvetica; display:inline-block; margin: 0px auto; text-align: center;}
+</span></span></span><span class=line><span class=cl><span class=s2>  h1{color: #0F3376; padding: 2vh;}p{font-size: 1.5rem;}.button{display: inline-block; background-color: #e7bd3b; border: none; 
+</span></span></span><span class=line><span class=cl><span class=s2>  border-radius: 4px; color: white; padding: 16px 40px; text-decoration: none; font-size: 30px; margin: 2px; cursor: pointer;}
+</span></span></span><span class=line><span class=cl><span class=s2>  .button2{background-color: #4286f4;}&lt;/style&gt;&lt;/head&gt;&lt;body&gt; &lt;h1&gt;ESP Web Server&lt;/h1&gt; 
+</span></span></span><span class=line><span class=cl><span class=s2>  &lt;p&gt;GPIO state: &lt;strong&gt;&#34;&#34;&#34;</span> <span class=o>+</span> <span class=n>gpio_state</span> <span class=o>+</span> <span class=s2>&#34;&#34;&#34;&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;a href=&#34;/?led=on&#34;&gt;&lt;button class=&#34;button&#34;&gt;ON&lt;/button&gt;&lt;/a&gt;&lt;/p&gt;
+</span></span></span><span class=line><span class=cl><span class=s2>  &lt;p&gt;&lt;a href=&#34;/?led=off&#34;&gt;&lt;button class=&#34;button button2&#34;&gt;OFF&lt;/button&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;&#34;&#34;&#34;</span>
+</span></span><span class=line><span class=cl>  <span class=k>return</span> <span class=n>html</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>s</span> <span class=o>=</span> <span class=n>socket</span><span class=o>.</span><span class=n>socket</span><span class=p>(</span><span class=n>socket</span><span class=o>.</span><span class=n>AF_INET</span><span class=p>,</span> <span class=n>socket</span><span class=o>.</span><span class=n>SOCK_STREAM</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>s</span><span class=o>.</span><span class=n>bind</span><span class=p>((</span><span class=s1>&#39;&#39;</span><span class=p>,</span> <span class=mi>80</span><span class=p>))</span>
+</span></span><span class=line><span class=cl><span class=n>s</span><span class=o>.</span><span class=n>listen</span><span class=p>(</span><span class=mi>5</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>while</span> <span class=kc>True</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>  <span class=n>conn</span><span class=p>,</span> <span class=n>addr</span> <span class=o>=</span> <span class=n>s</span><span class=o>.</span><span class=n>accept</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>  <span class=nb>print</span><span class=p>(</span><span class=s1>&#39;Got a connection from </span><span class=si>%s</span><span class=s1>&#39;</span> <span class=o>%</span> <span class=nb>str</span><span class=p>(</span><span class=n>addr</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>  <span class=n>request</span> <span class=o>=</span> <span class=n>conn</span><span class=o>.</span><span class=n>recv</span><span class=p>(</span><span class=mi>1024</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=n>request</span> <span class=o>=</span> <span class=nb>str</span><span class=p>(</span><span class=n>request</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=nb>print</span><span class=p>(</span><span class=s1>&#39;Content = </span><span class=si>%s</span><span class=s1>&#39;</span> <span class=o>%</span> <span class=n>request</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=n>led_on</span> <span class=o>=</span> <span class=n>request</span><span class=o>.</span><span class=n>find</span><span class=p>(</span><span class=s1>&#39;/?led=on&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=n>led_off</span> <span class=o>=</span> <span class=n>request</span><span class=o>.</span><span class=n>find</span><span class=p>(</span><span class=s1>&#39;/?led=off&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=k>if</span> <span class=n>led_on</span> <span class=o>==</span> <span class=mi>6</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=s1>&#39;LED ON&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>led</span><span class=o>.</span><span class=n>value</span><span class=p>(</span><span class=mi>0</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=k>if</span> <span class=n>led_off</span> <span class=o>==</span> <span class=mi>6</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=s1>&#39;LED OFF&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>led</span><span class=o>.</span><span class=n>value</span><span class=p>(</span><span class=mi>1</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=n>response</span> <span class=o>=</span> <span class=n>web_page</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>  <span class=n>conn</span><span class=o>.</span><span class=n>send</span><span class=p>(</span><span class=s1>&#39;HTTP/1.1 200 OK</span><span class=se>\n</span><span class=s1>&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=n>conn</span><span class=o>.</span><span class=n>send</span><span class=p>(</span><span class=s1>&#39;Content-Type: text/html</span><span class=se>\n</span><span class=s1>&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=n>conn</span><span class=o>.</span><span class=n>send</span><span class=p>(</span><span class=s1>&#39;Connection: close</span><span class=se>\n\n</span><span class=s1>&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=n>conn</span><span class=o>.</span><span class=n>sendall</span><span class=p>(</span><span class=n>response</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=n>conn</span><span class=o>.</span><span class=n>close</span><span class=p>()</span>
+</span></span></code></pre></td></tr></table></div></div><a href=#esp-32-c3-supermini><h2 id=esp-32-c3-supermini><span class=hanchor arialabel=Anchor># </span>ESP 32 C3 Super/Mini</h2></a><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>esptool.exe --chip esp32c3 --port COM13 erase_flash
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>esptool.exe --chip esp32c3 --port COM13 --baud <span class=m>460800</span> write_flash -z 0x0 &lt;BIN_FILE&gt;.bin
+</span></span></code></pre></td></tr></table></div></div><ul><li>LED Blink</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>from</span> <span class=nn>machine</span> <span class=kn>import</span> <span class=n>Pin</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>time</span>
+</span></span><span class=line><span class=cl><span class=n>led</span> <span class=o>=</span> <span class=n>Pin</span><span class=p>(</span><span class=mi>8</span><span class=p>,</span> <span class=n>Pin</span><span class=o>.</span><span class=n>OUT</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=mi>10</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>  <span class=n>time</span><span class=o>.</span><span class=n>sleep_ms</span><span class=p>(</span><span class=mi>500</span><span class=p>)</span>  
+</span></span><span class=line><span class=cl>  <span class=n>led</span><span class=o>.</span><span class=n>off</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>  <span class=n>time</span><span class=o>.</span><span class=n>sleep_ms</span><span class=p>(</span><span class=mi>500</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=n>led</span><span class=o>.</span><span class=n>on</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>  <span class=nb>print</span><span class=p>(</span><span class=s2>&#34;Blink &#34;</span><span class=p>,</span> <span class=n>i</span><span class=o>+</span><span class=mi>1</span><span class=p>)</span>
+</span></span></code></pre></td></tr></table></div></div><p>IDE可以用Thonny。</p><a href=#atiny85><h1 id=atiny85><span class=hanchor arialabel=Anchor># </span>ATINY85</h1></a><a href=#arduino><h1 id=arduino><span class=hanchor arialabel=Anchor># </span>Arduino</h1></a><p>Additional Boards Manager URLs</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-json data-lang=json><span class=line><span class=cl><span class=err>http:</span><span class=c1>//dan.drown.org/stm32duino/package_STM32duino_index.json
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=err>https:</span><span class=c1>//arduino.esp8266.com/stable/package_esp8266com_index.json
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=err>https:</span><span class=c1>//dl.espressif.com/dl/package_esp32_index.json
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=err>https:</span><span class=c1>//raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=err>https:</span><span class=c1>//raw.githubusercontent.com/damellis/attiny/ide-1.6.x-boards-manager/package_damellis_attiny_index.json
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=err>https:</span><span class=c1>//raw.githubusercontent.com/digistump/arduino-boards-index/master/package_digistump_index.json
+</span></span></span></code></pre></td></tr></table></div></div><p>Libraries</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>WiFiManager
+</span></span><span class=line><span class=cl>WebSockets
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>ArduinoJson
+</span></span><span class=line><span class=cl>AccelStepper
+</span></span><span class=line><span class=cl>Adafruit_NeoPixel
+</span></span><span class=line><span class=cl>Adafruit_NeoMatrix
+</span></span><span class=line><span class=cl>Arduino-PID-Library
+</span></span><span class=line><span class=cl>ArduPID
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>FastLED
+</span></span><span class=line><span class=cl>PubSubClient
+</span></span></code></pre></td></tr></table></div></div><a href=#oled-096-iic-128x64><h1 id=oled-096-iic-128x64><span class=hanchor arialabel=Anchor># </span>OLED 0.96 IIC 128x64</h1></a><p>开发板 UNO R3</p><ol><li>SCL连接 开发板A5</li><li>SDA连接开发板A4</li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=c1>// Ref: http://www.taichi-maker.com/homepage/reference-index/display-reference-index/arduino-oled-application/
+</span></span></span><span class=line><span class=cl><span class=c1>// 引入IIC通讯所需的Wire库文件
+</span></span></span><span class=line><span class=cl><span class=c1>// 教程参考http://www.taichi-maker.com/homepage/reference-index/arduino-library-index/wire-library/
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=cp>#include</span> <span class=cpf>&lt;Wire.h&gt;</span><span class=cp>
+</span></span></span><span class=line><span class=cl><span class=cp></span>
+</span></span><span class=line><span class=cl><span class=c1>// 引入驱动OLED0.96所需的库
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=cp>#include</span> <span class=cpf>&lt;Adafruit_GFX.h&gt;</span><span class=cp>
+</span></span></span><span class=line><span class=cl><span class=cp>#include</span> <span class=cpf>&lt;Adafruit_SSD1306.h&gt;</span><span class=cp>
+</span></span></span><span class=line><span class=cl><span class=cp></span>
+</span></span><span class=line><span class=cl><span class=cp>#define SCREEN_WIDTH 128 </span><span class=c1>// 设置OLED宽度,单位:像素
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=cp>#define SCREEN_HEIGHT 64 </span><span class=c1>// 设置OLED高度,单位:像素
+</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span><span class=line><span class=cl><span class=c1>// 自定义重置引脚,虽然教程未使用,但却是Adafruit_SSD1306库文件所必需的
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=cp>#define OLED_RESET 4
+</span></span></span><span class=line><span class=cl><span class=cp></span><span class=n>Adafruit_SSD1306</span> <span class=nf>display</span><span class=p>(</span><span class=n>SCREEN_WIDTH</span><span class=p>,</span> <span class=n>SCREEN_HEIGHT</span><span class=p>,</span> <span class=o>&amp;</span><span class=n>Wire</span><span class=p>,</span> <span class=n>OLED_RESET</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kt>void</span> <span class=nf>setup</span><span class=p>()</span>
+</span></span><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=c1>// 初始化Wire库
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=c1>//  Wire.begin();
+</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span><span class=line><span class=cl>  <span class=c1>// 初始化OLED并设置其IIC地址为 0x3C
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=n>display</span><span class=p>.</span><span class=n>begin</span><span class=p>(</span><span class=n>SSD1306_SWITCHCAPVCC</span><span class=p>,</span> <span class=mh>0x3C</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kt>void</span> <span class=nf>loop</span><span class=p>()</span>
+</span></span><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=n>words_display</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>  <span class=n>display</span><span class=p>.</span><span class=n>display</span><span class=p>();</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kt>void</span> <span class=nf>words_display</span><span class=p>()</span>
+</span></span><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=c1>// 清除屏幕
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=n>display</span><span class=p>.</span><span class=n>clearDisplay</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=c1>// 设置字体颜色,白色可见
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=n>display</span><span class=p>.</span><span class=n>setTextColor</span><span class=p>(</span><span class=n>WHITE</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=c1>//设置字体大小
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=n>display</span><span class=p>.</span><span class=n>setTextSize</span><span class=p>(</span><span class=mf>1.5</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=c1>//设置光标位置
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=n>display</span><span class=p>.</span><span class=n>setCursor</span><span class=p>(</span><span class=mi>0</span><span class=p>,</span> <span class=mi>0</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=n>display</span><span class=p>.</span><span class=n>print</span><span class=p>(</span><span class=s>&#34;TaichiMaker&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=n>display</span><span class=p>.</span><span class=n>setCursor</span><span class=p>(</span><span class=mi>0</span><span class=p>,</span> <span class=mi>20</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=n>display</span><span class=p>.</span><span class=n>print</span><span class=p>(</span><span class=s>&#34;time: &#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=c1>//打印自开发板重置以来的秒数：
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=n>display</span><span class=p>.</span><span class=n>print</span><span class=p>(</span><span class=n>millis</span><span class=p>()</span> <span class=o>/</span> <span class=mi>1000</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=n>display</span><span class=p>.</span><span class=n>print</span><span class=p>(</span><span class=s>&#34; s&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=n>display</span><span class=p>.</span><span class=n>setCursor</span><span class=p>(</span><span class=mi>0</span><span class=p>,</span> <span class=mi>40</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=n>display</span><span class=p>.</span><span class=n>print</span><span class=p>(</span><span class=s>&#34;Author: &#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=n>display</span><span class=p>.</span><span class=n>print</span><span class=p>(</span><span class=s>&#34;Dapenson&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><a href=#超声波雷达><h1 id=超声波雷达><span class=hanchor arialabel=Anchor># </span>超声波雷达</h1></a><ul><li>开发板 ESP32 - S2 -Mini，IDE是 Thonny</li></ul><p>1.超声波雷达端口VCC连接开发板VBUS，GND连接开发板GND
+2.超声波雷达端口Trig连接1，Echo连接12.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>from</span> <span class=nn>machine</span> <span class=kn>import</span> <span class=n>Pin</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>time</span>
+</span></span><span class=line><span class=cl> 
+</span></span><span class=line><span class=cl><span class=n>trig</span><span class=o>=</span><span class=n>Pin</span><span class=p>(</span><span class=mi>1</span><span class=p>,</span><span class=n>Pin</span><span class=o>.</span><span class=n>OUT</span><span class=p>,</span><span class=n>value</span><span class=o>=</span><span class=mi>0</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>echo</span><span class=o>=</span><span class=n>Pin</span><span class=p>(</span><span class=mi>12</span><span class=p>,</span><span class=n>Pin</span><span class=o>.</span><span class=n>IN</span><span class=p>,</span><span class=n>value</span><span class=o>=</span><span class=mi>0</span><span class=p>)</span>
+</span></span><span class=line><span class=cl> 
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>measure</span><span class=p>():</span>
+</span></span><span class=line><span class=cl>    <span class=c1>#发出开始测距信号</span>
+</span></span><span class=line><span class=cl>    <span class=n>trig</span><span class=o>.</span><span class=n>value</span><span class=p>(</span><span class=mi>1</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>time</span><span class=o>.</span><span class=n>sleep_us</span><span class=p>(</span><span class=mi>10</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>trig</span><span class=o>.</span><span class=n>value</span><span class=p>(</span><span class=mi>0</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=c1>#定时器计时</span>
+</span></span><span class=line><span class=cl>    <span class=k>while</span> <span class=n>echo</span><span class=o>.</span><span class=n>value</span><span class=p>()</span><span class=o>==</span><span class=mi>0</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>t1</span> <span class=o>=</span> <span class=n>time</span><span class=o>.</span><span class=n>ticks_us</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>    <span class=k>while</span> <span class=n>echo</span><span class=o>.</span><span class=n>value</span><span class=p>()</span><span class=o>==</span><span class=mi>1</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>t2</span> <span class=o>=</span> <span class=n>time</span><span class=o>.</span><span class=n>ticks_us</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>    <span class=n>t3</span> <span class=o>=</span> <span class=n>time</span><span class=o>.</span><span class=n>ticks_diff</span><span class=p>(</span><span class=n>t2</span><span class=p>,</span> <span class=n>t1</span><span class=p>)</span> <span class=o>/</span> <span class=mi>10000</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>t3</span> <span class=o>*</span> <span class=mi>170</span>
+</span></span><span class=line><span class=cl> 
+</span></span><span class=line><span class=cl><span class=k>try</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=k>while</span> <span class=kc>True</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=s2>&#34;当前距离:</span><span class=si>%0.2f</span><span class=s2> cm&#34;</span> <span class=o>%</span> <span class=n>measure</span><span class=p>())</span>
+</span></span><span class=line><span class=cl>        <span class=n>time</span><span class=o>.</span><span class=n>sleep</span><span class=p>(</span><span class=mi>1</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=k>except</span> <span class=ne>KeyboardInterrupt</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=k>pass</span>
+</span></span></code></pre></td></tr></table></div></div><a href=#步进电机控制><h1 id=步进电机控制><span class=hanchor arialabel=Anchor># </span>步进电机控制</h1></a><a href=#28byj-48><h2 id=28byj-48><span class=hanchor arialabel=Anchor># </span>28BYJ-48</h2></a><p>开发板UNO R3， 驱动板的IN1/2/3/4分别连接开发板的8/9/10/11</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>//https://blog.csdn.net/sxstj/article/details/132106677
+</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span><span class=line><span class=cl><span class=c1>//Includes the Arduino Stepper Library
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=cp>#include</span> <span class=cpf>&lt;Stepper.h&gt;</span><span class=cp>
+</span></span></span><span class=line><span class=cl><span class=cp></span> 
+</span></span><span class=line><span class=cl><span class=c1>// Defines the number of steps per rotation
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=k>const</span> <span class=kt>int</span> <span class=n>stepsPerRevolution</span> <span class=o>=</span> <span class=mi>2038</span><span class=p>;</span>
+</span></span><span class=line><span class=cl> 
+</span></span><span class=line><span class=cl><span class=c1>// Creates an instance of stepper class
+</span></span></span><span class=line><span class=cl><span class=c1>// Pins entered in sequence IN1-IN3-IN2-IN4 for proper step sequence
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=n>Stepper</span> <span class=n>myStepper</span> <span class=o>=</span> <span class=n>Stepper</span><span class=p>(</span><span class=n>stepsPerRevolution</span><span class=p>,</span> <span class=mi>8</span><span class=p>,</span> <span class=mi>10</span><span class=p>,</span> <span class=mi>9</span><span class=p>,</span> <span class=mi>11</span><span class=p>);</span>
+</span></span><span class=line><span class=cl> 
+</span></span><span class=line><span class=cl><span class=kt>void</span> <span class=nf>setup</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=c1>// Nothing to do (Stepper Library sets pins as outputs)
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=p>}</span>
+</span></span><span class=line><span class=cl> 
+</span></span><span class=line><span class=cl><span class=kt>void</span> <span class=nf>loop</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>	<span class=c1>// Rotate CW slowly at 5 RPM
+</span></span></span><span class=line><span class=cl><span class=c1></span>	<span class=n>myStepper</span><span class=p>.</span><span class=n>setSpeed</span><span class=p>(</span><span class=mi>5</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>	<span class=n>myStepper</span><span class=p>.</span><span class=n>step</span><span class=p>(</span><span class=n>stepsPerRevolution</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>	<span class=n>delay</span><span class=p>(</span><span class=mi>1000</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>	
+</span></span><span class=line><span class=cl>	<span class=c1>// Rotate CCW quickly at 10 RPM
+</span></span></span><span class=line><span class=cl><span class=c1></span>	<span class=n>myStepper</span><span class=p>.</span><span class=n>setSpeed</span><span class=p>(</span><span class=mi>10</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>	<span class=n>myStepper</span><span class=p>.</span><span class=n>step</span><span class=p>(</span><span class=o>-</span><span class=n>stepsPerRevolution</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>	<span class=n>delay</span><span class=p>(</span><span class=mi>1000</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// Include the AccelStepper Library
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=cp>#include</span> <span class=cpf>&lt;AccelStepper.h&gt;</span><span class=cp>
+</span></span></span><span class=line><span class=cl><span class=cp></span> 
+</span></span><span class=line><span class=cl><span class=c1>// Define step constant
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=cp>#define MotorInterfaceType 4
+</span></span></span><span class=line><span class=cl><span class=cp></span> 
+</span></span><span class=line><span class=cl><span class=c1>// Creates an instance
+</span></span></span><span class=line><span class=cl><span class=c1>// Pins entered in sequence IN1-IN3-IN2-IN4 for proper step sequence
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=n>AccelStepper</span> <span class=nf>myStepper</span><span class=p>(</span><span class=n>MotorInterfaceType</span><span class=p>,</span> <span class=mi>8</span><span class=p>,</span> <span class=mi>10</span><span class=p>,</span> <span class=mi>9</span><span class=p>,</span> <span class=mi>11</span><span class=p>);</span>
+</span></span><span class=line><span class=cl> 
+</span></span><span class=line><span class=cl><span class=kt>void</span> <span class=nf>setup</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>	<span class=c1>// set the maximum speed, acceleration factor,
+</span></span></span><span class=line><span class=cl><span class=c1></span>	<span class=c1>// initial speed and the target position
+</span></span></span><span class=line><span class=cl><span class=c1></span>	<span class=n>myStepper</span><span class=p>.</span><span class=n>setMaxSpeed</span><span class=p>(</span><span class=mf>1000.0</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>	<span class=n>myStepper</span><span class=p>.</span><span class=n>setAcceleration</span><span class=p>(</span><span class=mf>50.0</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>	<span class=n>myStepper</span><span class=p>.</span><span class=n>setSpeed</span><span class=p>(</span><span class=mi>200</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>	<span class=n>myStepper</span><span class=p>.</span><span class=n>moveTo</span><span class=p>(</span><span class=mi>2038</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl> 
+</span></span><span class=line><span class=cl><span class=kt>void</span> <span class=nf>loop</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>	<span class=c1>// Change direction once the motor reaches target position
+</span></span></span><span class=line><span class=cl><span class=c1></span>	<span class=k>if</span> <span class=p>(</span><span class=n>myStepper</span><span class=p>.</span><span class=n>distanceToGo</span><span class=p>()</span> <span class=o>==</span> <span class=mi>0</span><span class=p>)</span> 
+</span></span><span class=line><span class=cl>		<span class=n>myStepper</span><span class=p>.</span><span class=n>moveTo</span><span class=p>(</span><span class=o>-</span><span class=n>myStepper</span><span class=p>.</span><span class=n>currentPosition</span><span class=p>());</span>
+</span></span><span class=line><span class=cl> 
+</span></span><span class=line><span class=cl>	<span class=c1>// Move the motor one step
+</span></span></span><span class=line><span class=cl><span class=c1></span>	<span class=n>myStepper</span><span class=p>.</span><span class=n>run</span><span class=p>();</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><a href=#舵机><h1 id=舵机><span class=hanchor arialabel=Anchor># </span>舵机</h1></a><a href=#180><h2 id=180><span class=hanchor arialabel=Anchor># </span>180°</h2></a><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=cp>#include</span> <span class=cpf>&lt;Servo.h&gt;</span><span class=cp>
+</span></span></span><span class=line><span class=cl><span class=cp></span>
+</span></span><span class=line><span class=cl><span class=n>Servo</span> <span class=n>mg996r</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=kt>int</span> <span class=n>pos</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kt>void</span> <span class=nf>setup</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=n>mg996r</span><span class=p>.</span><span class=n>attach</span><span class=p>(</span><span class=mi>4</span><span class=p>,</span> <span class=mi>500</span><span class=p>,</span> <span class=mi>2500</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kt>void</span> <span class=nf>loop</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=c1>// mg996r.write(90);
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=c1>// delay(1000);
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=c1>// mg996r.write(0);
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=c1>// delay(1000);
+</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span><span class=line><span class=cl>  <span class=k>for</span><span class=p>(</span><span class=n>pos</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span> <span class=n>pos</span> <span class=o>&lt;</span> <span class=mi>90</span><span class=p>;</span> <span class=n>pos</span> <span class=o>+=</span> <span class=mi>1</span><span class=p>)</span>  
+</span></span><span class=line><span class=cl>  <span class=p>{</span>  
+</span></span><span class=line><span class=cl>    <span class=n>mg996r</span><span class=p>.</span><span class=n>write</span><span class=p>(</span><span class=n>pos</span><span class=p>);</span>  
+</span></span><span class=line><span class=cl>    <span class=n>delay</span><span class=p>(</span><span class=mi>5</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=k>for</span><span class=p>(</span><span class=n>pos</span> <span class=o>=</span> <span class=mi>90</span><span class=p>;</span> <span class=n>pos</span><span class=o>&gt;=</span><span class=mi>1</span><span class=p>;</span> <span class=n>pos</span><span class=o>-=</span><span class=mi>1</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=p>{</span>                              
+</span></span><span class=line><span class=cl>    <span class=n>mg996r</span><span class=p>.</span><span class=n>write</span><span class=p>(</span><span class=n>pos</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=n>delay</span><span class=p>(</span><span class=mi>5</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><a href=#360><h2 id=360><span class=hanchor arialabel=Anchor># </span>360°</h2></a><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=cp>#include</span> <span class=cpf>&lt;Servo.h&gt;</span><span class=cp>
+</span></span></span><span class=line><span class=cl><span class=cp></span><span class=n>Servo</span> <span class=n>myservo</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=kt>void</span> <span class=nf>setup</span><span class=p>()</span>
+</span></span><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=n>myservo</span><span class=p>.</span><span class=n>attach</span><span class=p>(</span><span class=mi>4</span><span class=p>,</span> <span class=mi>500</span><span class=p>,</span> <span class=mi>2500</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=kt>void</span> <span class=nf>loop</span><span class=p>()</span>
+</span></span><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=n>myservo</span><span class=p>.</span><span class=n>write</span><span class=p>(</span><span class=mi>45</span><span class=p>);</span>  <span class=n>delay</span><span class=p>(</span><span class=mi>3000</span><span class=p>);</span> <span class=c1>//占空比为1.0ms的PWM信号旋转约3秒时间
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=n>myservo</span><span class=p>.</span><span class=n>write</span><span class=p>(</span><span class=mi>90</span><span class=p>);</span>  <span class=n>delay</span><span class=p>(</span><span class=mi>1500</span><span class=p>);</span> <span class=c1>//占空比为1.5ms的PWM信号停止1.5秒
+</span></span></span><span class=line><span class=cl><span class=c1></span>    
+</span></span><span class=line><span class=cl>    <span class=n>myservo</span><span class=p>.</span><span class=n>write</span><span class=p>(</span><span class=mi>0</span><span class=p>);</span>   <span class=n>delay</span><span class=p>(</span><span class=mi>2000</span><span class=p>);</span> <span class=c1>//占空比为0.5ms的PWM信号旋转约2秒时间
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=n>myservo</span><span class=p>.</span><span class=n>write</span><span class=p>(</span><span class=mi>90</span><span class=p>);</span>  <span class=n>delay</span><span class=p>(</span><span class=mi>1000</span><span class=p>);</span> <span class=c1>//占空比为1.5ms的PWM信号停止1秒
+</span></span></span><span class=line><span class=cl><span class=c1></span>    
+</span></span><span class=line><span class=cl>    <span class=n>myservo</span><span class=p>.</span><span class=n>write</span><span class=p>(</span><span class=mi>135</span><span class=p>);</span> <span class=n>delay</span><span class=p>(</span><span class=mi>1000</span><span class=p>);</span> <span class=c1>//占空比为2.0ms的PWM信号旋转约1秒时间
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=n>myservo</span><span class=p>.</span><span class=n>write</span><span class=p>(</span><span class=mi>90</span><span class=p>);</span>  <span class=n>delay</span><span class=p>(</span><span class=mi>500</span><span class=p>);</span> <span class=c1>//占空比为1.5ms的PWM信号停止0.5秒
+</span></span></span><span class=line><span class=cl><span class=c1></span>    
+</span></span><span class=line><span class=cl>    <span class=n>myservo</span><span class=p>.</span><span class=n>write</span><span class=p>(</span><span class=mi>180</span><span class=p>);</span> <span class=n>delay</span><span class=p>(</span><span class=mi>500</span><span class=p>);</span> <span class=c1>//占空比为2.5ms的PWM信号旋转约0.5秒时间
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=n>myservo</span><span class=p>.</span><span class=n>write</span><span class=p>(</span><span class=mi>90</span><span class=p>);</span>  <span class=n>delay</span><span class=p>(</span><span class=mi>250</span><span class=p>);</span> <span class=c1>//占空比为1.5ms的PWM信号停止0.25秒
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><a href=#foc控制><h1 id=foc控制><span class=hanchor arialabel=Anchor># </span>FOC控制</h1></a><a href=#开环><h2 id=开环><span class=hanchor arialabel=Anchor># </span>开环</h2></a><p>连接与闭环一样，只不过不用连接编码器。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=c1>// Deng&#39;s FOC 开环速度控制例程 测试库：SimpleFOC 2.1.1 测试硬件：灯哥开源Mini FOC
+</span></span></span><span class=line><span class=cl><span class=c1>// 串口中输入&#34;T+数字&#34;设定两个电机的转速，如设置电机以 10rad/s 转动，输入 &#34;T10&#34;，电机上电时默认会以 5rad/s 转动
+</span></span></span><span class=line><span class=cl><span class=c1>// 在使用自己的电机时，请一定记得修改默认极对数，即 BLDCMotor(7) 中的值，设置为自己的极对数数字
+</span></span></span><span class=line><span class=cl><span class=c1>// 程序默认设置的供电电压为 12V,用其他电压供电请记得修改 voltage_power_supply , voltage_limit 变量中的值
+</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span><span class=line><span class=cl><span class=cp>#include</span> <span class=cpf>&lt;SimpleFOC.h&gt;</span><span class=cp>
+</span></span></span><span class=line><span class=cl><span class=cp>#define pwmA 9 
+</span></span></span><span class=line><span class=cl><span class=cp>#define pwmB 10
+</span></span></span><span class=line><span class=cl><span class=cp>#define pwmC 11
+</span></span></span><span class=line><span class=cl><span class=cp>#define enable_pin 6  </span><span class=c1>//使能引脚
+</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span><span class=line><span class=cl><span class=n>BLDCMotor</span> <span class=n>motor</span> <span class=o>=</span> <span class=n>BLDCMotor</span><span class=p>(</span><span class=mi>7</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=n>BLDCDriver3PWM</span> <span class=n>driver</span> <span class=o>=</span> <span class=n>BLDCDriver3PWM</span><span class=p>(</span><span class=n>pwmA</span><span class=p>,</span> <span class=n>pwmB</span><span class=p>,</span> <span class=n>pwmC</span><span class=p>,</span> <span class=n>enable_pin</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>//目标变量
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kt>float</span> <span class=n>target_velocity</span> <span class=o>=</span> <span class=mi>10</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>//串口指令设置
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=n>Commander</span> <span class=n>command</span> <span class=o>=</span> <span class=n>Commander</span><span class=p>(</span><span class=n>Serial</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=kt>void</span> <span class=nf>doTarget</span><span class=p>(</span><span class=kt>char</span><span class=o>*</span> <span class=n>cmd</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=n>command</span><span class=p>.</span><span class=n>scalar</span><span class=p>(</span><span class=o>&amp;</span><span class=n>target_velocity</span><span class=p>,</span> <span class=n>cmd</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kt>void</span> <span class=nf>setup</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=n>pinMode</span><span class=p>(</span><span class=n>LED_BUILTIN</span><span class=p>,</span> <span class=n>OUTPUT</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=n>driver</span><span class=p>.</span><span class=n>voltage_power_supply</span> <span class=o>=</span> <span class=mi>12</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=n>driver</span><span class=p>.</span><span class=n>init</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>  <span class=n>motor</span><span class=p>.</span><span class=n>linkDriver</span><span class=p>(</span><span class=o>&amp;</span><span class=n>driver</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=n>motor</span><span class=p>.</span><span class=n>voltage_limit</span> <span class=o>=</span> <span class=mi>3</span><span class=p>;</span>    <span class=c1>// [V]
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=n>motor</span><span class=p>.</span><span class=n>velocity_limit</span> <span class=o>=</span> <span class=mi>30</span><span class=p>;</span>  <span class=c1>// [rad/s]
+</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span><span class=line><span class=cl>  <span class=c1>//开环控制模式设置
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=n>motor</span><span class=p>.</span><span class=n>controller</span> <span class=o>=</span> <span class=n>MotionControlType</span><span class=o>::</span><span class=n>velocity_openloop</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=c1>//初始化硬件
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=n>motor</span><span class=p>.</span><span class=n>init</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl>  <span class=c1>//增加 T 指令
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=n>command</span><span class=p>.</span><span class=n>add</span><span class=p>(</span><span class=sc>&#39;T&#39;</span><span class=p>,</span> <span class=n>doTarget</span><span class=p>,</span> <span class=s>&#34;target velocity&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=n>Serial</span><span class=p>.</span><span class=n>begin</span><span class=p>(</span><span class=mi>115200</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=n>Serial</span><span class=p>.</span><span class=n>println</span><span class=p>(</span><span class=s>&#34;Motor ready!&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=n>Serial</span><span class=p>.</span><span class=n>println</span><span class=p>(</span><span class=s>&#34;Set target velocity [rad/s]&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=n>_delay</span><span class=p>(</span><span class=mi>1000</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kt>void</span> <span class=nf>loop</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=n>motor</span><span class=p>.</span><span class=n>move</span><span class=p>(</span><span class=n>target_velocity</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=c1>//用户通讯
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=n>command</span><span class=p>.</span><span class=n>run</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=c1>// digitalWrite(LED_BUILTIN, HIGH);  // turn the LED on (HIGH is the voltage level)
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=c1>// delay(500);                      // wait for a second
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=c1>// digitalWrite(LED_BUILTIN, LOW);   // turn the LED off by making the voltage LOW
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=c1>// delay(500);                      // wait for a second
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><a href=#闭环><h2 id=闭环><span class=hanchor arialabel=Anchor># </span>闭环</h2></a><p>这里使用2208云台电机，极对数为7，开发板为Uno R3</p><p>1.编码器4根线，红黑连接开发板3.3v与GND，黄白分别连接开发板SCL与SDA。
+2.驱动板IN1/2/3分别连接开发板9/10/11，驱动板EN(使能)连接开发板6端口，驱动板VCC与GND连接开发板3.3v/5v与GND
+3.电机三根相线连接驱动板ABC-OUT接口。
+4.供电使用稳压电源供电，12V</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span><span class=lnt>60
+</span><span class=lnt>61
+</span><span class=lnt>62
+</span><span class=lnt>63
+</span><span class=lnt>64
+</span><span class=lnt>65
+</span><span class=lnt>66
+</span><span class=lnt>67
+</span><span class=lnt>68
+</span><span class=lnt>69
+</span><span class=lnt>70
+</span><span class=lnt>71
+</span><span class=lnt>72
+</span><span class=lnt>73
+</span><span class=lnt>74
+</span><span class=lnt>75
+</span><span class=lnt>76
+</span><span class=lnt>77
+</span><span class=lnt>78
+</span><span class=lnt>79
+</span><span class=lnt>80
+</span><span class=lnt>81
+</span><span class=lnt>82
+</span><span class=lnt>83
+</span><span class=lnt>84
+</span><span class=lnt>85
+</span><span class=lnt>86
+</span><span class=lnt>87
+</span><span class=lnt>88
+</span><span class=lnt>89
+</span><span class=lnt>90
+</span><span class=lnt>91
+</span><span class=lnt>92
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=cm>/**
+</span></span></span><span class=line><span class=cl><span class=cm>Deng&#39;s FOC 闭环位置控制例程 测试库：SimpleFOC 2.1.1 测试硬件：灯哥开源Mini FOC
+</span></span></span><span class=line><span class=cl><span class=cm>在串口窗口中输入：T+位置，就可以使得两个电机闭环转动
+</span></span></span><span class=line><span class=cl><span class=cm>比如让两个电机都转动180°，则输入其弧度制：T3.14
+</span></span></span><span class=line><span class=cl><span class=cm>在使用自己的电机时，请一定记得修改默认极对数，即 BLDCMotor(7) 中的值，设置为自己的极对数数字
+</span></span></span><span class=line><span class=cl><span class=cm>程序默认设置的供电电压为 12V,用其他电压供电请记得修改 voltage_power_supply , voltage_limit 变量中的值
+</span></span></span><span class=line><span class=cl><span class=cm>默认PID针对的电机是 2208，使用自己的电机需要修改PID参数，才能实现更好效果
+</span></span></span><span class=line><span class=cl><span class=cm>*/</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=cp>#include</span> <span class=cpf>&lt;SimpleFOC.h&gt;</span><span class=cp>
+</span></span></span><span class=line><span class=cl><span class=cp>#define pwmA 9 
+</span></span></span><span class=line><span class=cl><span class=cp>#define pwmB 10
+</span></span></span><span class=line><span class=cl><span class=cp>#define pwmC 11
+</span></span></span><span class=line><span class=cl><span class=cp>#define enable_pin 6  </span><span class=c1>//使能引脚
+</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span><span class=line><span class=cl><span class=cp>#define ControlType MotionControlType::angle </span><span class=c1>//可以选择 MotionControlType::torque | MotionControlType::velocity | MotionControlType::angle
+</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>MagneticSensorI2C</span> <span class=n>sensor</span> <span class=o>=</span> <span class=n>MagneticSensorI2C</span><span class=p>(</span><span class=n>AS5600_I2C</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=n>TwoWire</span> <span class=n>I2Cone</span> <span class=o>=</span> <span class=n>TwoWire</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>//电机参数
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=n>BLDCMotor</span> <span class=n>motor</span> <span class=o>=</span> <span class=n>BLDCMotor</span><span class=p>(</span><span class=mi>7</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=n>BLDCDriver3PWM</span> <span class=n>driver</span> <span class=o>=</span> <span class=n>BLDCDriver3PWM</span><span class=p>(</span><span class=n>pwmA</span><span class=p>,</span> <span class=n>pwmB</span><span class=p>,</span> <span class=n>pwmC</span><span class=p>,</span> <span class=n>enable_pin</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>//命令设置
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kt>float</span> <span class=n>target</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=n>Commander</span> <span class=n>command</span> <span class=o>=</span> <span class=n>Commander</span><span class=p>(</span><span class=n>Serial</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=kt>void</span> <span class=nf>doTarget</span><span class=p>(</span><span class=kt>char</span><span class=o>*</span> <span class=n>cmd</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=n>command</span><span class=p>.</span><span class=n>scalar</span><span class=p>(</span><span class=o>&amp;</span><span class=n>target</span><span class=p>,</span> <span class=n>cmd</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kt>void</span> <span class=nf>setup</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=c1>//I2Cone.begin(5, 6, 400000UL);  //修改自己接的引脚
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=n>I2Cone</span><span class=p>.</span><span class=n>begin</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>  <span class=n>sensor</span><span class=p>.</span><span class=n>init</span><span class=p>(</span><span class=o>&amp;</span><span class=n>I2Cone</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=c1>//连接motor对象与传感器对象
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=n>motor</span><span class=p>.</span><span class=n>linkSensor</span><span class=p>(</span><span class=o>&amp;</span><span class=n>sensor</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=c1>//供电电压设置 [V]
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=n>driver</span><span class=p>.</span><span class=n>voltage_power_supply</span> <span class=o>=</span> <span class=mi>12</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=n>driver</span><span class=p>.</span><span class=n>init</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=c1>//连接电机和driver对象
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=n>motor</span><span class=p>.</span><span class=n>linkDriver</span><span class=p>(</span><span class=o>&amp;</span><span class=n>driver</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=c1>//FOC模型选择
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=n>motor</span><span class=p>.</span><span class=n>foc_modulation</span> <span class=o>=</span> <span class=n>FOCModulationType</span><span class=o>::</span><span class=n>SpaceVectorPWM</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=c1>//运动控制模式设置
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=n>motor</span><span class=p>.</span><span class=n>controller</span> <span class=o>=</span> <span class=n>ControlType</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=c1>//速度PI环设置
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=n>motor</span><span class=p>.</span><span class=n>PID_velocity</span><span class=p>.</span><span class=n>P</span> <span class=o>=</span> <span class=mf>0.021</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=n>motor</span><span class=p>.</span><span class=n>PID_velocity</span><span class=p>.</span><span class=n>I</span> <span class=o>=</span> <span class=mf>0.12</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=c1>//角度P环设置
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=n>motor</span><span class=p>.</span><span class=n>P_angle</span><span class=p>.</span><span class=n>P</span> <span class=o>=</span> <span class=mi>20</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=c1>//最大电机限制电机
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=n>motor</span><span class=p>.</span><span class=n>voltage_limit</span> <span class=o>=</span> <span class=mi>8</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=c1>//速度低通滤波时间常数
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=n>motor</span><span class=p>.</span><span class=n>LPF_velocity</span><span class=p>.</span><span class=n>Tf</span> <span class=o>=</span> <span class=mf>0.01</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=c1>//设置最大速度限制
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=n>motor</span><span class=p>.</span><span class=n>velocity_limit</span> <span class=o>=</span> <span class=mi>40</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=n>Serial</span><span class=p>.</span><span class=n>begin</span><span class=p>(</span><span class=mi>115200</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=n>motor</span><span class=p>.</span><span class=n>useMonitoring</span><span class=p>(</span><span class=n>Serial</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=c1>//初始化电机
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=n>motor</span><span class=p>.</span><span class=n>init</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=c1>//初始化 FOC
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=n>motor</span><span class=p>.</span><span class=n>initFOC</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=n>command</span><span class=p>.</span><span class=n>add</span><span class=p>(</span><span class=sc>&#39;T&#39;</span><span class=p>,</span> <span class=n>doTarget</span><span class=p>,</span> <span class=s>&#34;target velocity&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=n>Serial</span><span class=p>.</span><span class=n>println</span><span class=p>(</span><span class=n>F</span><span class=p>(</span><span class=s>&#34;Motor ready.&#34;</span><span class=p>));</span>
+</span></span><span class=line><span class=cl>  <span class=n>Serial</span><span class=p>.</span><span class=n>println</span><span class=p>(</span><span class=n>F</span><span class=p>(</span><span class=s>&#34;Set the target velocity using serial terminal:&#34;</span><span class=p>));</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kt>void</span> <span class=nf>loop</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=n>Serial</span><span class=p>.</span><span class=n>print</span><span class=p>(</span><span class=n>sensor</span><span class=p>.</span><span class=n>getAngle</span><span class=p>());</span>
+</span></span><span class=line><span class=cl>  <span class=n>Serial</span><span class=p>.</span><span class=n>println</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=n>motor</span><span class=p>.</span><span class=n>loopFOC</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>  <span class=n>motor</span><span class=p>.</span><span class=n>move</span><span class=p>(</span><span class=n>target</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl>  <span class=n>command</span><span class=p>.</span><span class=n>run</span><span class=p>();</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><a href=#直流有刷电机><h1 id=直流有刷电机><span class=hanchor arialabel=Anchor># </span>直流有刷电机</h1></a><a href=#tb6612驱动板-d24a><h2 id=tb6612驱动板-d24a><span class=hanchor arialabel=Anchor># </span>TB6612驱动板 (D24A)</h2></a><p>参数：输入电压5.5-15V 单路1.2A最大3.2A</p><a href=#电机jgb37-520--霍尔编码器><h3 id=电机jgb37-520--霍尔编码器><span class=hanchor arialabel=Anchor># </span>电机JGB37-520 (霍尔编码器)</h3></a><ul><li>驱动板输出: AO1 GND E1A E1B 5V AO2</li></ul><p>其中AO1与AO2是电机正负。5V与GND是编码器传感器正负。E1A与E1B是电机AB相。</p><ul><li>电机输出：M1 GND C1 C2 VCC M2
+与TB6612驱动板输出一一对应。</li></ul><p>接线与下方对应。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>  1
+</span><span class=lnt>  2
+</span><span class=lnt>  3
+</span><span class=lnt>  4
+</span><span class=lnt>  5
+</span><span class=lnt>  6
+</span><span class=lnt>  7
+</span><span class=lnt>  8
+</span><span class=lnt>  9
+</span><span class=lnt> 10
+</span><span class=lnt> 11
+</span><span class=lnt> 12
+</span><span class=lnt> 13
+</span><span class=lnt> 14
+</span><span class=lnt> 15
+</span><span class=lnt> 16
+</span><span class=lnt> 17
+</span><span class=lnt> 18
+</span><span class=lnt> 19
+</span><span class=lnt> 20
+</span><span class=lnt> 21
+</span><span class=lnt> 22
+</span><span class=lnt> 23
+</span><span class=lnt> 24
+</span><span class=lnt> 25
+</span><span class=lnt> 26
+</span><span class=lnt> 27
+</span><span class=lnt> 28
+</span><span class=lnt> 29
+</span><span class=lnt> 30
+</span><span class=lnt> 31
+</span><span class=lnt> 32
+</span><span class=lnt> 33
+</span><span class=lnt> 34
+</span><span class=lnt> 35
+</span><span class=lnt> 36
+</span><span class=lnt> 37
+</span><span class=lnt> 38
+</span><span class=lnt> 39
+</span><span class=lnt> 40
+</span><span class=lnt> 41
+</span><span class=lnt> 42
+</span><span class=lnt> 43
+</span><span class=lnt> 44
+</span><span class=lnt> 45
+</span><span class=lnt> 46
+</span><span class=lnt> 47
+</span><span class=lnt> 48
+</span><span class=lnt> 49
+</span><span class=lnt> 50
+</span><span class=lnt> 51
+</span><span class=lnt> 52
+</span><span class=lnt> 53
+</span><span class=lnt> 54
+</span><span class=lnt> 55
+</span><span class=lnt> 56
+</span><span class=lnt> 57
+</span><span class=lnt> 58
+</span><span class=lnt> 59
+</span><span class=lnt> 60
+</span><span class=lnt> 61
+</span><span class=lnt> 62
+</span><span class=lnt> 63
+</span><span class=lnt> 64
+</span><span class=lnt> 65
+</span><span class=lnt> 66
+</span><span class=lnt> 67
+</span><span class=lnt> 68
+</span><span class=lnt> 69
+</span><span class=lnt> 70
+</span><span class=lnt> 71
+</span><span class=lnt> 72
+</span><span class=lnt> 73
+</span><span class=lnt> 74
+</span><span class=lnt> 75
+</span><span class=lnt> 76
+</span><span class=lnt> 77
+</span><span class=lnt> 78
+</span><span class=lnt> 79
+</span><span class=lnt> 80
+</span><span class=lnt> 81
+</span><span class=lnt> 82
+</span><span class=lnt> 83
+</span><span class=lnt> 84
+</span><span class=lnt> 85
+</span><span class=lnt> 86
+</span><span class=lnt> 87
+</span><span class=lnt> 88
+</span><span class=lnt> 89
+</span><span class=lnt> 90
+</span><span class=lnt> 91
+</span><span class=lnt> 92
+</span><span class=lnt> 93
+</span><span class=lnt> 94
+</span><span class=lnt> 95
+</span><span class=lnt> 96
+</span><span class=lnt> 97
+</span><span class=lnt> 98
+</span><span class=lnt> 99
+</span><span class=lnt>100
+</span><span class=lnt>101
+</span><span class=lnt>102
+</span><span class=lnt>103
+</span><span class=lnt>104
+</span><span class=lnt>105
+</span><span class=lnt>106
+</span><span class=lnt>107
+</span><span class=lnt>108
+</span><span class=lnt>109
+</span><span class=lnt>110
+</span><span class=lnt>111
+</span><span class=lnt>112
+</span><span class=lnt>113
+</span><span class=lnt>114
+</span><span class=lnt>115
+</span><span class=lnt>116
+</span><span class=lnt>117
+</span><span class=lnt>118
+</span><span class=lnt>119
+</span><span class=lnt>120
+</span><span class=lnt>121
+</span><span class=lnt>122
+</span><span class=lnt>123
+</span><span class=lnt>124
+</span><span class=lnt>125
+</span><span class=lnt>126
+</span><span class=lnt>127
+</span><span class=lnt>128
+</span><span class=lnt>129
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>///////////////////TB6612引脚接线///////////////////////////
+</span></span></span><span class=line><span class=cl><span class=c1>//直流电机----------TB6612丝印标识----------ArduinoUNO主板引脚
+</span></span></span><span class=line><span class=cl><span class=c1>//                     PWMA-----------------3
+</span></span></span><span class=line><span class=cl><span class=c1>//                     AIN2-----------------4
+</span></span></span><span class=line><span class=cl><span class=c1>//                     AIN1-----------------5
+</span></span></span><span class=line><span class=cl><span class=c1>//                     STBY-----------------7
+</span></span></span><span class=line><span class=cl><span class=c1>//                     BIN1-----------------8
+</span></span></span><span class=line><span class=cl><span class=c1>//                     BIN2-----------------9
+</span></span></span><span class=line><span class=cl><span class=c1>//                     PWMB-----------------10
+</span></span></span><span class=line><span class=cl><span class=c1>//                     GND------------------GND
+</span></span></span><span class=line><span class=cl><span class=c1>//                     ADC------------------A0 (只有带TB6612带稳压模块版才有ADC测量电池电压功能)    
+</span></span></span><span class=line><span class=cl><span class=c1>//                     VM-------------------12V电池
+</span></span></span><span class=line><span class=cl><span class=c1>//                     VCC------------------5V  （使用带有稳压模块版时，接线变动如下：  5V---------5V  板子可向arduino供电）
+</span></span></span><span class=line><span class=cl><span class=c1>//                     GND------------------GND  
+</span></span></span><span class=line><span class=cl><span class=c1>//电机A正极-------------AO1
+</span></span></span><span class=line><span class=cl><span class=c1>//电机A负极-------------A02
+</span></span></span><span class=line><span class=cl><span class=c1>//电机B负极-------------BO2
+</span></span></span><span class=line><span class=cl><span class=c1>//电机B正极-------------BO1
+</span></span></span><span class=line><span class=cl><span class=c1>//                     GND-----------------GND
+</span></span></span><span class=line><span class=cl><span class=c1>//直流电机----------TB6612丝印标识----------ArduinoUNO主板引脚
+</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span><span class=line><span class=cl><span class=c1>//定义引脚名称
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=cp>#define PWMA 3  </span><span class=c1>//3为模拟引脚，用于PWM控制
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=cp>#define AIN1 5
+</span></span></span><span class=line><span class=cl><span class=cp>#define AIN2 4
+</span></span></span><span class=line><span class=cl><span class=cp>#define PWMB 10  </span><span class=c1>//10为模拟引脚，用于PWM控制
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=cp>#define BIN1 8
+</span></span></span><span class=line><span class=cl><span class=cp>#define BIN2 9
+</span></span></span><span class=line><span class=cl><span class=cp>#define STBY 7  </span><span class=c1>//2、4、8、12、7为数字引脚，用于开关量控制
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=cp>#define Voltage A0 </span><span class=c1>//使用模拟引脚
+</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span><span class=line><span class=cl><span class=kt>int</span> <span class=n>PwmA</span><span class=p>,</span> <span class=n>PwmB</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=kt>double</span> <span class=n>V</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kt>void</span> <span class=nf>setup</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=c1>//TB6612电机驱动模块控制信号初始化
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=n>pinMode</span><span class=p>(</span><span class=n>AIN1</span><span class=p>,</span> <span class=n>OUTPUT</span><span class=p>);</span><span class=c1>//控制电机A的方向，(AIN1, AIN2)=(1, 0)为正转，(AIN1, AIN2)=(0, 1)为反转
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=n>pinMode</span><span class=p>(</span><span class=n>AIN2</span><span class=p>,</span> <span class=n>OUTPUT</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=n>pinMode</span><span class=p>(</span><span class=n>BIN1</span><span class=p>,</span> <span class=n>OUTPUT</span><span class=p>);</span><span class=c1>//控制电机B的方向，(BIN1, BIN2)=(0, 1)为正转，(BIN1, BIN2)=(1, 0)为反转
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=n>pinMode</span><span class=p>(</span><span class=n>BIN2</span><span class=p>,</span> <span class=n>OUTPUT</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=n>pinMode</span><span class=p>(</span><span class=n>PWMA</span><span class=p>,</span> <span class=n>OUTPUT</span><span class=p>);</span><span class=c1>//A电机PWM
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=n>pinMode</span><span class=p>(</span><span class=n>PWMB</span><span class=p>,</span> <span class=n>OUTPUT</span><span class=p>);</span><span class=c1>//B电机PWM
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=n>pinMode</span><span class=p>(</span><span class=n>STBY</span><span class=p>,</span> <span class=n>OUTPUT</span><span class=p>);</span><span class=c1>//TB6612FNG使能, 置0则所有电机停止, 置1才允许控制电机
+</span></span></span><span class=line><span class=cl><span class=c1></span>  
+</span></span><span class=line><span class=cl>  <span class=c1>//初始化TB6612电机驱动模块
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=n>digitalWrite</span><span class=p>(</span><span class=n>AIN1</span><span class=p>,</span> <span class=mi>1</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=n>digitalWrite</span><span class=p>(</span><span class=n>AIN2</span><span class=p>,</span> <span class=mi>0</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=n>digitalWrite</span><span class=p>(</span><span class=n>BIN1</span><span class=p>,</span> <span class=mi>1</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=n>digitalWrite</span><span class=p>(</span><span class=n>BIN2</span><span class=p>,</span> <span class=mi>0</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=n>digitalWrite</span><span class=p>(</span><span class=n>STBY</span><span class=p>,</span> <span class=mi>1</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=n>analogWrite</span><span class=p>(</span><span class=n>PWMA</span><span class=p>,</span> <span class=mi>0</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=n>analogWrite</span><span class=p>(</span><span class=n>PWMB</span><span class=p>,</span> <span class=mi>0</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl> <span class=c1>//初始化串口，用于输出电池电压
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=n>Serial</span><span class=p>.</span><span class=n>begin</span><span class=p>(</span><span class=mi>9600</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=n>pinMode</span><span class=p>(</span><span class=n>Voltage</span><span class=p>,</span><span class=n>INPUT</span><span class=p>);</span> <span class=c1>//初始化作为输入端
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=cm>/**************************************************************************
+</span></span></span><span class=line><span class=cl><span class=cm>函数功能：设置指定电机转速
+</span></span></span><span class=line><span class=cl><span class=cm>入口参数：指定电机motor，motor=1（2）代表电机A（B）； 指定转速pwm，大小范围为0~255，代表停转和满速
+</span></span></span><span class=line><span class=cl><span class=cm>返回  值：无
+</span></span></span><span class=line><span class=cl><span class=cm>**************************************************************************/</span>
+</span></span><span class=line><span class=cl><span class=kt>void</span> <span class=nf>SetPWM</span><span class=p>(</span><span class=kt>int</span> <span class=n>motor</span><span class=p>,</span> <span class=kt>int</span> <span class=n>pwm</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=k>if</span><span class=p>(</span><span class=n>motor</span><span class=o>==</span><span class=mi>1</span><span class=o>&amp;&amp;</span><span class=n>pwm</span><span class=o>&gt;=</span><span class=mi>0</span><span class=p>)</span><span class=c1>//motor=1代表控制电机A，pwm&gt;=0则(AIN1, AIN2)=(1, 0)为正转
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=n>digitalWrite</span><span class=p>(</span><span class=n>AIN1</span><span class=p>,</span> <span class=mi>1</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=n>digitalWrite</span><span class=p>(</span><span class=n>AIN2</span><span class=p>,</span> <span class=mi>0</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=n>analogWrite</span><span class=p>(</span><span class=n>PWMA</span><span class=p>,</span> <span class=n>pwm</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=k>else</span> <span class=k>if</span><span class=p>(</span><span class=n>motor</span><span class=o>==</span><span class=mi>1</span><span class=o>&amp;&amp;</span><span class=n>pwm</span><span class=o>&lt;</span><span class=mi>0</span><span class=p>)</span><span class=c1>//motor=1代表控制电机A，pwm&lt;0则(AIN1, AIN2)=(0, 1)为反转
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=n>digitalWrite</span><span class=p>(</span><span class=n>AIN1</span><span class=p>,</span> <span class=mi>0</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=n>digitalWrite</span><span class=p>(</span><span class=n>AIN2</span><span class=p>,</span> <span class=mi>1</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=n>analogWrite</span><span class=p>(</span><span class=n>PWMA</span><span class=p>,</span> <span class=o>-</span><span class=n>pwm</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=k>else</span> <span class=k>if</span><span class=p>(</span><span class=n>motor</span><span class=o>==</span><span class=mi>2</span><span class=o>&amp;&amp;</span><span class=n>pwm</span><span class=o>&gt;=</span><span class=mi>0</span><span class=p>)</span><span class=c1>//motor=2代表控制电机B，pwm&gt;=0则(BIN1, BIN2)=(0, 1)为正转
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=n>digitalWrite</span><span class=p>(</span><span class=n>BIN1</span><span class=p>,</span> <span class=mi>0</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=n>digitalWrite</span><span class=p>(</span><span class=n>BIN2</span><span class=p>,</span> <span class=mi>1</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=n>analogWrite</span><span class=p>(</span><span class=n>PWMB</span><span class=p>,</span> <span class=n>pwm</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=k>else</span> <span class=k>if</span><span class=p>(</span><span class=n>motor</span><span class=o>==</span><span class=mi>2</span><span class=o>&amp;&amp;</span><span class=n>pwm</span><span class=o>&lt;</span><span class=mi>0</span><span class=p>)</span><span class=c1>//motor=2代表控制电机B，pwm&lt;0则(BIN1, BIN2)=(1, 0)为反转
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=n>digitalWrite</span><span class=p>(</span><span class=n>BIN1</span><span class=p>,</span> <span class=mi>1</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=n>digitalWrite</span><span class=p>(</span><span class=n>BIN2</span><span class=p>,</span> <span class=mi>0</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=n>analogWrite</span><span class=p>(</span><span class=n>PWMB</span><span class=p>,</span> <span class=o>-</span><span class=n>pwm</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kt>void</span> <span class=nf>loop</span><span class=p>()</span> 
+</span></span><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=n>SetPWM</span><span class=p>(</span><span class=mi>1</span><span class=p>,</span> <span class=mi>255</span><span class=p>);</span><span class=c1>//电机AB同时满速正转
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=n>SetPWM</span><span class=p>(</span><span class=mi>2</span><span class=p>,</span> <span class=mi>255</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=n>V</span><span class=o>=</span><span class=n>analogRead</span><span class=p>(</span><span class=n>Voltage</span><span class=p>);</span> <span class=c1>//读取模拟引脚A0模拟量
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=n>Serial</span><span class=p>.</span><span class=n>print</span><span class=p>(</span><span class=n>V</span><span class=o>*</span><span class=mf>0.05371</span><span class=p>);</span>  <span class=c1>//对模拟量转换并通过串口输出
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=n>Serial</span><span class=p>.</span><span class=n>println</span><span class=p>(</span><span class=s>&#34;V&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=n>delay</span><span class=p>(</span><span class=mi>500</span><span class=p>);</span><span class=c1>//正转3s
+</span></span></span><span class=line><span class=cl><span class=c1></span>  
+</span></span><span class=line><span class=cl> <span class=n>SetPWM</span><span class=p>(</span><span class=mi>1</span><span class=p>,</span> <span class=mi>0</span><span class=p>);</span><span class=c1>//电机AB停止
+</span></span></span><span class=line><span class=cl><span class=c1></span> <span class=n>SetPWM</span><span class=p>(</span><span class=mi>2</span><span class=p>,</span> <span class=mi>0</span><span class=p>);</span>
+</span></span><span class=line><span class=cl> <span class=n>delay</span><span class=p>(</span><span class=mi>1000</span><span class=p>);</span><span class=c1>//停止1s
+</span></span></span><span class=line><span class=cl><span class=c1></span> 
+</span></span><span class=line><span class=cl> <span class=n>SetPWM</span><span class=p>(</span><span class=mi>1</span><span class=p>,</span> <span class=mi>128</span><span class=p>);</span><span class=c1>//电机AB同时半速正转
+</span></span></span><span class=line><span class=cl><span class=c1></span> <span class=n>SetPWM</span><span class=p>(</span><span class=mi>2</span><span class=p>,</span> <span class=mi>128</span><span class=p>);</span>
+</span></span><span class=line><span class=cl> <span class=n>delay</span><span class=p>(</span><span class=mi>3000</span><span class=p>);</span><span class=c1>//半速正转3s
+</span></span></span><span class=line><span class=cl><span class=c1></span> 
+</span></span><span class=line><span class=cl> <span class=n>SetPWM</span><span class=p>(</span><span class=mi>1</span><span class=p>,</span> <span class=mi>0</span><span class=p>);</span><span class=c1>//电机AB停止
+</span></span></span><span class=line><span class=cl><span class=c1></span> <span class=n>SetPWM</span><span class=p>(</span><span class=mi>2</span><span class=p>,</span> <span class=mi>0</span><span class=p>);</span>
+</span></span><span class=line><span class=cl> <span class=n>delay</span><span class=p>(</span><span class=mi>1000</span><span class=p>);</span><span class=c1>//停止1s
+</span></span></span><span class=line><span class=cl><span class=c1></span> 
+</span></span><span class=line><span class=cl> <span class=n>SetPWM</span><span class=p>(</span><span class=mi>1</span><span class=p>,</span> <span class=o>-</span><span class=mi>255</span><span class=p>);</span><span class=c1>//电机AB同时满速反转
+</span></span></span><span class=line><span class=cl><span class=c1></span> <span class=n>SetPWM</span><span class=p>(</span><span class=mi>2</span><span class=p>,</span> <span class=o>-</span><span class=mi>255</span><span class=p>);</span>
+</span></span><span class=line><span class=cl> <span class=n>delay</span><span class=p>(</span><span class=mi>3000</span><span class=p>);</span><span class=c1>//反转3s
+</span></span></span><span class=line><span class=cl><span class=c1></span> 
+</span></span><span class=line><span class=cl> <span class=n>SetPWM</span><span class=p>(</span><span class=mi>1</span><span class=p>,</span> <span class=mi>0</span><span class=p>);</span><span class=c1>//电机AB停止
+</span></span></span><span class=line><span class=cl><span class=c1></span> <span class=n>SetPWM</span><span class=p>(</span><span class=mi>2</span><span class=p>,</span> <span class=mi>0</span><span class=p>);</span>
+</span></span><span class=line><span class=cl> <span class=n>delay</span><span class=p>(</span><span class=mi>1000</span><span class=p>);</span><span class=c1>//停止1s
+</span></span></span><span class=line><span class=cl><span class=c1></span> 
+</span></span><span class=line><span class=cl> <span class=n>SetPWM</span><span class=p>(</span><span class=mi>1</span><span class=p>,</span> <span class=mi>255</span><span class=p>);</span><span class=c1>//电机A满速正转
+</span></span></span><span class=line><span class=cl><span class=c1></span> <span class=n>SetPWM</span><span class=p>(</span><span class=mi>2</span><span class=p>,</span> <span class=o>-</span><span class=mi>255</span><span class=p>);</span><span class=c1>//电机B满速反转
+</span></span></span><span class=line><span class=cl><span class=c1></span> <span class=n>delay</span><span class=p>(</span><span class=mi>3000</span><span class=p>);</span><span class=c1>//持续3s
+</span></span></span><span class=line><span class=cl><span class=c1></span> 
+</span></span><span class=line><span class=cl> <span class=n>SetPWM</span><span class=p>(</span><span class=mi>1</span><span class=p>,</span> <span class=mi>0</span><span class=p>);</span><span class=c1>//电机AB停止
+</span></span></span><span class=line><span class=cl><span class=c1></span> <span class=n>SetPWM</span><span class=p>(</span><span class=mi>2</span><span class=p>,</span> <span class=mi>0</span><span class=p>);</span>
+</span></span><span class=line><span class=cl> <span class=n>delay</span><span class=p>(</span><span class=mi>1000</span><span class=p>);</span><span class=c1>//停止1s
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><a href=#电机jgb37-545b-霍尔编码><h3 id=电机jgb37-545b-霍尔编码><span class=hanchor arialabel=Anchor># </span>电机JGB37-545B (霍尔编码)</h3></a><ul><li><p>驱动板输出: AO1 GND E1A E1B 5V AO2</p></li><li><p>电机输出：</p><ul><li>红（电机电源+） AO1</li><li>黑（电机电源-） AO2</li><li>绿（传感器地线）GND</li><li>蓝（传感器电源） 5V</li><li>黄（信号A输出） E1A</li><li>白（信号B输出）E1B</li></ul></li></ul><blockquote class=warning-callout><p>注意传感器千万不能接反。</p></blockquote><p>与JGB37-520电机线序是不一样的，需要手动一一对应。</p><a href=#tb6612驱动板-芯片><h2 id=tb6612驱动板-芯片><span class=hanchor arialabel=Anchor># </span>TB6612驱动板 (芯片)</h2></a><a href=#f1ct-拆机-光耦编码><h3 id=f1ct-拆机-光耦编码><span class=hanchor arialabel=Anchor># </span>F1CT 拆机 (光耦编码)</h3></a><ul><li><p>电机参数：输入6-12V</p></li><li><p>电机输出：</p><ul><li>灰 电机- AO2</li><li>蓝 电机+ AO1</li><li>红 编码器+</li><li>黑 编码器 GND</li><li>棕 A相</li><li>白 B相</li></ul></li></ul><p>1.驱动板PWMA，AIN2，AIN1，STBY连接开发板11，4，5，7
+2.编码器线束 红（编码器+）黑（编码器-）连接开发板5V与GND
+3.编码器线束 棕（A相）白（B相）连接开发板2，3.
+4.编码器线束 灰（电机-）蓝（电机+）连接驱动板AO2，AO1
+5.驱动板 VM与GND连接电源</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>  1
+</span><span class=lnt>  2
+</span><span class=lnt>  3
+</span><span class=lnt>  4
+</span><span class=lnt>  5
+</span><span class=lnt>  6
+</span><span class=lnt>  7
+</span><span class=lnt>  8
+</span><span class=lnt>  9
+</span><span class=lnt> 10
+</span><span class=lnt> 11
+</span><span class=lnt> 12
+</span><span class=lnt> 13
+</span><span class=lnt> 14
+</span><span class=lnt> 15
+</span><span class=lnt> 16
+</span><span class=lnt> 17
+</span><span class=lnt> 18
+</span><span class=lnt> 19
+</span><span class=lnt> 20
+</span><span class=lnt> 21
+</span><span class=lnt> 22
+</span><span class=lnt> 23
+</span><span class=lnt> 24
+</span><span class=lnt> 25
+</span><span class=lnt> 26
+</span><span class=lnt> 27
+</span><span class=lnt> 28
+</span><span class=lnt> 29
+</span><span class=lnt> 30
+</span><span class=lnt> 31
+</span><span class=lnt> 32
+</span><span class=lnt> 33
+</span><span class=lnt> 34
+</span><span class=lnt> 35
+</span><span class=lnt> 36
+</span><span class=lnt> 37
+</span><span class=lnt> 38
+</span><span class=lnt> 39
+</span><span class=lnt> 40
+</span><span class=lnt> 41
+</span><span class=lnt> 42
+</span><span class=lnt> 43
+</span><span class=lnt> 44
+</span><span class=lnt> 45
+</span><span class=lnt> 46
+</span><span class=lnt> 47
+</span><span class=lnt> 48
+</span><span class=lnt> 49
+</span><span class=lnt> 50
+</span><span class=lnt> 51
+</span><span class=lnt> 52
+</span><span class=lnt> 53
+</span><span class=lnt> 54
+</span><span class=lnt> 55
+</span><span class=lnt> 56
+</span><span class=lnt> 57
+</span><span class=lnt> 58
+</span><span class=lnt> 59
+</span><span class=lnt> 60
+</span><span class=lnt> 61
+</span><span class=lnt> 62
+</span><span class=lnt> 63
+</span><span class=lnt> 64
+</span><span class=lnt> 65
+</span><span class=lnt> 66
+</span><span class=lnt> 67
+</span><span class=lnt> 68
+</span><span class=lnt> 69
+</span><span class=lnt> 70
+</span><span class=lnt> 71
+</span><span class=lnt> 72
+</span><span class=lnt> 73
+</span><span class=lnt> 74
+</span><span class=lnt> 75
+</span><span class=lnt> 76
+</span><span class=lnt> 77
+</span><span class=lnt> 78
+</span><span class=lnt> 79
+</span><span class=lnt> 80
+</span><span class=lnt> 81
+</span><span class=lnt> 82
+</span><span class=lnt> 83
+</span><span class=lnt> 84
+</span><span class=lnt> 85
+</span><span class=lnt> 86
+</span><span class=lnt> 87
+</span><span class=lnt> 88
+</span><span class=lnt> 89
+</span><span class=lnt> 90
+</span><span class=lnt> 91
+</span><span class=lnt> 92
+</span><span class=lnt> 93
+</span><span class=lnt> 94
+</span><span class=lnt> 95
+</span><span class=lnt> 96
+</span><span class=lnt> 97
+</span><span class=lnt> 98
+</span><span class=lnt> 99
+</span><span class=lnt>100
+</span><span class=lnt>101
+</span><span class=lnt>102
+</span><span class=lnt>103
+</span><span class=lnt>104
+</span><span class=lnt>105
+</span><span class=lnt>106
+</span><span class=lnt>107
+</span><span class=lnt>108
+</span><span class=lnt>109
+</span><span class=lnt>110
+</span><span class=lnt>111
+</span><span class=lnt>112
+</span><span class=lnt>113
+</span><span class=lnt>114
+</span><span class=lnt>115
+</span><span class=lnt>116
+</span><span class=lnt>117
+</span><span class=lnt>118
+</span><span class=lnt>119
+</span><span class=lnt>120
+</span><span class=lnt>121
+</span><span class=lnt>122
+</span><span class=lnt>123
+</span><span class=lnt>124
+</span><span class=lnt>125
+</span><span class=lnt>126
+</span><span class=lnt>127
+</span><span class=lnt>128
+</span><span class=lnt>129
+</span><span class=lnt>130
+</span><span class=lnt>131
+</span><span class=lnt>132
+</span><span class=lnt>133
+</span><span class=lnt>134
+</span><span class=lnt>135
+</span><span class=lnt>136
+</span><span class=lnt>137
+</span><span class=lnt>138
+</span><span class=lnt>139
+</span><span class=lnt>140
+</span><span class=lnt>141
+</span><span class=lnt>142
+</span><span class=lnt>143
+</span><span class=lnt>144
+</span><span class=lnt>145
+</span><span class=lnt>146
+</span><span class=lnt>147
+</span><span class=lnt>148
+</span><span class=lnt>149
+</span><span class=lnt>150
+</span><span class=lnt>151
+</span><span class=lnt>152
+</span><span class=lnt>153
+</span><span class=lnt>154
+</span><span class=lnt>155
+</span><span class=lnt>156
+</span><span class=lnt>157
+</span><span class=lnt>158
+</span><span class=lnt>159
+</span><span class=lnt>160
+</span><span class=lnt>161
+</span><span class=lnt>162
+</span><span class=lnt>163
+</span><span class=lnt>164
+</span><span class=lnt>165
+</span><span class=lnt>166
+</span><span class=lnt>167
+</span><span class=lnt>168
+</span><span class=lnt>169
+</span><span class=lnt>170
+</span><span class=lnt>171
+</span><span class=lnt>172
+</span><span class=lnt>173
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=c1>//定义引脚名称
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=cp>#define PWMA 11  </span><span class=c1>//11 用于PWM控制
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=cp>#define AIN1 5
+</span></span></span><span class=line><span class=cl><span class=cp>#define AIN2 4
+</span></span></span><span class=line><span class=cl><span class=cp>#define PWMB 10  </span><span class=c1>//10 用于PWM控制
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=cp>#define BIN1 8
+</span></span></span><span class=line><span class=cl><span class=cp>#define BIN2 9
+</span></span></span><span class=line><span class=cl><span class=cp>#define STBY 7  </span><span class=c1>//2、4、8、12、7为数字引脚，用于开关量控制
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=cp>#define Voltage A0 </span><span class=c1>//使用模拟引脚
+</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span><span class=line><span class=cl><span class=kt>int</span> <span class=n>PwmA</span><span class=p>,</span> <span class=n>PwmB</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=kt>double</span> <span class=n>V</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kt>int</span> <span class=n>motor_A</span> <span class=o>=</span> <span class=mi>2</span><span class=p>;</span><span class=c1>//中端口是0
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kt>int</span> <span class=n>motor_B</span> <span class=o>=</span> <span class=mi>3</span><span class=p>;</span><span class=c1>//中断口是1
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=k>volatile</span> <span class=kt>int</span> <span class=n>count</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span><span class=c1>//如果是正转，那么每计数一次自增1，如果是反转，那么每计数一次自减1 
+</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span><span class=line><span class=cl><span class=kt>int</span> <span class=n>reducation</span> <span class=o>=</span> <span class=mi>90</span><span class=p>;</span><span class=c1>//减速比，根据电机参数设置，比如 15 | 30 | 60
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kt>int</span> <span class=n>pulse</span> <span class=o>=</span> <span class=mi>11</span><span class=p>;</span> <span class=c1>//编码器旋转一圈产生的脉冲数该值需要参考商家电机参数
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kt>int</span> <span class=n>per_round</span> <span class=o>=</span> <span class=n>pulse</span> <span class=o>*</span> <span class=n>reducation</span> <span class=o>*</span> <span class=mi>4</span><span class=p>;</span><span class=c1>//车轮旋转一圈产生的脉冲数 
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kt>long</span> <span class=n>start_time</span> <span class=o>=</span> <span class=n>millis</span><span class=p>();</span><span class=c1>//一个计算周期的开始时刻，初始值为 millis();
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kt>long</span> <span class=n>interval_time</span> <span class=o>=</span> <span class=mi>50</span><span class=p>;</span><span class=c1>//一个计算周期 50ms
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kt>double</span> <span class=n>current_vel</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kt>void</span> <span class=nf>count_A</span><span class=p>(){</span>
+</span></span><span class=line><span class=cl>  <span class=c1>//2倍频计数实现
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=c1>//手动旋转电机一圈，输出结果为 一圈脉冲数 * 减速比 * 2
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=k>if</span><span class=p>(</span><span class=n>digitalRead</span><span class=p>(</span><span class=n>motor_A</span><span class=p>)</span> <span class=o>==</span> <span class=n>HIGH</span><span class=p>){</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span><span class=p>(</span><span class=n>digitalRead</span><span class=p>(</span><span class=n>motor_B</span><span class=p>)</span> <span class=o>==</span> <span class=n>HIGH</span><span class=p>){</span><span class=c1>//A 高 B 高
+</span></span></span><span class=line><span class=cl><span class=c1></span>      <span class=n>count</span><span class=o>++</span><span class=p>;</span>  
+</span></span><span class=line><span class=cl>    <span class=p>}</span> <span class=k>else</span> <span class=p>{</span><span class=c1>//A 高 B 低
+</span></span></span><span class=line><span class=cl><span class=c1></span>      <span class=n>count</span><span class=o>--</span><span class=p>;</span>  
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span> <span class=k>else</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span><span class=p>(</span><span class=n>digitalRead</span><span class=p>(</span><span class=n>motor_B</span><span class=p>)</span> <span class=o>==</span> <span class=n>LOW</span><span class=p>){</span><span class=c1>//A 低 B 低
+</span></span></span><span class=line><span class=cl><span class=c1></span>      <span class=n>count</span><span class=o>++</span><span class=p>;</span>  
+</span></span><span class=line><span class=cl>    <span class=p>}</span> <span class=k>else</span> <span class=p>{</span><span class=c1>//A 低 B 高
+</span></span></span><span class=line><span class=cl><span class=c1></span>      <span class=n>count</span><span class=o>--</span><span class=p>;</span>  
+</span></span><span class=line><span class=cl>    <span class=p>}</span>  
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>//与A实现类似
+</span></span></span><span class=line><span class=cl><span class=c1>//4倍频计数实现
+</span></span></span><span class=line><span class=cl><span class=c1>//手动旋转电机一圈，输出结果为 一圈脉冲数 * 减速比 * 4
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kt>void</span> <span class=nf>count_B</span><span class=p>(){</span>
+</span></span><span class=line><span class=cl>  <span class=k>if</span><span class=p>(</span><span class=n>digitalRead</span><span class=p>(</span><span class=n>motor_B</span><span class=p>)</span> <span class=o>==</span> <span class=n>HIGH</span><span class=p>){</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span><span class=p>(</span><span class=n>digitalRead</span><span class=p>(</span><span class=n>motor_A</span><span class=p>)</span> <span class=o>==</span> <span class=n>LOW</span><span class=p>){</span><span class=c1>//B 高 A 低
+</span></span></span><span class=line><span class=cl><span class=c1></span>      <span class=n>count</span><span class=o>++</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span> <span class=k>else</span> <span class=p>{</span><span class=c1>//B 高 A 高
+</span></span></span><span class=line><span class=cl><span class=c1></span>      <span class=n>count</span><span class=o>--</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=p>}</span> <span class=k>else</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span><span class=p>(</span><span class=n>digitalRead</span><span class=p>(</span><span class=n>motor_A</span><span class=p>)</span> <span class=o>==</span> <span class=n>HIGH</span><span class=p>){</span><span class=c1>//B 低 A 高
+</span></span></span><span class=line><span class=cl><span class=c1></span>      <span class=n>count</span><span class=o>++</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span> <span class=k>else</span> <span class=p>{</span><span class=c1>//B 低 A 低
+</span></span></span><span class=line><span class=cl><span class=c1></span>      <span class=n>count</span><span class=o>--</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>//获取当前转速的函数
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kt>void</span> <span class=nf>get_current_vel</span><span class=p>(){</span>
+</span></span><span class=line><span class=cl>  <span class=kt>long</span> <span class=n>right_now</span> <span class=o>=</span> <span class=n>millis</span><span class=p>();</span>  
+</span></span><span class=line><span class=cl>  <span class=kt>long</span> <span class=n>past_time</span> <span class=o>=</span> <span class=n>right_now</span> <span class=o>-</span> <span class=n>start_time</span><span class=p>;</span><span class=c1>//计算逝去的时间
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=k>if</span><span class=p>(</span><span class=n>past_time</span> <span class=o>&gt;=</span> <span class=n>interval_time</span><span class=p>){</span><span class=c1>//如果逝去时间大于等于一个计算周期
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=c1>//1.禁止中断
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=n>noInterrupts</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>    <span class=c1>//2.计算转速 转速单位可以是秒，也可以是分钟… 自定义即可
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=n>current_vel</span> <span class=o>=</span> <span class=p>(</span><span class=kt>double</span><span class=p>)</span><span class=n>count</span> <span class=o>/</span> <span class=n>per_round</span> <span class=o>/</span> <span class=n>past_time</span> <span class=o>*</span> <span class=mi>1000</span> <span class=o>*</span> <span class=mi>60</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=c1>//3.重置计数器
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=n>count</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=c1>//4.重置开始时间
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=n>start_time</span> <span class=o>=</span> <span class=n>right_now</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=c1>//5.重启中断
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=n>interrupts</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=n>Serial</span><span class=p>.</span><span class=n>println</span><span class=p>(</span><span class=n>current_vel</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=cm>/**************************************************************************
+</span></span></span><span class=line><span class=cl><span class=cm>函数功能：设置指定电机转速
+</span></span></span><span class=line><span class=cl><span class=cm>入口参数：指定电机motor，motor=1（2）代表电机A（B）； 指定转速pwm，大小范围为0~255，代表停转和满速
+</span></span></span><span class=line><span class=cl><span class=cm>返回  值：无
+</span></span></span><span class=line><span class=cl><span class=cm>**************************************************************************/</span>
+</span></span><span class=line><span class=cl><span class=kt>void</span> <span class=nf>SetPWM</span><span class=p>(</span><span class=kt>int</span> <span class=n>motor</span><span class=p>,</span> <span class=kt>int</span> <span class=n>pwm</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=k>if</span><span class=p>(</span><span class=n>motor</span><span class=o>==</span><span class=mi>1</span> <span class=o>&amp;&amp;</span> <span class=n>pwm</span><span class=o>&gt;=</span><span class=mi>0</span><span class=p>)</span><span class=c1>//motor=1代表控制电机A，pwm&gt;=0则(AIN1, AIN2)=(1, 0)为正转
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=n>digitalWrite</span><span class=p>(</span><span class=n>AIN1</span><span class=p>,</span> <span class=mi>1</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=n>digitalWrite</span><span class=p>(</span><span class=n>AIN2</span><span class=p>,</span> <span class=mi>0</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=n>analogWrite</span><span class=p>(</span><span class=n>PWMA</span><span class=p>,</span> <span class=n>pwm</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=k>else</span> <span class=k>if</span><span class=p>(</span><span class=n>motor</span><span class=o>==</span><span class=mi>1</span> <span class=o>&amp;&amp;</span> <span class=n>pwm</span><span class=o>&lt;</span><span class=mi>0</span><span class=p>)</span><span class=c1>//motor=1代表控制电机A，pwm&lt;0则(AIN1, AIN2)=(0, 1)为反转
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=n>digitalWrite</span><span class=p>(</span><span class=n>AIN1</span><span class=p>,</span> <span class=mi>0</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=n>digitalWrite</span><span class=p>(</span><span class=n>AIN2</span><span class=p>,</span> <span class=mi>1</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=n>analogWrite</span><span class=p>(</span><span class=n>PWMA</span><span class=p>,</span> <span class=o>-</span><span class=n>pwm</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=k>else</span> <span class=k>if</span><span class=p>(</span><span class=n>motor</span><span class=o>==</span><span class=mi>2</span> <span class=o>&amp;&amp;</span> <span class=n>pwm</span><span class=o>&gt;=</span><span class=mi>0</span><span class=p>)</span><span class=c1>//motor=2代表控制电机B，pwm&gt;=0则(BIN1, BIN2)=(0, 1)为正转
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=n>digitalWrite</span><span class=p>(</span><span class=n>BIN1</span><span class=p>,</span> <span class=mi>0</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=n>digitalWrite</span><span class=p>(</span><span class=n>BIN2</span><span class=p>,</span> <span class=mi>1</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=n>analogWrite</span><span class=p>(</span><span class=n>PWMB</span><span class=p>,</span> <span class=n>pwm</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=k>else</span> <span class=k>if</span><span class=p>(</span><span class=n>motor</span><span class=o>==</span><span class=mi>2</span> <span class=o>&amp;&amp;</span> <span class=n>pwm</span><span class=o>&lt;</span><span class=mi>0</span><span class=p>)</span><span class=c1>//motor=2代表控制电机B，pwm&lt;0则(BIN1, BIN2)=(1, 0)为反转
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=n>digitalWrite</span><span class=p>(</span><span class=n>BIN1</span><span class=p>,</span> <span class=mi>1</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=n>digitalWrite</span><span class=p>(</span><span class=n>BIN2</span><span class=p>,</span> <span class=mi>0</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=n>analogWrite</span><span class=p>(</span><span class=n>PWMB</span><span class=p>,</span> <span class=o>-</span><span class=n>pwm</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kt>void</span> <span class=nf>setup</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=c1>//TB6612电机驱动模块控制信号初始化
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=n>pinMode</span><span class=p>(</span><span class=n>AIN1</span><span class=p>,</span> <span class=n>OUTPUT</span><span class=p>);</span><span class=c1>//控制电机A的方向，(AIN1, AIN2)=(1, 0)为正转，(AIN1, AIN2)=(0, 1)为反转
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=n>pinMode</span><span class=p>(</span><span class=n>AIN2</span><span class=p>,</span> <span class=n>OUTPUT</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=n>pinMode</span><span class=p>(</span><span class=n>BIN1</span><span class=p>,</span> <span class=n>OUTPUT</span><span class=p>);</span><span class=c1>//控制电机B的方向，(BIN1, BIN2)=(0, 1)为正转，(BIN1, BIN2)=(1, 0)为反转
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=n>pinMode</span><span class=p>(</span><span class=n>BIN2</span><span class=p>,</span> <span class=n>OUTPUT</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=n>pinMode</span><span class=p>(</span><span class=n>PWMA</span><span class=p>,</span> <span class=n>OUTPUT</span><span class=p>);</span><span class=c1>//A电机PWM
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=n>pinMode</span><span class=p>(</span><span class=n>PWMB</span><span class=p>,</span> <span class=n>OUTPUT</span><span class=p>);</span><span class=c1>//B电机PWM
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=n>pinMode</span><span class=p>(</span><span class=n>STBY</span><span class=p>,</span> <span class=n>OUTPUT</span><span class=p>);</span><span class=c1>//TB6612FNG使能, 置0则所有电机停止, 置1才允许控制电机
+</span></span></span><span class=line><span class=cl><span class=c1></span>  
+</span></span><span class=line><span class=cl>  <span class=c1>//初始化TB6612电机驱动模块
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=n>digitalWrite</span><span class=p>(</span><span class=n>AIN1</span><span class=p>,</span> <span class=mi>1</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=n>digitalWrite</span><span class=p>(</span><span class=n>AIN2</span><span class=p>,</span> <span class=mi>0</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=n>digitalWrite</span><span class=p>(</span><span class=n>BIN1</span><span class=p>,</span> <span class=mi>1</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=n>digitalWrite</span><span class=p>(</span><span class=n>BIN2</span><span class=p>,</span> <span class=mi>0</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=n>digitalWrite</span><span class=p>(</span><span class=n>STBY</span><span class=p>,</span> <span class=mi>1</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=n>analogWrite</span><span class=p>(</span><span class=n>PWMA</span><span class=p>,</span> <span class=mi>0</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=n>analogWrite</span><span class=p>(</span><span class=n>PWMB</span><span class=p>,</span> <span class=mi>0</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl> <span class=c1>//初始化串口，用于输出电池电压
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=n>Serial</span><span class=p>.</span><span class=n>begin</span><span class=p>(</span><span class=mi>9600</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=n>pinMode</span><span class=p>(</span><span class=n>Voltage</span><span class=p>,</span><span class=n>INPUT</span><span class=p>);</span> <span class=c1>//初始化作为输入端
+</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span><span class=line><span class=cl>  <span class=n>pinMode</span><span class=p>(</span><span class=n>motor_A</span><span class=p>,</span><span class=n>INPUT</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=n>pinMode</span><span class=p>(</span><span class=n>motor_B</span><span class=p>,</span><span class=n>INPUT</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=n>attachInterrupt</span><span class=p>(</span><span class=mi>0</span><span class=p>,</span><span class=n>count_A</span><span class=p>,</span><span class=n>CHANGE</span><span class=p>);</span><span class=c1>//当电平发生改变时触发中断函数
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=c1>//四倍频统计需要为B相也添加中断
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=n>attachInterrupt</span><span class=p>(</span><span class=mi>1</span><span class=p>,</span><span class=n>count_B</span><span class=p>,</span><span class=n>CHANGE</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kt>void</span> <span class=nf>loop</span><span class=p>()</span> 
+</span></span><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=c1>//测试计数器输出
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=n>delay</span><span class=p>(</span><span class=mi>300</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=c1>// Serial.println(count);
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=n>get_current_vel</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=c1>// V=analogRead(Voltage); //读取模拟引脚A0模拟量
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=c1>// Serial.print(V*0.05371);  //对模拟量转换并通过串口输出
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=c1>// Serial.println(&#34;V&#34;);
+</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span><span class=line><span class=cl>  <span class=c1>// SetPWM(1, 128);//电机AB同时满速正转
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=c1>// delay(3000);//正转3s
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=c1>// SetPWM(1, 0);//电机AB停止
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=c1>// delay(1000);//停止1s
+</span></span></span><span class=line><span class=cl><span class=c1></span>  
+</span></span><span class=line><span class=cl>  <span class=c1>// SetPWM(1, -64);
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=c1>// delay(3000);//反转3s
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=c1>// SetPWM(1, 0);//电机AB停止
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=c1>// delay(1000);//停止1s
+</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span><span class=line><span class=cl>  <span class=c1>// SetPWM(1, 32);
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=c1>// delay(3000);//正转3s
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=c1>// SetPWM(1, 0);//电机AB停止
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=c1>// delay(1000);//停止1s
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><a href=#pid控制理论><h1 id=pid控制理论><span class=hanchor arialabel=Anchor># </span>PID控制理论</h1></a><ul><li>举个例子</li></ul><p>比如:现有一辆行驶中的无人车，要求将车速调整至100KM/h，那么应该如何向电机输出PWM值？或换言之，如何控制油门？</p><p><a href=http://www.autolabor.com.cn/book/ROSTutorials/di-8-zhang-gou-jian-lun-shi-cha-fen-ji-qi-ren/83-di-pan-kong-zhi-ji-chu-arduino-yu-dian-ji-qu-dong/835-dian-ji-diao-su.html rel=noopener>http://www.autolabor.com.cn/book/ROSTutorials/di-8-zhang-gou-jian-lun-shi-cha-fen-ji-qi-ren/83-di-pan-kong-zhi-ji-chu-arduino-yu-dian-ji-qu-dong/835-dian-ji-diao-su.html</a></p><img src=https://github.com/aaronmack/picx-images-hosting/raw/master/e/image.2yy8eqv8d8.webp alt=image><ul><li>代码示例</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>  1
+</span><span class=lnt>  2
+</span><span class=lnt>  3
+</span><span class=lnt>  4
+</span><span class=lnt>  5
+</span><span class=lnt>  6
+</span><span class=lnt>  7
+</span><span class=lnt>  8
+</span><span class=lnt>  9
+</span><span class=lnt> 10
+</span><span class=lnt> 11
+</span><span class=lnt> 12
+</span><span class=lnt> 13
+</span><span class=lnt> 14
+</span><span class=lnt> 15
+</span><span class=lnt> 16
+</span><span class=lnt> 17
+</span><span class=lnt> 18
+</span><span class=lnt> 19
+</span><span class=lnt> 20
+</span><span class=lnt> 21
+</span><span class=lnt> 22
+</span><span class=lnt> 23
+</span><span class=lnt> 24
+</span><span class=lnt> 25
+</span><span class=lnt> 26
+</span><span class=lnt> 27
+</span><span class=lnt> 28
+</span><span class=lnt> 29
+</span><span class=lnt> 30
+</span><span class=lnt> 31
+</span><span class=lnt> 32
+</span><span class=lnt> 33
+</span><span class=lnt> 34
+</span><span class=lnt> 35
+</span><span class=lnt> 36
+</span><span class=lnt> 37
+</span><span class=lnt> 38
+</span><span class=lnt> 39
+</span><span class=lnt> 40
+</span><span class=lnt> 41
+</span><span class=lnt> 42
+</span><span class=lnt> 43
+</span><span class=lnt> 44
+</span><span class=lnt> 45
+</span><span class=lnt> 46
+</span><span class=lnt> 47
+</span><span class=lnt> 48
+</span><span class=lnt> 49
+</span><span class=lnt> 50
+</span><span class=lnt> 51
+</span><span class=lnt> 52
+</span><span class=lnt> 53
+</span><span class=lnt> 54
+</span><span class=lnt> 55
+</span><span class=lnt> 56
+</span><span class=lnt> 57
+</span><span class=lnt> 58
+</span><span class=lnt> 59
+</span><span class=lnt> 60
+</span><span class=lnt> 61
+</span><span class=lnt> 62
+</span><span class=lnt> 63
+</span><span class=lnt> 64
+</span><span class=lnt> 65
+</span><span class=lnt> 66
+</span><span class=lnt> 67
+</span><span class=lnt> 68
+</span><span class=lnt> 69
+</span><span class=lnt> 70
+</span><span class=lnt> 71
+</span><span class=lnt> 72
+</span><span class=lnt> 73
+</span><span class=lnt> 74
+</span><span class=lnt> 75
+</span><span class=lnt> 76
+</span><span class=lnt> 77
+</span><span class=lnt> 78
+</span><span class=lnt> 79
+</span><span class=lnt> 80
+</span><span class=lnt> 81
+</span><span class=lnt> 82
+</span><span class=lnt> 83
+</span><span class=lnt> 84
+</span><span class=lnt> 85
+</span><span class=lnt> 86
+</span><span class=lnt> 87
+</span><span class=lnt> 88
+</span><span class=lnt> 89
+</span><span class=lnt> 90
+</span><span class=lnt> 91
+</span><span class=lnt> 92
+</span><span class=lnt> 93
+</span><span class=lnt> 94
+</span><span class=lnt> 95
+</span><span class=lnt> 96
+</span><span class=lnt> 97
+</span><span class=lnt> 98
+</span><span class=lnt> 99
+</span><span class=lnt>100
+</span><span class=lnt>101
+</span><span class=lnt>102
+</span><span class=lnt>103
+</span><span class=lnt>104
+</span><span class=lnt>105
+</span><span class=lnt>106
+</span><span class=lnt>107
+</span><span class=lnt>108
+</span><span class=lnt>109
+</span><span class=lnt>110
+</span><span class=lnt>111
+</span><span class=lnt>112
+</span><span class=lnt>113
+</span><span class=lnt>114
+</span><span class=lnt>115
+</span><span class=lnt>116
+</span><span class=lnt>117
+</span><span class=lnt>118
+</span><span class=lnt>119
+</span><span class=lnt>120
+</span><span class=lnt>121
+</span><span class=lnt>122
+</span><span class=lnt>123
+</span><span class=lnt>124
+</span><span class=lnt>125
+</span><span class=lnt>126
+</span><span class=lnt>127
+</span><span class=lnt>128
+</span><span class=lnt>129
+</span><span class=lnt>130
+</span><span class=lnt>131
+</span><span class=lnt>132
+</span><span class=lnt>133
+</span><span class=lnt>134
+</span><span class=lnt>135
+</span><span class=lnt>136
+</span><span class=lnt>137
+</span><span class=lnt>138
+</span><span class=lnt>139
+</span><span class=lnt>140
+</span><span class=lnt>141
+</span><span class=lnt>142
+</span><span class=lnt>143
+</span><span class=lnt>144
+</span><span class=lnt>145
+</span><span class=lnt>146
+</span><span class=lnt>147
+</span><span class=lnt>148
+</span><span class=lnt>149
+</span><span class=lnt>150
+</span><span class=lnt>151
+</span><span class=lnt>152
+</span><span class=lnt>153
+</span><span class=lnt>154
+</span><span class=lnt>155
+</span><span class=lnt>156
+</span><span class=lnt>157
+</span><span class=lnt>158
+</span><span class=lnt>159
+</span><span class=lnt>160
+</span><span class=lnt>161
+</span><span class=lnt>162
+</span><span class=lnt>163
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=cp>#include</span> <span class=cpf>&lt;PID_v1.h&gt; </span><span class=cp>
+</span></span></span><span class=line><span class=cl><span class=cp></span>
+</span></span><span class=line><span class=cl><span class=kt>int</span> <span class=n>motor_A</span> <span class=o>=</span> <span class=mi>21</span><span class=p>;</span><span class=c1>//中端口是2
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kt>int</span> <span class=n>motor_B</span> <span class=o>=</span> <span class=mi>20</span><span class=p>;</span><span class=c1>//中断口是3
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kt>int</span> <span class=n>motor_C</span> <span class=o>=</span> <span class=mi>18</span><span class=p>;</span><span class=c1>//中断口是5
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kt>int</span> <span class=n>motor_D</span> <span class=o>=</span> <span class=mi>19</span><span class=p>;</span><span class=c1>//中断口是4
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=k>volatile</span> <span class=kt>int</span> <span class=n>count</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span><span class=c1>//如果是正转，那么每计数一次自增1，如果是反转，那么每计数一次自减1 
+</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span><span class=line><span class=cl><span class=cp>#define PWMA 3  </span><span class=c1>//3为模拟引脚，用于PWM控制
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=cp>#define AIN1 5
+</span></span></span><span class=line><span class=cl><span class=cp>#define AIN2 4
+</span></span></span><span class=line><span class=cl><span class=cp>#define PWMB 10  </span><span class=c1>//10为模拟引脚，用于PWM控制
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=cp>#define BIN1 8
+</span></span></span><span class=line><span class=cl><span class=cp>#define BIN2 9
+</span></span></span><span class=line><span class=cl><span class=cp>#define STBY 7  </span><span class=c1>//2、4、8、12、7为数字引脚，用于开关量控制
+</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span><span class=line><span class=cl><span class=c1>//Vel
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kt>int</span> <span class=n>reducation</span> <span class=o>=</span> <span class=mi>90</span><span class=p>;</span><span class=c1>//减速比，根据电机参数设置，比如 15 | 30 | 60
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kt>int</span> <span class=n>pulse</span> <span class=o>=</span> <span class=mi>11</span><span class=p>;</span> <span class=c1>//编码器旋转一圈产生的脉冲数该值需要参考商家电机参数
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kt>int</span> <span class=n>per_round</span> <span class=o>=</span> <span class=n>pulse</span> <span class=o>*</span> <span class=n>reducation</span> <span class=o>*</span> <span class=mi>4</span><span class=p>;</span><span class=c1>//车轮旋转一圈产生的脉冲数 
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kt>long</span> <span class=n>start_time</span> <span class=o>=</span> <span class=n>millis</span><span class=p>();</span><span class=c1>//一个计算周期的开始时刻，初始值为 millis();
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kt>long</span> <span class=n>interval_time</span> <span class=o>=</span> <span class=mi>50</span><span class=p>;</span><span class=c1>//一个计算周期 50ms
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kt>double</span> <span class=n>current_vel</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>//PID
+</span></span></span><span class=line><span class=cl><span class=c1>//1.当前转速 2.计算输出的pwm 3.目标转速 4.kp 5.ki 6.kd 7.当输入与目标值出现偏差时，向哪个方向控制
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kt>double</span> <span class=n>pwm</span><span class=p>;</span><span class=c1>//电机驱动的PWM值
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kt>double</span> <span class=n>target</span> <span class=o>=</span> <span class=mi>80</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=kt>double</span> <span class=n>kp</span><span class=o>=</span><span class=mf>1.5</span><span class=p>,</span> <span class=n>ki</span><span class=o>=</span><span class=mf>3.0</span><span class=p>,</span> <span class=n>kd</span><span class=o>=</span><span class=mf>0.1</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=n>PID</span> <span class=nf>pid</span><span class=p>(</span><span class=o>&amp;</span><span class=n>current_vel</span><span class=p>,</span> <span class=o>&amp;</span><span class=n>pwm</span><span class=p>,</span> <span class=o>&amp;</span><span class=n>target</span><span class=p>,</span> <span class=n>kp</span><span class=p>,</span> <span class=n>ki</span><span class=p>,</span> <span class=n>kd</span><span class=p>,</span> <span class=n>DIRECT</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kt>void</span> <span class=nf>SetPWM_v2</span><span class=p>(</span><span class=kt>int</span> <span class=n>motor</span><span class=p>,</span> <span class=kt>int</span> <span class=n>pwm</span><span class=p>,</span> <span class=kt>int</span> <span class=n>dir</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=c1>// motor=1代表控制电机A，(AIN1, AIN2)=(1, 0)为正转
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=c1>// motor=2代表控制电机B，(AIN1, AIN2)=(0, 1)为反转
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=k>if</span><span class=p>(</span><span class=n>motor</span><span class=o>==</span><span class=mi>1</span> <span class=o>&amp;&amp;</span> <span class=n>dir</span><span class=o>==</span><span class=mi>0</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=n>digitalWrite</span><span class=p>(</span><span class=n>AIN1</span><span class=p>,</span> <span class=mi>1</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=n>digitalWrite</span><span class=p>(</span><span class=n>AIN2</span><span class=p>,</span> <span class=mi>0</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=n>analogWrite</span><span class=p>(</span><span class=n>PWMA</span><span class=p>,</span> <span class=n>pwm</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=k>else</span> <span class=k>if</span><span class=p>(</span><span class=n>motor</span><span class=o>==</span><span class=mi>1</span> <span class=o>&amp;&amp;</span> <span class=n>dir</span><span class=o>==</span><span class=mi>1</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=n>digitalWrite</span><span class=p>(</span><span class=n>AIN1</span><span class=p>,</span> <span class=mi>0</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=n>digitalWrite</span><span class=p>(</span><span class=n>AIN2</span><span class=p>,</span> <span class=mi>1</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=n>analogWrite</span><span class=p>(</span><span class=n>PWMA</span><span class=p>,</span> <span class=n>pwm</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=k>else</span> <span class=k>if</span><span class=p>(</span><span class=n>motor</span><span class=o>==</span><span class=mi>2</span> <span class=o>&amp;&amp;</span> <span class=n>dir</span><span class=o>==</span><span class=mi>0</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=n>digitalWrite</span><span class=p>(</span><span class=n>BIN1</span><span class=p>,</span> <span class=mi>0</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=n>digitalWrite</span><span class=p>(</span><span class=n>BIN2</span><span class=p>,</span> <span class=mi>1</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=n>analogWrite</span><span class=p>(</span><span class=n>PWMB</span><span class=p>,</span> <span class=n>pwm</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=k>else</span> <span class=k>if</span><span class=p>(</span><span class=n>motor</span><span class=o>==</span><span class=mi>2</span> <span class=o>&amp;&amp;</span> <span class=n>dir</span><span class=o>==</span><span class=mi>1</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=n>digitalWrite</span><span class=p>(</span><span class=n>BIN1</span><span class=p>,</span> <span class=mi>1</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=n>digitalWrite</span><span class=p>(</span><span class=n>BIN2</span><span class=p>,</span> <span class=mi>0</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=n>analogWrite</span><span class=p>(</span><span class=n>PWMB</span><span class=p>,</span> <span class=n>pwm</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kt>void</span> <span class=nf>count_A</span><span class=p>(){</span>
+</span></span><span class=line><span class=cl>  <span class=c1>//2倍频计数实现
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=c1>//手动旋转电机一圈，输出结果为 一圈脉冲数 * 减速比 * 2
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=k>if</span><span class=p>(</span><span class=n>digitalRead</span><span class=p>(</span><span class=n>motor_A</span><span class=p>)</span> <span class=o>==</span> <span class=n>HIGH</span><span class=p>){</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span><span class=p>(</span><span class=n>digitalRead</span><span class=p>(</span><span class=n>motor_B</span><span class=p>)</span> <span class=o>==</span> <span class=n>HIGH</span><span class=p>){</span><span class=c1>//A 高 B 高
+</span></span></span><span class=line><span class=cl><span class=c1></span>      <span class=n>count</span><span class=o>++</span><span class=p>;</span>  
+</span></span><span class=line><span class=cl>    <span class=p>}</span> <span class=k>else</span> <span class=p>{</span><span class=c1>//A 高 B 低
+</span></span></span><span class=line><span class=cl><span class=c1></span>      <span class=n>count</span><span class=o>--</span><span class=p>;</span>  
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span> <span class=k>else</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span><span class=p>(</span><span class=n>digitalRead</span><span class=p>(</span><span class=n>motor_B</span><span class=p>)</span> <span class=o>==</span> <span class=n>LOW</span><span class=p>){</span><span class=c1>//A 低 B 低
+</span></span></span><span class=line><span class=cl><span class=c1></span>      <span class=n>count</span><span class=o>++</span><span class=p>;</span>  
+</span></span><span class=line><span class=cl>    <span class=p>}</span> <span class=k>else</span> <span class=p>{</span><span class=c1>//A 低 B 高
+</span></span></span><span class=line><span class=cl><span class=c1></span>      <span class=n>count</span><span class=o>--</span><span class=p>;</span>  
+</span></span><span class=line><span class=cl>    <span class=p>}</span>  
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>//与A实现类似
+</span></span></span><span class=line><span class=cl><span class=c1>//4倍频计数实现
+</span></span></span><span class=line><span class=cl><span class=c1>//手动旋转电机一圈，输出结果为 一圈脉冲数 * 减速比 * 4
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kt>void</span> <span class=nf>count_B</span><span class=p>(){</span>
+</span></span><span class=line><span class=cl>  <span class=k>if</span><span class=p>(</span><span class=n>digitalRead</span><span class=p>(</span><span class=n>motor_B</span><span class=p>)</span> <span class=o>==</span> <span class=n>HIGH</span><span class=p>){</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span><span class=p>(</span><span class=n>digitalRead</span><span class=p>(</span><span class=n>motor_A</span><span class=p>)</span> <span class=o>==</span> <span class=n>LOW</span><span class=p>){</span><span class=c1>//B 高 A 低
+</span></span></span><span class=line><span class=cl><span class=c1></span>      <span class=n>count</span><span class=o>++</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span> <span class=k>else</span> <span class=p>{</span><span class=c1>//B 高 A 高
+</span></span></span><span class=line><span class=cl><span class=c1></span>      <span class=n>count</span><span class=o>--</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span> <span class=k>else</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span><span class=p>(</span><span class=n>digitalRead</span><span class=p>(</span><span class=n>motor_A</span><span class=p>)</span> <span class=o>==</span> <span class=n>HIGH</span><span class=p>){</span><span class=c1>//B 低 A 高
+</span></span></span><span class=line><span class=cl><span class=c1></span>      <span class=n>count</span><span class=o>++</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span> <span class=k>else</span> <span class=p>{</span><span class=c1>//B 低 A 低
+</span></span></span><span class=line><span class=cl><span class=c1></span>      <span class=n>count</span><span class=o>--</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>//获取当前转速的函数
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kt>void</span> <span class=nf>get_current_vel</span><span class=p>(){</span>
+</span></span><span class=line><span class=cl>  <span class=kt>long</span> <span class=n>right_now</span> <span class=o>=</span> <span class=n>millis</span><span class=p>();</span>  
+</span></span><span class=line><span class=cl>  <span class=kt>long</span> <span class=n>past_time</span> <span class=o>=</span> <span class=n>right_now</span> <span class=o>-</span> <span class=n>start_time</span><span class=p>;</span><span class=c1>//计算逝去的时间
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=k>if</span><span class=p>(</span><span class=n>past_time</span> <span class=o>&gt;=</span> <span class=n>interval_time</span><span class=p>){</span><span class=c1>//如果逝去时间大于等于一个计算周期
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=c1>//1.禁止中断
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=n>noInterrupts</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>    <span class=c1>//2.计算转速 转速单位可以是秒，也可以是分钟… 自定义即可
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=n>current_vel</span> <span class=o>=</span> <span class=p>(</span><span class=kt>double</span><span class=p>)</span><span class=n>count</span> <span class=o>/</span> <span class=n>per_round</span> <span class=o>/</span> <span class=n>past_time</span> <span class=o>*</span> <span class=mi>1000</span> <span class=o>*</span> <span class=mi>60</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=c1>//3.重置计数器
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=n>count</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=c1>//4.重置开始时间
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=n>start_time</span> <span class=o>=</span> <span class=n>right_now</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=c1>//5.重启中断
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=n>interrupts</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>    <span class=n>Serial</span><span class=p>.</span><span class=n>println</span><span class=p>(</span><span class=n>current_vel</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>//速度更新函数
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kt>void</span> <span class=nf>update_vel</span><span class=p>(){</span>
+</span></span><span class=line><span class=cl>  <span class=c1>//获取当前速度
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=n>get_current_vel</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>  <span class=n>pid</span><span class=p>.</span><span class=n>Compute</span><span class=p>();</span><span class=c1>//计算需要输出的PWM
+</span></span></span><span class=line><span class=cl><span class=c1></span>  
+</span></span><span class=line><span class=cl>  <span class=n>SetPWM_v2</span><span class=p>(</span><span class=mi>2</span><span class=p>,</span> <span class=n>pwm</span><span class=p>,</span> <span class=n>DIRECT</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kt>void</span> <span class=nf>setup</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=n>Serial</span><span class=p>.</span><span class=n>begin</span><span class=p>(</span><span class=mi>57600</span><span class=p>);</span><span class=c1>//设置波特率  
+</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span><span class=line><span class=cl>  <span class=c1>//TB6612电机驱动模块控制信号初始化
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=n>pinMode</span><span class=p>(</span><span class=n>AIN1</span><span class=p>,</span> <span class=n>OUTPUT</span><span class=p>);</span><span class=c1>//控制电机A的方向，(AIN1, AIN2)=(1, 0)为正转，(AIN1, AIN2)=(0, 1)为反转
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=n>pinMode</span><span class=p>(</span><span class=n>AIN2</span><span class=p>,</span> <span class=n>OUTPUT</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=n>pinMode</span><span class=p>(</span><span class=n>BIN1</span><span class=p>,</span> <span class=n>OUTPUT</span><span class=p>);</span><span class=c1>//控制电机B的方向，(BIN1, BIN2)=(0, 1)为正转，(BIN1, BIN2)=(1, 0)为反转
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=n>pinMode</span><span class=p>(</span><span class=n>BIN2</span><span class=p>,</span> <span class=n>OUTPUT</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=n>pinMode</span><span class=p>(</span><span class=n>PWMA</span><span class=p>,</span> <span class=n>OUTPUT</span><span class=p>);</span><span class=c1>//A电机PWM
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=n>pinMode</span><span class=p>(</span><span class=n>PWMB</span><span class=p>,</span> <span class=n>OUTPUT</span><span class=p>);</span><span class=c1>//B电机PWM
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=n>pinMode</span><span class=p>(</span><span class=n>STBY</span><span class=p>,</span> <span class=n>OUTPUT</span><span class=p>);</span><span class=c1>//TB6612FNG使能, 置0则所有电机停止, 置1才允许控制电机
+</span></span></span><span class=line><span class=cl><span class=c1></span>  
+</span></span><span class=line><span class=cl>  <span class=c1>//初始化TB6612电机驱动模块
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=n>digitalWrite</span><span class=p>(</span><span class=n>AIN1</span><span class=p>,</span> <span class=mi>1</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=n>digitalWrite</span><span class=p>(</span><span class=n>AIN2</span><span class=p>,</span> <span class=mi>0</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=n>digitalWrite</span><span class=p>(</span><span class=n>BIN1</span><span class=p>,</span> <span class=mi>1</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=n>digitalWrite</span><span class=p>(</span><span class=n>BIN2</span><span class=p>,</span> <span class=mi>0</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=n>digitalWrite</span><span class=p>(</span><span class=n>STBY</span><span class=p>,</span> <span class=mi>1</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=n>analogWrite</span><span class=p>(</span><span class=n>PWMA</span><span class=p>,</span> <span class=mi>0</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=n>analogWrite</span><span class=p>(</span><span class=n>PWMB</span><span class=p>,</span> <span class=mi>0</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=n>pinMode</span><span class=p>(</span><span class=n>motor_C</span><span class=p>,</span> <span class=n>INPUT</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=n>pinMode</span><span class=p>(</span><span class=n>motor_D</span><span class=p>,</span> <span class=n>INPUT</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=n>pinMode</span><span class=p>(</span><span class=n>motor_A</span><span class=p>,</span> <span class=n>INPUT</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=n>pinMode</span><span class=p>(</span><span class=n>motor_B</span><span class=p>,</span> <span class=n>INPUT</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=n>attachInterrupt</span><span class=p>(</span><span class=mi>2</span><span class=p>,</span> <span class=n>count_A</span><span class=p>,</span> <span class=n>CHANGE</span><span class=p>);</span><span class=c1>//当电平发生改变时触发中断函数
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=c1>//四倍频统计需要为B相也添加中断
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=n>attachInterrupt</span><span class=p>(</span><span class=mi>3</span><span class=p>,</span> <span class=n>count_B</span><span class=p>,</span> <span class=n>CHANGE</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=n>pid</span><span class=p>.</span><span class=n>SetMode</span><span class=p>(</span><span class=n>AUTOMATIC</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kt>void</span> <span class=nf>loop</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=n>delay</span><span class=p>(</span><span class=mi>10</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=n>update_vel</span><span class=p>();</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><a href=#ld14p雷达><h1 id=ld14p雷达><span class=hanchor arialabel=Anchor># </span>LD14P雷达</h1></a><ol><li>连接转接板: 转接板上电蓝灯常亮为CH9102，转接板上电绿灯常亮为CP2102</li></ol><a href=#usb-cam><h1 id=usb-cam><span class=hanchor arialabel=Anchor># </span>USB-Cam</h1></a><ol><li>安装： sudo apt-get install ros-humble-usb-cam，地址：
+<a href=https://github.com/ros-drivers/usb_cam rel=noopener>GitHub - ros-drivers/usb_cam: A ROS Driver for V4L2 USB Cameras</a></li></ol><blockquote class=info-callout><p>如果在Windows系统中插入USB-Camera，再使用usbipd attach到WSL中，名称不再是<code>/dev/video0</code>，可以使用<code>lsusb</code>去检查，例如最后可能在 <code>/dev/bus/usb/001/009</code> 不知道是不是在这。</p></blockquote><a href=#问题解决><h1 id=问题解决><span class=hanchor arialabel=Anchor># </span>问题解决</h1></a><a href=#树莓派连接arduino开发板但不显示设备><h2 id=树莓派连接arduino开发板但不显示设备><span class=hanchor arialabel=Anchor># </span>树莓派连接Arduino开发板，但不显示设备</h2></a><ol><li>使用<code>sudo dmesg</code>显示</li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>ch341 1-1.1:1.0: ch341-uart converter detected
+</span></span><span class=line><span class=cl>usb 1-1.1: ch341-uart converter now attached to ttyUSB0
+</span></span><span class=line><span class=cl>usb 1-1.1: usbfs: interface <span class=m>0</span> claimed by ch341 <span class=k>while</span> <span class=s1>&#39;brltty&#39;</span> sets config <span class=c1>#1</span>
+</span></span><span class=line><span class=cl>ch341-uart ttyUSB0: ch341-uart converter now disconnected from ttyUSB0
+</span></span><span class=line><span class=cl>ch341 1-1.1:1.0: device disconnected
+</span></span></code></pre></td></tr></table></div></div><ol start=2><li>可以看到设备本来被<code>attached to ttyUSB0</code>，但是后面断开了。</li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># 这一段不知有没有用，但前面测试时执行过了。</span>
+</span></span><span class=line><span class=cl><span class=k>for</span> f in /usr/lib/udev/rules.d/*brltty*.rules<span class=p>;</span> <span class=k>do</span>
+</span></span><span class=line><span class=cl>    sudo ln -s /dev/null <span class=s2>&#34;/etc/udev/rules.d/</span><span class=k>$(</span>basename <span class=s2>&#34;</span><span class=nv>$f</span><span class=s2>&#34;</span><span class=k>)</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=cl><span class=k>done</span>
+</span></span><span class=line><span class=cl>sudo udevadm control --reload-rules
+</span></span><span class=line><span class=cl><span class=c1># 执行了这一句命令。</span>
+</span></span><span class=line><span class=cl>sudo systemctl mask brltty.path
+</span></span></code></pre></td></tr></table></div></div><a href=#树莓派与arduino开发板串口通信报错权限不足><h2 id=树莓派与arduino开发板串口通信报错权限不足><span class=hanchor arialabel=Anchor># </span>树莓派与Arduino开发板串口通信，报错权限不足</h2></a><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># 使用</span>
+</span></span><span class=line><span class=cl>ls -l /dev/ttyUSB0
+</span></span><span class=line><span class=cl><span class=c1># 或者，查看端口信息</span>
+</span></span><span class=line><span class=cl>stat /dev/ttyUSB0
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 可以看到设备显示在这个组，添加进去</span>
+</span></span><span class=line><span class=cl>sudo usermod -a -G dialout <span class=nv>$USER</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 登出，再重新登录即可</span>
+</span></span><span class=line><span class=cl><span class=nb>logout</span>
+</span></span></code></pre></td></tr></table></div></div><a href=#ros的usb_cam运行报错权限不足><h2 id=ros的usb_cam运行报错权限不足><span class=hanchor arialabel=Anchor># </span>ros的usb_cam运行报错，权限不足</h2></a><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># 下方命令只能临时，重启失效</span>
+</span></span><span class=line><span class=cl>chmod <span class=m>777</span> /dev/video0
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 使用下方命令，需要logout再登入</span>
+</span></span><span class=line><span class=cl>sudo usermod -aG video &lt;your_username&gt;
+</span></span></code></pre></td></tr></table></div></div></article><hr><div class=page-end id=footer><div class=backlinks-container><h3>Backlinks</h3><ul class=backlinks><li>No backlinks found</li></ul></div><div><script src=https://cdn.jsdelivr.net/npm/d3@6.7.0/dist/d3.min.js integrity="sha256-+7jaYCp29O1JusNWHaYtgUn6EhuP0VaFuswhNV06MyI=" crossorigin=anonymous></script><h3>Interactive Graph</h3><div id=graph-container></div><style>:root{--g-node:var(--secondary);--g-node-active:var(--primary);--g-node-inactive:var(--visited);--g-link:var(--outlinegray);--g-link-active:#5a7282}</style><script src=https://knowledge.xyzzyxwz.top/js/graph.6579af7b10c818dbd2ca038702db0224.js></script></div></div><div id=contact_buttons><footer><p>Made by Aaron Li using <a href=https://github.com/jackyzha0/quartz>Quartz</a>, © 2024</p><ul><li><a href=https://knowledge.xyzzyxwz.top/>Home</a></li><li><a href=https://twitter.com/aaaron_li>Twitter</a></li><li><a href=https://github.com/aaronmack>GitHub</a></li></ul></footer></div></div></body></html>
