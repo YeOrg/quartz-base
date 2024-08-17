@@ -2,6 +2,15 @@
 dg-publish: true
 title: OS - Linux
 ---
+# Linux下好用的Command
+
+```bash
+# 类似Windows的Explorer
+ranger
+# 类似Windows下的everythinh
+fzf
+```
+
 # Frp 快速反向代理
 
 如果你有一台独立主机，同时你想暴露自己本地的服务到外部，可以在独立主机上部署frp的服务端，本地部署frp的客户端，这样当外部访问你独立主机的frp就会转发到本地。
@@ -531,4 +540,251 @@ AuthorizedKeysFile      .ssh/authorized_keys .ssh/authorized_keys2
 
 #重启SSH服务
 systemctl restart sshd.service
+```
+
+
+# redsocks 实现全局代理
+
+reference: https://github.com/tazihad/ProxifierLinux
+
+```bash
+1. 安装
+
+sudo apt-get update  
+sudo apt-get install redsocks
+
+2. 修改配置文件
+sudo nano /etc/redsocks.conf
+---
+redsocks {  
+	local_ip = 127.0.0.1;  
+	local_port = 11111;  
+	
+	ip = 192.168.31.200;  
+	port = 10808;   
+	type = socks5;  
+}
+---
+
+3. 开启
+systemctl start redsocks
+iptables -t nat -F
+iptables -t nat -N REDSOCKS
+iptables -t nat -A REDSOCKS -d 0.0.0.0/8 -j RETURN 
+iptables -t nat -A REDSOCKS -d 10.0.0.0/8 -j RETURN 
+iptables -t nat -A REDSOCKS -d 127.0.0.0/8 -j RETURN 
+iptables -t nat -A REDSOCKS -d 169.254.0.0/16 -j RETURN 
+iptables -t nat -A REDSOCKS -d 172.16.0.0/12 -j RETURN 
+iptables -t nat -A REDSOCKS -d 192.168.0.0/16 -j RETURN 
+iptables -t nat -A REDSOCKS -d 224.0.0.0/4 -j RETURN 
+iptables -t nat -A REDSOCKS -d 240.0.0.0/4 -j RETURN
+iptables -t nat -A REDSOCKS -p tcp -j REDIRECT --to-ports 11111
+iptables -t nat -A OUTPUT -p tcp -j REDSOCKS
+
+4. 关闭
+systemctl stop redsocks
+iptables -t nat -F OUTPUT 
+iptables -t nat -F REDSOCKS 
+iptables -t nat -X REDSOCKS
+```
+
+# raw.githubusercontent.com 无法访问
+
+```bash
+
+sudo nano /etc/hosts
+
+---
+185.199.108.133 raw.githubusercontent.com
+---
+```
+
+
+# 树莓派 4b 摄像头
+
+
+https://github.com/motioneye-project/motioneye
+
+> [!INFO] 不知为何使用CSI摄像头时，树莓派电源LED灯闪烁，供电不足，但是电源是用DC POWER SUPPLY去供电的，然后改用USB摄像头才好的。
+
+```bash
+# virtualenv for python3
+# activate it!
+# Install motioneye
+sudo python3 -m pip install --pre motioneye
+sudo motioneye_init
+```
+
+
+# 树莓派系统写入
+
+
+SD Card Formatter
+Win32 Disk Imager
+
+1. Ubuntu Mate
+	1. https://ubuntu-mate.org/download/arm64/jammy/
+2. ImmortalWrt
+	1. PI 3b+ https://downloads.immortalwrt.org/releases/23.05.2/targets/bcm27xx/bcm2710/
+
+# Ubuntu 设置启动时默认进入命令行
+
+```bash
+sudo systemctl enable multi-user.target --force 
+sudo systemctl set-default multi-user.target 
+# start desktop 
+startx
+```
+
+# Ubuntu 设置读取ntfs硬盘
+
+```
+sudo apt install ntfs*
+sudo fdisk -l
+lsblk
+sudo mount -t ntfs-3g /dev/sda1 /mnt/od
+
+# 检查挂载
+mount | grep /dev/sda1
+# 取消挂载
+sudo umount /dev/sda1
+# 弹出设备
+sudo eject /dev/sda1
+```
+
+# Auto Renewal
+
+```jsx
+# 创建一个service用于auth
+ [Unit]
+ Description=Microsoft E5 Auto Renewal
+ After=network.target
+
+ [Service]
+ Type=simple
+ WorkingDirectory=/root/Microsoft-API-Test
+ ExecStart=python3.10 /root/Microsoft-API-Test/auth.py <client_id> <secret>
+ Restart=on-failure
+
+ [Install]
+ WantedBy=multi-user.target
+```
+
+code
+
+```jsx
+# 创建一个服务用于运行主程序
+ [Unit]
+ Description=Microsoft E5 Auto Renewal
+ After=network.target
+
+ [Service]
+ Type=simple
+ WorkingDirectory=/root/Microsoft-API-Test
+ ExecStart=python3.10 /root/Microsoft-API-Test/main.py
+ Restart=on-failure
+
+ [Install]
+ WantedBy=multi-user.target
+```
+
+```jsx
+# 用于获取refresh token
+python auth.py YourClientID YourClientSecret
+# 运行
+python main.py
+```
+
+# rclone 配置 onedrive 5T
+
+
+```bash
+# rclone 安装
+sudo -v ; curl https://rclone.org/install.sh | sudo bash
+
+# 在Microsoft Azure App Registrations中创建新的application
+1. redirect url: http://localhost:53682
+2.权限：
+		Files.Read
+		Files.Read.All
+
+		Files.ReadWrite
+		Files.ReadWrite.All
+
+		offline_access
+		User.Read
+3.创建secrets并记录
+
+# 配置rclone
+> rclone config
+配置中选择Microsoft OneDrive。例如名称叫onedrive。填入Client ID与Secret ID。最后当出现需要输入config_token> 时
+执行命令rclone authorize "onedrive"进行配置。
+
+# 挂载同步
+rclone sync odrive:sync/aync /mnt/od/aync
+```
+
+# 树莓派命令行连接wifi
+
+```jsx
+# 1.检查信道与配置地区为US
+iwlist channel
+raspi-config
+
+# 显示当前连接的wifi
+nmcli con show --active
+
+# 扫描当前wifi
+nmcli dev wifi list
+
+# 连接到一个新的wifi
+nmcli dev wifi connect <SSID> password <password>
+```
+
+# 附录
+
+1. proxy.sh (global)
+
+```bash
+#!/bin/sh
+
+set_proxy(){
+    systemctl start redsocks
+
+    iptables -t nat -F
+    iptables -t nat -N REDSOCKS
+
+    iptables -t nat -A REDSOCKS -d 0.0.0.0/8 -j RETURN 
+    iptables -t nat -A REDSOCKS -d 10.0.0.0/8 -j RETURN 
+    iptables -t nat -A REDSOCKS -d 127.0.0.0/8 -j RETURN 
+    iptables -t nat -A REDSOCKS -d 169.254.0.0/16 -j RETURN 
+    iptables -t nat -A REDSOCKS -d 172.16.0.0/12 -j RETURN 
+    iptables -t nat -A REDSOCKS -d 192.168.0.0/16 -j RETURN 
+    iptables -t nat -A REDSOCKS -d 224.0.0.0/4 -j RETURN 
+    iptables -t nat -A REDSOCKS -d 240.0.0.0/4 -j RETURN
+
+    iptables -t nat -A REDSOCKS -p tcp -j REDIRECT --to-ports 11111
+    iptables -t nat -A OUTPUT -p tcp -j REDSOCKS 
+
+    echo "Proxy has been opened."
+}
+
+unset_proxy(){
+    systemctl stop redsocks
+    iptables -t nat -F OUTPUT 
+    iptables -t nat -F REDSOCKS 
+    iptables -t nat -X REDSOCKS 
+
+    echo "Proxy has been closed."
+}
+
+if [ "$1" = "set" ]
+then
+    set_proxy
+elif [ "$1" = "unset" ]
+then
+    unset_proxy
+else
+    echo "Unsupported arguments."
+fi
 ```

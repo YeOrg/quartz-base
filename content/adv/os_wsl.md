@@ -139,7 +139,7 @@ sudo apt install code -o Acquire::http::Proxy="http://172.24.96.1:10811"
 sudo shutdown -h now
 ```
 
-## WSL GUI 2
+## WSL GUI 2 (Used)
 
 ```bash
 # GUI 2
@@ -219,4 +219,166 @@ memory=8GB
 
 ```
  wsl --shutdown
+```
+
+
+## Connect the USB device to WSL2
+
+1. Reference: [将USB设备连接到WSL2：分步教程 - LinuxStory](https://linuxstory.org/connecting-usb-devices-to-wsl2-a-step-by-step-tutorial/)
+
+```bash
+1. Install usbipd (Windows)
+
+winget install usbipd
+
+2. Install usbip (WSL2)
+
+sudo apt install linux-tools-virtual hwdata
+sudo update-alternatives --install /usr/local/bin/usbip usbip `ls /usr/lib/linux-tools/*/usbip | tail -n1` 20
+
+3. List and attach (Windows)
+
+usbipd list
+usbipd bind --busid <BUSID>
+# for me: usbipd bind --busid 1-6
+usbipd attach -b <BUSID> -w <DISTRIBUTION>
+# for me: usbipd attach -b 1-6 -w Ubuntu-24.04
+
+4. Check and use (WSL2)
+
+ls -l /dev/ttyUSB0
+
+sudo usermod -a -G dialout <your_user_name>
+groups
+
+5. Detach (Windows2)
+usbipd detach --busid <BUSID>
+# for me: usbipd detach --busid 1-6
+
+```
+
+
+## WSL2 配置
+
+```bash
+[wsl2]
+nestedVirtualization=true
+guiApplications=false
+networkingMode = mirrored
+memory=8GB
+```
+
+# 关闭终端中按下Tab键时出现的提示音
+
+```bash
+
+sudo nano /etc/inputrc
+
+# 删除行首的注释标识#
+set bell-style none
+
+```
+
+## 附录
+
+1. desktop.sh
+
+```bash
+# X410 WSL2 Helper
+# https://x410.dev/cookbook/#wsl
+# --------------------
+# Setting up essential environment variables for Ubuntu desktop
+# --------------------
+
+# Ubuntu default desktop (GNOME Shell variant)
+# https://wiki.gnome.org/Projects/GnomeShell
+
+export XDG_CURRENT_DESKTOP=ubuntu:GNOME
+export XDG_SESSION_DESKTOP=ubuntu
+export DESKTOP_SESSION=ubuntu
+export GNOME_SHELL_SESSION_MODE=ubuntu
+
+# Commonly referenced environment variables for X11 sessions
+# https://specifications.freedesktop.org/basedir-spec/latest/
+
+export XDG_CONFIG_DIRS=/etc/xdg/xdg-ubuntu:/etc/xdg
+export XDG_DATA_DIRS=/usr/share/ubuntu:/usr/local/share:/usr/share:/var/lib/snapd/desktop
+export XDG_MENU_PREFIX=gnome-
+
+export XDG_SESSION_TYPE=x11
+export XDG_SESSION_CLASS=user
+export GDK_BACKEND=x11
+
+# Disables using Direct3D in Mesa 3D graphics library
+export LIBGL_ALWAYS_SOFTWARE=1
+```
+
+2. proxy.sh
+
+```bash
+#!/bin/sh
+
+hostip=$(cat /etc/resolv.conf | grep nameserver | awk '{ print $2 }')
+wslip=$(hostname -I | awk '{print $1}')
+
+port=10808
+
+
+PROXY_HTTP="socks5://${hostip}:${port}"
+# PROXY_HTTP="http://${hostip}:${port}"
+
+set_proxy(){
+    export http_proxy="${PROXY_HTTP}"
+    export HTTP_PROXY="${PROXY_HTTP}"
+
+    export https_proxy="${PROXY_HTTP}"
+    export HTTPS_proxy="${PROXY_HTTP}"
+
+    export ALL_PROXY="${PROXY_SOCKS5}"
+    export all_proxy=${PROXY_SOCKS5}
+
+    git config --global http.https://github.com.proxy ${PROXY_HTTP}
+    git config --global https.https://github.com.proxy ${PROXY_HTTP}
+
+    echo "Proxy has been opened."
+}
+
+unset_proxy(){
+    unset http_proxy
+    unset HTTP_PROXY
+    unset https_proxy
+    unset HTTPS_PROXY
+    unset ALL_PROXY
+    unset all_proxy
+    git config --global --unset http.https://github.com.proxy
+    git config --global --unset https.https://github.com.proxy
+
+    echo "Proxy has been closed."
+}
+
+test_setting(){
+    echo "Host IP:" ${hostip}
+    echo "WSL IP:" ${wslip}
+    echo "Try to connect to Google..."
+    resp=$(curl -I -s --connect-timeout 5 -m 5 -w "%{http_code}" -o /dev/null www.google.com)
+    if [ ${resp} = 200 ]; then
+        echo "Proxy setup succeeded!"
+    else
+        echo "Proxy setup failed!"
+    fi
+}
+
+if [ "$1" = "set" ]
+then
+    set_proxy
+elif [ "$1" = "unset" ]
+then
+    unset_proxy
+elif [ "$1" = "test" ]
+then
+    test_setting
+else
+    echo "Unsupported arguments."
+fi
+
 ```
