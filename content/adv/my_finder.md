@@ -173,6 +173,7 @@ title: Finder
 <img src="https://cdn.jsdelivr.net/gh/aaronmack/image-hosting@master/e/image.68tgnevfww00.webp" alt="image" width=500/>
 5. 神经网络：从零到英雄，系列视频讲座。[GitHub - karpathy/ng-video-lecture](https://github.com/karpathy/ng-video-lecture)
 6. 学习AIGC的Prompt的教程网站，号称永久免费。[👋Welcome | LearnPrompt](https://www.learnprompt.pro/about)
+7. 动手学强化学习 （课程） [动手学强化学习](https://hrl.boyuai.com/) 仓库地址： https://github.com/semi-desert/Hands-on-RL
 
 # 冻手
 
@@ -195,6 +196,7 @@ title: Finder
 10. 收集了国内开发者的项目集合 [GitHub - 1c7/chinese-independent-developer: 👩🏿‍💻👨🏾‍💻👩🏼‍💻👨🏽‍💻👩🏻‍💻中国独立开发者项目列表 -- 分享大家都在做什么](https://github.com/1c7/chinese-independent-developer)
 11. 开源**灵感**数据库,包含设计，游戏，摄影，壁纸等等，链接集合。[GitHub - zhaoolee/ins: 🍭互联网从业者的灵感数据库，无广告，Github Actions自动检测网站访问速度](https://github.com/zhaoolee/ins)
 12. 概率机器学习书籍（第二部） - [probml.github.io/pml-book/book2.html](https://probml.github.io/pml-book/book2.html)
+13. 中国历代纪元表 https://home.olemiss.edu/~gg/lidaijiy.htm
 
 # 游戏
 
@@ -214,3 +216,4 @@ title: Finder
    10. 合作博弈论互动指南，以游戏的形式学习博弈论。[GitHub - ncase/trust: An interactive guide to the game theory of cooperation](https://github.com/ncase/trust)
    11. 一款开源沙盒 MMORPG 游戏。采用 React+Next.js+TypeScript 和 WebAssembly 等技术，构建的大型多人在线角色扮演游戏。玩家可以在游戏里探索世界、建造房子、交易、社交等。 [GitHub - ill-inc/biomes-game: Biomes is an open source sandbox MMORPG built for the web using web technologies such as Next.js, Typescript, React and WebAssembly.](https://github.com/ill-inc/biomes-game)
    12. Ren'Py视觉小说[The Ren'Py Visual Novel Engine](https://www.renpy.org/) <img src="https://cdn.jsdelivr.net/gh/aaronmack/image-hosting@master/e/1702717319162.webp" alt="1702717319162" width=500/>
+   13. 五子棋人机对战 Gobang https://passer-by.com/gobang/ <img src="https://cdn.jsdelivr.net/gh/aaronmack/picx-images-hosting@master/e/image.86tmjievl7.webp" alt="image" width=500 />

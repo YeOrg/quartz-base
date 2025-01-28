@@ -29,6 +29,17 @@ https://github.com/TGSAN/CMWTAT_Digital_Edition/releases/tag/2.6.4.0
 https://github.com/qtkite/defender-control
 
 > [!WARNING] （windows-defender-remover）在移除时一定要选择Safe的选项，这样可以Rollback。但不知为何，会使默认的windows-cmd变成管理员权限的，这样导致一些软件不能正常使用。
+
+## Windows Defender 关闭 Real Time Protection
+
+```bash
+Set-MpPreference -DisableRealtimeMonitoring $true
+```
+
+设置管理员运行，创建快捷方式，再设置管理员方式运行。
+
+`powershell.exe -ExecutionPolicy Bypass -File "C:\DisableRealTimeProtection.ps1"
+`
 ## Windows 磁盘映射
 
 有时候你有个WebDAV或者OneDrive，但是Windows自带的磁盘映射似乎很容易卡死，在查找对应的替代方案是，找到了RaiDrive，可以映射很多很多种服务~
@@ -270,3 +281,90 @@ rsync -avr 192.168.31.200::localsync /cygdrive/f/mount
 [https://github.com/karpach/remote-shutdown-pc](https://github.com/karpach/remote-shutdown-pc)
 
 安卓手机Termux执行: `curl http://<ip>:5001/secret/shutdown` 即可关机
+
+# Windows Steam假入库中招
+
+[https://www.bilibili.com/read/cv29858481/](https://www.bilibili.com/read/cv29858481/)
+
+```bash
+Set-ExecutionPolicy -ExecutionPolicy Restricted -Scope CurrentUser
+Get-ExecutionPolicy
+```
+
+# Windows 下百度网盘右键菜单关闭
+
+```bash
+reg delete HKEY_CLASSES_ROOT\Directory\shellex\ContextMenuHandlers\YunShellExt /f 
+reg delete HKEY_CLASSES_ROOT\*\shellex\ContextMenuHandlers\YunShellExt /f
+pause
+```
+
+# Windows 11 恢复经典右键菜单
+
+```jsx
+reg.exe add "HKCU\\Software\\Classes\\CLSID\\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\\InprocServer32" /f /ve
+
+# Computer\\HKEY_CURRENT_USER\\Software\\Classes\\CLSID\\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\\InprocServer32 
+```
+
+# Windows下 Win+R 常用命令
+
+```jsx
+ncpa.cpl # 网络连接窗口
+gpedit.msc # 用户的组策略设置
+msconfig # 系统配置
+```
+
+# Windows 换系统后 git仓库报错
+
+```jsx
+fatal: detected dubious ownership in repository at 'C:/src/FeELib-for-Houdini'
+'C:/src/FeELib-for-Houdini' is owned by:
+        (inconvertible) (S-1-5-21-000000000-000000000-000000000-1001)
+but the current user is:
+        DESKTOP-8XTDVAM/Aaron (S-1-5-21-000000000-000000000-000000000-1001)
+To add an exception for this directory, call:
+
+        git config --global --add safe.directory F:/src/FeELib-for-Houdini
+```
+
+```jsx
+# By kimi
+takeown /f "F:\\src\\FeELib-for-Houdini" /r /d y
+icacls "F:\\src\\FeELib-for-Houdini" /grant Aaron:F /t
+```
+
+# Windows11 Copilot安装与更新
+
+首先更改系统区域为国外。后再安装Copilot
+
+[https://apps.microsoft.com/detail/9nht9rb2f4hd?hl=en-US&gl=US](https://apps.microsoft.com/detail/9nht9rb2f4hd?hl=en-US&gl=US)
+
+
+<img src="https://cdn.jsdelivr.net/gh/aaronmack/picx-images-hosting@master/e/image.4qrb2lww9n.webp" alt="image" width=500/>
+
+清除掉cookies再重新登录。
+
+# Windows 移除PIN
+
+https://answers.microsoft.com/en-us/windows/forum/all/how-to-remove-pin-in-windows-10/62a4ce49-3684-4b05-b4f2-f105ae3be2a3
+
+Let’s try simple steps and check if this helps in resolving the issue. Follow the below steps.
+
+1. Open the **Settings**, and click/tap on the **Accounts** icon. 
+    If you are using a Microsoft Account to sign in, then make sure that you verify  your account on the PC.
+2. Select **Sign-in options**, and click/tap on **I forgot my PIN**.
+3. Click/tap on **Continue**.
+4. Leave the **PIN fields empty**, and click/tap on **Cancel**.
+5. Your PIN will now be removed. You can create a new PIN whenever you want to or continue using your Windows 10 PC without a PIN.
+
+# Windows 11 桌面 删除Linux图标
+
+未开启 Subsystem for Linux 桌面莫名出现Linux图标
+
+```bash
+Windows Registry Editor Version 5.00
+
+[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\NewStartPanel]
+"{B2B4A4D1-2754-4140-A2EB-9A76D9D7CDC6}"=dword:00000001
+```
